@@ -11,6 +11,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    role: '',
     terms: false,
 });
 
@@ -23,6 +24,7 @@ const submit = () => {
 
 <template>
     <BreezeGuestLayout>
+
         <Head title="Register" />
 
         <BreezeValidationErrors class="mb-4" />
@@ -48,9 +50,23 @@ const submit = () => {
                 <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <div class="mt-4">
+                <BreezeLabel for="role" value="Role" />
+                <div class="flex space-x-3 my-3">
+                    <div class="flex space-x-2">
+                        <input type="radio" for="role" id="role" value="Commercant" v-model="form.role" required />
+                        <BreezeLabel value="Commerçant" />
+                    </div>
+                    <div class="flex space-x-2">
+                        <input type="radio" id="role" value="Etudiant" v-model="form.role" required />
+                        <BreezeLabel for="role" value="Etudiant"></BreezeLabel>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Already registered?
+                Already registered?
                 </Link>
 
                 <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
