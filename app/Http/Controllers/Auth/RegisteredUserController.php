@@ -54,8 +54,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return to_route("{$user->id}/photos/create");
     }
 }
