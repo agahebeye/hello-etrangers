@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Photo extends Model
 {
     use HasFactory;
-    protected $fillabe = ['src'];
+    protected $fillable = ['src'];
 
     public function photoable(): MorphTo
     {
