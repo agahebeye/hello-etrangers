@@ -54,6 +54,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return to_route("{$user->id}/photos/create");
+        return to_route('users.photos.create', $user->id);
     }
 }

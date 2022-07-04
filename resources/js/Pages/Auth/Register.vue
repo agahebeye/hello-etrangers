@@ -54,11 +54,11 @@ const submit = () => {
                 <BreezeLabel for="role" value="Role" />
                 <div class="flex space-x-3 my-3">
                     <div class="flex space-x-2">
-                        <input type="radio" for="role" id="role" value="Commercant" v-model="form.role" required />
+                        <input type="radio" for="role" id="commercant" value="Commercant" v-model="form.role" required />
                         <BreezeLabel value="Commerçant" />
                     </div>
                     <div class="flex space-x-2">
-                        <input type="radio" id="role" value="Etudiant" v-model="form.role" required />
+                        <input type="radio" id="etudiant" value="Etudiant" v-model="form.role" required />
                         <BreezeLabel for="role" value="Etudiant"></BreezeLabel>
                     </div>
                 </div>
