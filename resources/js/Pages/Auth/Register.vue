@@ -31,7 +31,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <BreezeLabel for="name" value="Name" />
+                <BreezeLabel for="name" value="Nom complet" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
             </div>
 
@@ -41,12 +41,12 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password" value="Password" />
+                <BreezeLabel for="password" value="Mot de passe" />
                 <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password_confirmation" value="Confirm Password" />
+                <BreezeLabel for="password_confirmation" value="Confirmer mot de passe" />
                 <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
             </div>
 
@@ -66,11 +66,11 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                Already registered?
+                Déjà enregistré(e)?
                 </Link>
 
                 <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
+                    S'enregistrer
                 </BreezeButton>
             </div>
         </form>

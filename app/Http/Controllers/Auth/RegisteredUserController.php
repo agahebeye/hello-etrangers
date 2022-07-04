@@ -42,6 +42,8 @@ class RegisteredUserController extends Controller
             'role' => ['string', 'required', Rule::in(['Commercant', 'Etudiant'])]
         ]);
 
+        return $request->all();
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
