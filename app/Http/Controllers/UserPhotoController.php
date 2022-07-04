@@ -11,7 +11,9 @@ class UserPhotoController extends Controller
 {
     public function create(User $user): \Inertia\Response
     {
-        return Inertia::render('User/Photo/Create.vue')->with(['user', $user]);
+        return Inertia::render('User/Photo/Create', [
+            'user' => $user
+        ]);
     }
 
     public function store(User $user)
@@ -21,7 +23,7 @@ class UserPhotoController extends Controller
         $user->photo()->create(['src' => $photo]);
 
         Auth::login($user);
-        
+
         return redirect(RouteServiceProvider::HOME);
     }
 }
