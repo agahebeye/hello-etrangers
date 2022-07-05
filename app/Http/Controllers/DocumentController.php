@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DocumentController extends Controller
 {
@@ -19,11 +20,11 @@ class DocumentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function create()
+    public function create(): \Inertia\Response
     {
-        //
+        return Inertia::render('Documents/Create');
     }
 
     /**
@@ -34,7 +35,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // store user documents
     }
 
     /**
