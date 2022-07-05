@@ -9,8 +9,6 @@ import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth.user;
 
-console.log(user);
-
 const showingNavigationDropdown = ref(false);
 </script>
 
@@ -30,11 +28,11 @@ const showingNavigationDropdown = ref(false);
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -81,7 +79,7 @@ const showingNavigationDropdown = ref(false);
                         <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink :href="route('documents.index')" :active="route().current('documents.index')">
                             Documents
                         </BreezeResponsiveNavLink>
                     </div>
@@ -111,7 +109,22 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Page Content -->
             <main>
-                <slot />
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex py-12">
+                    <div class="hidden sm:flex flex-col">
+                        <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            Dashboard
+                        </BreezeNavLink>
+                        <BreezeNavLink :href="route('dashboard')">
+                            Dashboard
+                        </BreezeNavLink>
+                        <BreezeNavLink :href="route('dashboard')">
+                            Dashboard
+                        </BreezeNavLink>
+                    </div>
+
+
+                    <slot />
+                </div>
             </main>
         </div>
     </div>
