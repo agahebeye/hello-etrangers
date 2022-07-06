@@ -21,7 +21,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
     ];
@@ -44,6 +45,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function fullname(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, $attributes)  => ucfirst($attributes['firstname'] . ' '  . $attributes['lastname'])
+        );
+    }
 
     public function password(): Attribute
     {

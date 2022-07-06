@@ -9,7 +9,6 @@ import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth.user;
 const isAdmin = user.roles.some((role) => role.name === 'Admin');
-console.log(isAdmin);
 
 const showingNavigationDropdown = ref(false);
 </script>
