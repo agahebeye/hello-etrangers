@@ -8,7 +8,8 @@ import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth.user;
-console.log(user)
+const isAdmin = user.roles.some((role) => role.name === 'Admin');
+console.log(isAdmin);
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -80,8 +81,11 @@ const showingNavigationDropdown = ref(false);
                         <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink :href="route('documents.index')" :active="route().current('documents.index')">
+                        <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
                             Documents
+                        </BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('documents.create')">
+                            Commander un document
                         </BreezeResponsiveNavLink>
                     </div>
 

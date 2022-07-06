@@ -46,13 +46,15 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
         $role = Role::query()->firstOrCreate(['name' => $request->role]);
         $user->assignRole($role->name);
 
         event(new Registered($user));
+
+        Auth::login($user);
 
         return to_route('users.photos.create', $user->id);
     }

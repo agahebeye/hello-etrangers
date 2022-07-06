@@ -23,8 +23,6 @@ class UserPhotoController extends Controller
         $photo = request()->file('photo')->storePublicly('/avatars', 'public');
         $user->photo()->create(['src' => $photo]);
 
-        Auth::login($user);
-
         return redirect(RouteServiceProvider::HOME);
     }
 }
