@@ -49,7 +49,7 @@ class User extends Authenticatable
     public function fullname(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes)  => ucfirst($attributes['firstname'] . ' '  . $attributes['lastname'])
+            get: fn ($value, $attributes)  => ucfirst($attributes['lastname'] . ' '  . $attributes['firstname'])
         );
     }
 
