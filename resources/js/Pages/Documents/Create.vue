@@ -1,7 +1,50 @@
 <script setup>
+import BreezeButton from '@/Components/Button.vue';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import BreezeNavLink from '@/Components/NavLink.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import BreezeInput from '@/Components/Input.vue';
+import BreezeLabel from '@/Components/Label.vue';
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
+import { Head, Link, useForm, usePage } from '@inertiajs/inertia-vue3';
+
+const user = usePage().props.value.auth.user;
+
+const form = useForm({
+    firstname: user.firstname,
+    lastname: user.lastname,
+    mother_firstname: '',
+    mother_lastname: '',
+    father_firstname: '',
+    father_lastname: '',
+    birth: '',
+    gender: '',
+    marital_status: '',
+    citizenship: '',
+    profession: user.roles[0].name,
+    passport_number: '',
+    issue_date: '',
+    issue_place: '',
+    passport_validity: '',
+    stay_purpose: '',
+    person_reference: '',
+    arrival_date: '',
+    current_occupation: '',
+    adress: '',
+    stay_duration: '',
+    has_been: '',
+    has_been_period: '',
+    visa_kind: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    role: '',
+    terms: false,
+});
+
+const submit = () => {
+    form.post(route('register'), {
+        onFinish: () => form.reset('password', 'password_confirmation'),
+    });
+};
 </script>
 
 <template>
@@ -15,14 +58,110 @@ import { Head } from '@inertiajs/inertia-vue3';
             </h2>
         </template>
 
-        <div class="">
-            <div class="">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in!
+        <div class="p-6 pt-0">
+            <BreezeValidationErrors class="mb-4" />
+
+            <form @submit.prevent="submit">
+                <div>
+                    <BreezeLabel for="lastname" value="Nom" />
+                    <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" required autofocus autocomplete="name" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="firstname" value="Prénom" />
+                    <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" required autofocus autocomplete="name" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="mother_lastname" value="Nom de la mère" />
+                    <BreezeInput id="mother_lastname" type="text" class="mt-1 block w-full" v-model="form.mother_lastname" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="mother_firstname" value="Prénom de la mère" />
+                    <BreezeInput id="mother_firstname" type="text" class="mt-1 block w-full" v-model="form.mother_firstname" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="father_lastname" value="Nom de la père" />
+                    <BreezeInput id="father_lastname" type="text" class="mt-1 block w-full" v-model="form.father_lastname" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="father_firstname" value="Prénom de la père" />
+                    <BreezeInput id="father_firstname" type="text" class="mt-1 block w-full" v-model="form.father_firstname" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="birth" value="Date et Lieu de naissance" />
+                    <BreezeInput id="birth" type="text" class="mt-1 block w-full" v-model="form.birth" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="gender" value="Sexe" />
+                    <div class="flex space-x-3 my-3">
+                        <div class="flex space-x-2">
+                            <input type="radio" id="masculin" value="male" v-model="form.gender" required />
+                            <BreezeLabel for="masculin" value="Masculin" />
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="radio" id="feminin" value="female" v-model="form.gender" required />
+                            <BreezeLabel for="feminin" value="Féminin" />
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="marital_status" value="Etat Civil" />
+                    <div class="flex space-x-3 my-3" id="marital_status">
+                        <div class="flex space-x-2">
+                            <input type="radio" id="Ccelibataire" value="bachelor" v-model="form.marital_status" required />
+                            <BreezeLabel for="celibataire" value="Célibataire" />
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="radio" id="married" value="married" v-model="form.marital_status" required />
+                            <BreezeLabel for="married" value="Marié(e)"></BreezeLabel>
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="radio" id="divorced" value="divorced" v-model="form.marital_status" required />
+                            <BreezeLabel for="divorced" value="Divore(e)"></BreezeLabel>
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="radio" id="widowed" value="widowed" v-model="form.marital_status" required />
+                            <BreezeLabel for="widowed" value="Veuf(ve)"></BreezeLabel>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="profession" value="Profession" />
+                    <BreezeInput id="profession" type="text" class="mt-1 block w-full" v-model="form.profession" required autocomplete="username" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="role" value="Role" />
+                    <div class="flex space-x-3 my-3">
+                        <div class="flex space-x-2">
+                            <input type="radio" for="role" id="commercant" value="Commercant" v-model="form.role" required />
+                            <BreezeLabel value="Commerçant" />
+                        </div>
+                        <div class="flex space-x-2">
+                            <input type="radio" id="etudiant" value="Etudiant" v-model="form.role" required />
+                            <BreezeLabel for="role" value="Etudiant"></BreezeLabel>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                    Déjà enregistré(e)?
+                    </Link>
+
+                    <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        S'enregistrer
+                    </BreezeButton>
+                </div>
+            </form>
         </div>
     </BreezeAuthenticatedLayout>
 </template>
