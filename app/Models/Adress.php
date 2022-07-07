@@ -10,4 +10,8 @@ class Adress extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function users(): \Illuminate\Database\Eloquent\Relations\HasMany {
+        return $this->hasMany(User::class);
+    }
 }
