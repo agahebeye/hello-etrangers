@@ -15,7 +15,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('{user}/photos/create', [UserPhotoController::class, 'create'])->name('users.photos.create');
     Route::post('{user}/photos/store', [UserPhotoController::class, 'store'])->name('users.photos.store');
 
-    Route::resource('documents', DocumentController::class);
+    Route::get('/documents/create', [DocumentController::class, 'create'])->name('documents.create');
+    Route::post('/documents/store', [DocumentController::class, 'store'])->name('documents.store');
 });
 
 require __DIR__ . '/auth.php';

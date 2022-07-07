@@ -15,7 +15,29 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->string('mother_firstname');
+            $table->string('mother_lastname');
+            $table->string('father_firstname');
+            $table->string('father_lastname');
+            $table->string('birth');
+            $table->string('gender');
+            $table->string('marital_status');
+            $table->string('citizenship');
+            $table->string('profession');
+            $table->string('passport_number');
+            $table->string('passport_issue');
+            $table->timestamp('passport_validity');
+            $table->string('stay_purpose');
+            $table->string('person_reference');
+            $table->timestamp('arrival_date');
+            $table->string('current_occupation');
+            $table->string('stay_duration');
+            $table->tinyInteger('has_been');
+            $table->string('has_been_period');
+            $table->string('visa_kind');
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained();
         });
     }
 

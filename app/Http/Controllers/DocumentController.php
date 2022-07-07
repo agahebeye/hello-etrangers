@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDocumentRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -33,9 +34,9 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDocumentRequest $storeDocumentRequest)
     {
-        // store user documents
+        return $storeDocumentRequest->validated();
     }
 
     /**

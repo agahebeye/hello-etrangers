@@ -43,9 +43,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    form.post(route('documents.store'));
 };
 </script>
 
@@ -163,12 +161,12 @@ const submit = () => {
 
                 <div class="">
                     <BreezeLabel for="arrival_date" value="Date d'arrivée au Burundi" />
-                    <BreezeInput id="arrival_date" type="text" class="mt-1 block w-full" v-model="form.arrival_date" required autocomplete="off" />
+                    <BreezeInput id="arrival_date" type="date" class="mt-1 block w-full" v-model="form.arrival_date" required autocomplete="off" />
                 </div>
 
                 <div class="">
                     <BreezeLabel for="addresse" value="Addresse au Burundi" />
-                    <BreezeInput id="addresse" type="text" class="mt-1 block w-full" v-model="form.adress" required autocomplete="off" />
+                    <textarea id="addresse" class="input mt-1 block w-full resize-none" v-model="form.adress" required></textarea>
                 </div>
 
                 <div class="">
@@ -205,6 +203,7 @@ const submit = () => {
 input:disabled {
     @apply bg-transparent;
 }
+
 .input {
      @apply border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;
 }
