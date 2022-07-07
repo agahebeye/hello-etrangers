@@ -65,7 +65,13 @@ class User extends Authenticatable
         return $this->morphOne(Photo::class, 'photoable');
     }
 
-    public function document(): \Illuminate\Database\Eloquent\Relations\HasOne {
+    public function document(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
         return $this->hasOne(Document::class);
+    }
+
+    public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Adress::class);
     }
 }

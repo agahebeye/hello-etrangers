@@ -9,11 +9,14 @@ class Document extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $casts = [
         'passport_validity' => 'datetime',
         'arrival_date' => 'datetime',
         'has_been_period' => 'datetime',
         'has_been' => 'boolean',
+        'validated_at' => 'datetime'
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
