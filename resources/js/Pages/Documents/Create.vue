@@ -114,29 +114,16 @@ const submit = () => {
                     </div>
                 </div>
 
-                <div class="">
+                <div class="col-span-full">
                     <BreezeLabel for="marital_status" value="Etat Civil" />
-                    <select v-model="form.marital_status" class="border-none input">
+                    <select v-model="form.marital_status" class="border-none w-full input">
                         <option v-for="(status, key) in maritalStatuses" :value="key">{{status}}</option>
                     </select>
-                    <!-- <div class="flex space-x-3 my-3" id="marital_status">
-                        <div class="flex space-x-2">
-                            <input type="radio" id="Ccelibataire" value="bachelor" v-model="form.marital_status" required />
-                            <BreezeLabel for="celibataire" value="Célibataire" />
-                        </div>
-                        <div class="flex space-x-2">
-                            <input type="radio" id="married" value="married" v-model="form.marital_status" required />
-                            <BreezeLabel for="married" value="Marié(e)"></BreezeLabel>
-                        </div>
-                        <div class="flex space-x-2">
-                            <input type="radio" id="divorced" value="divorced" v-model="form.marital_status" required />
-                            <BreezeLabel for="divorced" value="Divore(e)"></BreezeLabel>
-                        </div>
-                        <div class="flex space-x-2">
-                            <input type="radio" id="widowed" value="widowed" v-model="form.marital_status" required />
-                            <BreezeLabel for="widowed" value="Veuf(ve)"></BreezeLabel>
-                        </div>
-                    </div> -->
+                </div>
+
+                <div class="">
+                    <BreezeLabel for="citizenship" value="Nationalité" />
+                    <BreezeInput id="citizenship" type="text" class="mt-1 block w-full" v-model="form.citizenship" required autocomplete="off" />
                 </div>
 
                 <div class="">
@@ -144,9 +131,14 @@ const submit = () => {
                     <BreezeInput id="profession" type="text" class="mt-1 block w-full" v-model="form.profession" required disabled autocomplete="off" />
                 </div>
 
-                <div class="">
+                <div class="col-span-full">
                     <BreezeLabel for="passport_number" value="Numéro de passport ou autre document de voyage" />
                     <BreezeInput id="passport_number" type="text" class="mt-1 block w-full" v-model="form.passport_number" required autocomplete="off" />
+                </div>
+
+                <div class="">
+                    <BreezeLabel for="passport_issue" value="Date et lieu de délivrance" />
+                    <BreezeInput id="passport_issue" type="text" class="mt-1 block w-full" v-model="form.passport_issue" required autocomplete="off" />
                 </div>
 
                 <div class="">
