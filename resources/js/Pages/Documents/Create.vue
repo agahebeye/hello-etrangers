@@ -2,6 +2,7 @@
 import BreezeButton from '@/Components/Button.vue';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import BreezeInput from '@/Components/Input.vue';
+import BreezeCheckbox from '@/Components/Checkbox.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm, usePage } from '@inertiajs/inertia-vue3';
@@ -29,7 +30,7 @@ const form = useForm({
     current_occupation: '',
     adress: '',
     stay_duration: '',
-    has_been: '',
+    has_been: false,
     has_been_period: '',
     visa_kind: '',
     email: '',
@@ -63,12 +64,12 @@ const submit = () => {
             <form @submit.prevent="submit">
                 <div>
                     <BreezeLabel for="lastname" value="Nom" />
-                    <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" required autofocus autocomplete="name" />
+                    <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" required disabled autofocus autocomplete="name" />
                 </div>
 
                 <div class="mt-4">
                     <BreezeLabel for="firstname" value="Prénom" />
-                    <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" required autofocus autocomplete="name" />
+                    <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" required disabled autocomplete="name" />
                 </div>
 
                 <div class="mt-4">
@@ -134,7 +135,7 @@ const submit = () => {
 
                 <div class="mt-4">
                     <BreezeLabel for="profession" value="Profession" />
-                    <BreezeInput id="profession" type="text" class="mt-1 block w-full" v-model="form.profession" required autocomplete="off" />
+                    <BreezeInput id="profession" type="text" class="mt-1 block w-full" v-model="form.profession" required disabled autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
@@ -143,20 +144,56 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <BreezeLabel for="passport_issue" value="Date et Lieu de délivrance" />
-                    <BreezeInput id="passport_issue" type="text" class="mt-1 block w-full" v-model="form.passport_issue" required autocomplete="off" />
-                </div>
-
-                <div class="mt-4">
-                    <BreezeLabel for="passport_validity" value="valable jusqu'à" />
+                    <BreezeLabel for="passport_validity" value="Valable jusqu'à" />
                     <BreezeInput id="passport_validity" type="date" class="mt-1 block w-full" v-model="form.passport_validity" required autocomplete="off" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Déjà enregistré(e)?
-                    </Link>
+                <div class="mt-4">
+                    <BreezeLabel for="stay_purpose" value="Motif de séjour au Burundi" />
+                    <BreezeInput id="stay_purpose" type="text" class="mt-1 block w-full" v-model="form.stay_purpose" required autocomplete="off" />
+                </div>
 
+                <div class="mt-4">
+                    <BreezeLabel for="person_reference" value="Personne/institution de référence" />
+                    <BreezeInput id="person_reference" type="text" class="mt-1 block w-full" v-model="form.person_reference" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="current_occupation" value="Activité ou situation actuelle" />
+                    <BreezeInput id="current_occupation" type="text" class="mt-1 block w-full" v-model="form.current_occupation" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="arrival_date" value="Date d'arrivée au Burundi" />
+                    <BreezeInput id="arrival_date" type="text" class="mt-1 block w-full" v-model="form.arrival_date" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="addresse" value="Addresse au Burundi" />
+                    <BreezeInput id="addresse" type="text" class="mt-1 block w-full" v-model="form.adress" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="stay_duration" value="Durée de séjour au Burundi" />
+                    <BreezeInput id="stay_duration" type="text" class="mt-1 block w-full" v-model="form.stay_duration" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4 flex space-x-2 items-center">
+                    <BreezeLabel for="has_been" value="Avez-vous déjà séjourné au Burundi?" />
+                    <BreezeCheckbox name="has_been" v-model:checked="form.has_been" />
+                </div>
+
+                <div class="mt-4" v-if="form.has_been">
+                    <BreezeLabel for="has_been_period" value="Si oui, à quelle époque?" />
+                    <BreezeInput id="has_been_period" type="date" class="mt-1 block w-full" v-model="form.has_been_period" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="visa_kind" value="Nature du visa sollicité" />
+                    <BreezeInput id="visa_kind" type="text" class="mt-1 block w-full" v-model="form.visa_kind" required autocomplete="off" />
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
                     <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         S'enregistrer
                     </BreezeButton>
@@ -165,3 +202,9 @@ const submit = () => {
         </div>
     </BreezeAuthenticatedLayout>
 </template>
+
+<style scoped>
+input{
+    @apply border-b;
+}
+</style>
