@@ -83,7 +83,7 @@ const showingNavigationDropdown = ref(false);
                         <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
                             Documents
                         </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create', { user })" :active="route().current('documents.create')">
+                        <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('documents.create')">
                             Commander un document
                         </BreezeResponsiveNavLink>
                     </div>

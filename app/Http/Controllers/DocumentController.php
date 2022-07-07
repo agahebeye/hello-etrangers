@@ -36,7 +36,6 @@ class DocumentController extends Controller
      */
     public function store(StoreDocumentRequest $storeDocumentRequest)
     {
-        
         return $storeDocumentRequest->validated();
     }
 
