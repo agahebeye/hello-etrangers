@@ -21,8 +21,7 @@ const form = useForm({
     citizenship: '',
     profession: user.roles[0].name,
     passport_number: '',
-    issue_date: '',
-    issue_place: '',
+    passport_issue: '',
     passport_validity: '',
     stay_purpose: '',
     person_reference: '',
@@ -74,27 +73,27 @@ const submit = () => {
 
                 <div class="mt-4">
                     <BreezeLabel for="mother_lastname" value="Nom de la mère" />
-                    <BreezeInput id="mother_lastname" type="text" class="mt-1 block w-full" v-model="form.mother_lastname" required autocomplete="username" />
+                    <BreezeInput id="mother_lastname" type="text" class="mt-1 block w-full" v-model="form.mother_lastname" required autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
                     <BreezeLabel for="mother_firstname" value="Prénom de la mère" />
-                    <BreezeInput id="mother_firstname" type="text" class="mt-1 block w-full" v-model="form.mother_firstname" required autocomplete="username" />
+                    <BreezeInput id="mother_firstname" type="text" class="mt-1 block w-full" v-model="form.mother_firstname" required autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
                     <BreezeLabel for="father_lastname" value="Nom de la père" />
-                    <BreezeInput id="father_lastname" type="text" class="mt-1 block w-full" v-model="form.father_lastname" required autocomplete="username" />
+                    <BreezeInput id="father_lastname" type="text" class="mt-1 block w-full" v-model="form.father_lastname" required autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
                     <BreezeLabel for="father_firstname" value="Prénom de la père" />
-                    <BreezeInput id="father_firstname" type="text" class="mt-1 block w-full" v-model="form.father_firstname" required autocomplete="username" />
+                    <BreezeInput id="father_firstname" type="text" class="mt-1 block w-full" v-model="form.father_firstname" required autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
                     <BreezeLabel for="birth" value="Date et Lieu de naissance" />
-                    <BreezeInput id="birth" type="text" class="mt-1 block w-full" v-model="form.birth" required autocomplete="username" />
+                    <BreezeInput id="birth" type="text" class="mt-1 block w-full" v-model="form.birth" required autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
@@ -135,21 +134,22 @@ const submit = () => {
 
                 <div class="mt-4">
                     <BreezeLabel for="profession" value="Profession" />
-                    <BreezeInput id="profession" type="text" class="mt-1 block w-full" v-model="form.profession" required autocomplete="username" />
+                    <BreezeInput id="profession" type="text" class="mt-1 block w-full" v-model="form.profession" required autocomplete="off" />
                 </div>
 
                 <div class="mt-4">
-                    <BreezeLabel for="role" value="Role" />
-                    <div class="flex space-x-3 my-3">
-                        <div class="flex space-x-2">
-                            <input type="radio" for="role" id="commercant" value="Commercant" v-model="form.role" required />
-                            <BreezeLabel value="Commerçant" />
-                        </div>
-                        <div class="flex space-x-2">
-                            <input type="radio" id="etudiant" value="Etudiant" v-model="form.role" required />
-                            <BreezeLabel for="role" value="Etudiant"></BreezeLabel>
-                        </div>
-                    </div>
+                    <BreezeLabel for="passport_number" value="Numéro de passport ou autre document de voyage" />
+                    <BreezeInput id="passport_number" type="text" class="mt-1 block w-full" v-model="form.passport_number" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="passport_issue" value="Date et Lieu de délivrance" />
+                    <BreezeInput id="passport_issue" type="text" class="mt-1 block w-full" v-model="form.passport_issue" required autocomplete="off" />
+                </div>
+
+                <div class="mt-4">
+                    <BreezeLabel for="passport_validity" value="valable jusqu'à" />
+                    <BreezeInput id="passport_validity" type="date" class="mt-1 block w-full" v-model="form.passport_validity" required autocomplete="off" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
