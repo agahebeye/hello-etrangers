@@ -98,7 +98,7 @@ const showingNavigationDropdown = ref(false);
                 <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <template v-if="$page.props.auth.user">
-                            <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            <BreezeResponsiveNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </BreezeResponsiveNavLink>
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
