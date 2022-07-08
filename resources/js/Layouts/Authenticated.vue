@@ -23,17 +23,37 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('home')">
                                 <BreezeApplicationLogo class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </BreezeNavLink>
-                            </div> -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <template v-if="$page.props.auth.user">
+                                    <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                        Dashboard
+                                    </BreezeNavLink>
+
+                                    <BreezeNavLink :href="route('documents.index')">
+                                        Documents
+                                    </BreezeNavLink>
+
+                                    <BreezeNavLink :href="route('documents.create')">
+                                        Commander un document
+                                    </BreezeNavLink>
+                                </template>
+                                <template v-else>
+                                    <BreezeNavLink :href="route('login')">
+                                        Login
+                                    </BreezeNavLink>
+
+                                    <BreezeNavLink :href="route('register')">
+                                        Register
+                                    </BreezeNavLink>
+
+                                </template>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -113,22 +133,7 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Page Content -->
             <main>
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex py-12">
-                    <div class="hidden sm:flex flex-col">
-                        <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </BreezeNavLink>
-                        <BreezeNavLink :href="route('dashboard')">
-                            Dashboard
-                        </BreezeNavLink>
-                        <BreezeNavLink :href="route('dashboard')">
-                            Dashboard
-                        </BreezeNavLink>
-                    </div>
-
-
-                    <slot />
-                </div>
+                <slot />
             </main>
         </div>
     </div>
