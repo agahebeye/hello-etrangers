@@ -45,8 +45,8 @@ class StoreDocumentRequest extends FormRequest
             'current_occupation' => 'required|string|max:255',
             'adress' => 'required|string',
             'stay_duration' => 'required|string|max:255',
-            'has_been' => 'required|boolean',
-            'has_been_period' => 'required|string|max:255',
+            'has_been' => 'nullable|boolean',
+            'has_been_period' => 'nullable|string|max:255',
             'visa_kind' => 'required|string|max:255',
         ];
     }

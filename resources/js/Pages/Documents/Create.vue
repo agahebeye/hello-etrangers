@@ -42,6 +42,11 @@ const form = useForm({
     visa_kind: '',
 });
 
+function modifyHasBeen() {
+    if (!form.has_been)
+        form.has_been_period = null;
+}
+
 const submit = () => {
     form.post(route('documents.store'));
 };
@@ -115,7 +120,7 @@ const submit = () => {
 
                             <div class="col-span-full">
                                 <BreezeLabel for="marital_status" value="Etat Civil" />
-                                <select v-model="form.marital_status" class="border-none w-full input">
+                                <select v-model="form.marital_status" class="w-full input">
                                     <option v-for="(status, key) in maritalStatuses" :value="key">{{ status }}</option>
                                 </select>
                             </div>
@@ -177,12 +182,12 @@ const submit = () => {
 
                             <div class=" flex space-x-2 items-center">
                                 <BreezeLabel for="has_been" value="Avez-vous déjà séjourné au Burundi?" />
-                                <BreezeCheckbox name="has_been" v-model:checked="form.has_been" />
+                                <BreezeCheckbox name="has_been" v-model:checked="form.has_been" @change="modifyHasBeen" />
                             </div>
 
                             <div class="" v-if="form.has_been">
                                 <BreezeLabel for="has_been_period" value="Si oui, à quelle époque?" />
-                                <BreezeInput id="has_been_period" type="date" class="mt-1 block w-full" v-model="form.has_been_period" required autocomplete="off" />
+                                <BreezeInput id="has_been_period" type="date" class="mt-1 block w-full" v-model="form.has_been_period" autocomplete="off" />
                             </div>
 
                             <div class="">
@@ -201,14 +206,12 @@ const submit = () => {
             </div>
         </div>
 
-
-
     </BreezeAuthenticatedLayout>
 </template>
 
 <style scoped>
 input:disabled {
-    @apply bg-transparent;
+    @apply bg-gray-100;
 }
 
 .input {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDocumentRequest;
+use App\Models\Adress;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -36,7 +37,7 @@ class DocumentController extends Controller
      */
     public function store(StoreDocumentRequest $storeDocumentRequest)
     {
-        return $storeDocumentRequest->validated();
+        return $storeDocumentRequest->safe()->all();
     }
 
     /**
