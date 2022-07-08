@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Actions\StoreDocumentAction;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Adress;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -36,17 +38,10 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDocumentRequest $storeDocumentRequest)
+    public function store(StoreDocumentRequest $storeDocumentRequest, StoreDocumentAction $storeDocumentAction)
     {
-        $valided = $storeDocumentRequest->validated();
-        $adress = Adress::query()->firstOrCreate(['location' => $valided['adress']]);
-        $role =  request()->user()->roles()->first();
-
-        if ($role->value('name') == 'Admin') {
-            $user = User::query()->create([]);
-        }
-        $adress->users()->save(auth()->user());
-        return $adress;
+        $storeDocumentAction->handle($storeDocumentRequest);
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**
