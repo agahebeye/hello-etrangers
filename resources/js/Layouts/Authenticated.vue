@@ -83,7 +83,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <!-- Hamburger -->
-                        <div class="-mr-2 flex items-center sm:hidden" v-if="$page.props.auth.user">
+                        <div class="-mr-2 flex items-center sm:hidden">
                             <button @click="showingNavigationDropdown = !showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path :class="{ 'hidden': showingNavigationDropdown, 'inline-flex': !showingNavigationDropdown }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -95,21 +95,33 @@ const showingNavigationDropdown = ref(false);
                 </div>
 
                 <!-- Responsive Navigation Menu -->
-                <div v-if="$page.props.auth.user" :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
+                <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
-                            Documents
-                        </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('documents.create')">
-                            Commander un document
-                        </BreezeResponsiveNavLink>
+                        <template v-if="$page.props.auth.user">
+                            <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                Dashboard
+                            </BreezeResponsiveNavLink>
+                            <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
+                                Documents
+                            </BreezeResponsiveNavLink>
+                            <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('documents.create')">
+                                Commander un document
+                            </BreezeResponsiveNavLink>
+                        </template>
+
+                        <template v-else>
+                            <BreezeResponsiveNavLink :href="route('login')">
+                                Login
+                            </BreezeResponsiveNavLink>
+                            <BreezeResponsiveNavLink :href="route('register')">
+                            Register
+                            </BreezeResponsiveNavLink>
+
+                        </template>
                     </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
+                    <div class="pt-4 pb-1 border-t border-gray-200" v-if="$page.props.auth.user">
                         <div class="px-4">
                             <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.fullname }}</div>
                             <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>

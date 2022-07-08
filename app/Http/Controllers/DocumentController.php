@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Adress;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -37,7 +38,15 @@ class DocumentController extends Controller
      */
     public function store(StoreDocumentRequest $storeDocumentRequest)
     {
-        return $storeDocumentRequest->safe()->all();
+        $valided = $storeDocumentRequest->validated();
+        $adress = Adress::query()->firstOrCreate(['location' => $valided['adress']]);
+        $role =  request()->user()->roles()->first();
+
+        if ($role->value('name') == 'Admin') {
+            $user = User::query()->create([]);
+        }
+        $adress->users()->save(auth()->user());
+        return $adress;
     }
 
     /**
