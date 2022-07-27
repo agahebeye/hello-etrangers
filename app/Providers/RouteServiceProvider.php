@@ -19,6 +19,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
+    protected array $files = [
+        'Auth',
+        'Document',
+        'User',
+    ];
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -33,8 +39,20 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
+            $this->mapWebRoutes();
+        });
+    }
+
+    protected function mapWebRoutes(): void
+    {
+        foreach ($this->files as $file) {
             Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+                ->group(base_path("routes/{$file}.php"));
+        }
+
+        Route::middleware('web')->group(function () {
+            Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+            Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
         });
     }
 

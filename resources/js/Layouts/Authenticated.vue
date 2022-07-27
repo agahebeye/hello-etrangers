@@ -7,7 +7,7 @@ import BreezeNavLink from '@/Components/NavLink.vue';
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
 
-const user = usePage().props.value.auth.user;
+const user = usePage().props.value.auth?.user;
 const isAdmin = user?.roles.some((role) => role.name === 'Admin');
 
 const showingNavigationDropdown = ref(false);
@@ -30,7 +30,7 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <template v-if="$page.props.auth.user">
+                                <template v-if="user">
                                     <BreezeNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
                                         Dashboard
                                     </BreezeNavLink>
@@ -56,7 +56,7 @@ const showingNavigationDropdown = ref(false);
                             </div>
                         </div>
 
-                        <div class="hidden sm:flex sm:items-center sm:ml-6" v-if="$page.props.auth.user">
+                        <div class="hidden sm:flex sm:items-center sm:ml-6" v-if="user">
                             <!-- Settings Dropdown -->
                             <div class="relative ml-3">
                                 <BreezeDropdown align="right" width="48">
@@ -97,7 +97,7 @@ const showingNavigationDropdown = ref(false);
                 <!-- Responsive Navigation Menu -->
                 <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <template v-if="$page.props.auth.user">
+                        <template v-if="user">
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </BreezeResponsiveNavLink>
@@ -114,14 +114,14 @@ const showingNavigationDropdown = ref(false);
                                 Login
                             </BreezeResponsiveNavLink>
                             <BreezeResponsiveNavLink :href="route('register')">
-                            Register
+                                Register
                             </BreezeResponsiveNavLink>
 
                         </template>
                     </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200" v-if="$page.props.auth.user">
+                    <div class="pt-4 pb-1 border-t border-gray-200" v-if="user">
                         <div class="px-4">
                             <div class="text-base font-medium text-gray-800">{{ $page.props.auth.user.fullname }}</div>
                             <div class="text-sm font-medium text-gray-500">{{ $page.props.auth.user.email }}</div>

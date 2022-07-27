@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
+use App\Models\University;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 
-class WelcomeController extends Controller
+class HomeController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,11 +19,12 @@ class WelcomeController extends Controller
      */
     public function __invoke(Request $request): \Inertia\Response
     {
-        return Inertia::render('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
+        $universities = University::query()->get();
+        $hotels = Hotel::query()->get();
+
+        return Inertia::render('Home', [
+            'universities' => $universities,
+            'hotels' =>  $hotels,
         ]);
     }
 }
