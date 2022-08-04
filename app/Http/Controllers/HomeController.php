@@ -6,8 +6,6 @@ use App\Models\Hotel;
 use App\Models\University;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 
 class HomeController extends Controller
 {
