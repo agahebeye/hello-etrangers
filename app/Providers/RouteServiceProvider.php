@@ -21,7 +21,6 @@ class RouteServiceProvider extends ServiceProvider
 
     protected array $files = [
         'Auth',
-        'Document',
         'User',
     ];
 
