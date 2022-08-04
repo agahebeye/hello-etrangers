@@ -32,19 +32,19 @@ const submit = () => {
 
         <BreezeValidationErrors class="mb-4" />
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
                 <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                <BreezeInput id="email" type="email" class="block w-full mt-1" v-model="form.email" required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
                 <BreezeLabel for="password" value="Mot de passe" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+                <BreezeInput id="password" type="password" class="block w-full mt-1" v-model="form.password" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
@@ -55,7 +55,7 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                <Link v-if="canResetPassword" :href="route('password.request')" class="text-sm text-gray-600 underline hover:text-gray-900">
                 Mot de passe oublié?
                 </Link>
 
