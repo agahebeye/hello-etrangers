@@ -4,6 +4,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 defineProps({
     hotels: Array,
+    universities: Array,
 })
 </script>
 
@@ -33,6 +34,11 @@ defineProps({
             <!--universities-->
             <div>
                 <h2>Universities</h2>
+                <div class="flex flex-wrap gap-2 overflow-x-auto">
+                    <div v-for="university in universities">
+                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/universities/${university.id}`">{{ university.name }}</Link>
+                    </div>
+                </div>
             </div>
 
             <!--markets-->
