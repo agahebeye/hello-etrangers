@@ -9,24 +9,27 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\RouteAttributes\Attributes\Get;
 
 class DocumentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the documents.
      *
      * @return \Inertia\Response
      */
+    #[Get(uri:'/documents', name: 'documents.index', middleware:['auth'])]
     public function index()
     {
         return Inertia::render('Documents/Index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * create a document
      *
      * @return \Inertia\Response
      */
+    #[Get(uri:'/documents/create', name:'documents.create', middleware:['auth'])]
     public function create(): \Inertia\Response
     {
         return Inertia::render('Documents/Create');
@@ -38,6 +41,7 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    #[Get(uri:'/documents/store', name:'documents.store', middleware:['auth'])]
     public function store(StoreDocumentRequest $storeDocumentRequest, StoreDocumentAction $storeDocumentAction)
     {
         $storeDocumentAction->handle($storeDocumentRequest);
