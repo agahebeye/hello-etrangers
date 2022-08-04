@@ -9,6 +9,19 @@ class City extends Model
 {
     use HasFactory;
 
+    /** @var bool */
+    public $timestamps = false;
+
     /** @var array<int, string> */
     protected $fillabe = ['name'];
+
+    public function universities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(University::class);
+    }
+
+    public function markets(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Market::class);
+    }
 }
