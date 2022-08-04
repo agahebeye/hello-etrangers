@@ -1,3 +1,11 @@
+<script setup>
+defineProps({
+    hotel: Object
+});
+</script>
+
 <template>
-    <h1>Show hotel</h1>
+<div>
+    {{ hotel }}
+</div>
 </template>

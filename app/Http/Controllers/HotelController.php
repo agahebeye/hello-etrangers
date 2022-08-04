@@ -9,6 +9,6 @@ class HotelController
 {
     #[Get('/hotels/{hotel}')]
     public function show(Hotel $hotel) {
-        return inertia()->render('Hotels/Show');
+        return inertia()->render('Hotels/Show', ['hotel' => $hotel]);
     }
 }
