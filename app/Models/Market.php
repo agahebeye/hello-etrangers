@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Market extends Model
 {
     use HasFactory;
+
+    /** @var bool */
+    public $timestamps = false;
+
+    /** @var array<int, string> */
+    protected $fillabe = ['name', 'type', 'city_id'];
+
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+        return $this->belongsTo(City::class);
+    }
 }
