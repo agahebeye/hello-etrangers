@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 
+#[Middleware('web')]
 class AuthenticatedSessionController
 {
     /**
@@ -18,7 +20,7 @@ class AuthenticatedSessionController
      *
      * @return \Inertia\Response
      */
-    #[Get('login', name:'login', middleware:'guest')]
+    #[Get('login', name:'login', middleware: 'guest')]
     public function create()
     {
         return Inertia::render('Auth/Login', [
@@ -33,7 +35,7 @@ class AuthenticatedSessionController
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    #[Post('/login', middleware:'guest')]
+    #[Post('/login', middleware: 'guest')]
     public function store(LoginRequest $request)
     {
         $request->authenticate();
