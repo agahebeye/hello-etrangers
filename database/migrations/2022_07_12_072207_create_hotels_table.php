@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('room_count');
+
+            $table->foreignId('city_id')->constrained()->cascadeOnDelete();
         });
     }
 
