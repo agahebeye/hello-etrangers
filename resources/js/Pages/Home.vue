@@ -5,6 +5,8 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 defineProps({
     hotels: Array,
     universities: Array,
+    markets: Array,
+    cities: Array,
 })
 </script>
 
@@ -44,11 +46,21 @@ defineProps({
             <!--markets-->
             <div>
                 <h2>Markets</h2>
+                <div class="flex flex-wrap gap-2 overflow-x-auto">
+                    <div v-for="market in markets">
+                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/markets/${market.id}`">{{ market.name }}</Link>
+                    </div>
+                </div>
             </div>
 
             <!--cities-->
             <div>
                 <h2>Cities</h2>
+                <div class="flex flex-wrap gap-2 overflow-x-auto">
+                    <div v-for="city in cities">
+                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/cities/${city.id}`">{{ city.name }}</Link>
+                    </div>
+                </div>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
