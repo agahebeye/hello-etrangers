@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('motto')->nullable();
             $table->timestamp('founded_at')->nullable();
 
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('city_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained()->cascadeOnDelete();
         });
     }
 
