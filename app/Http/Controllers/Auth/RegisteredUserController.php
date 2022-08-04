@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
      *
      * @return \Inertia\Response
      */
-    #[Get(uri: '/register', name: 'register', middleware: 'auth')]
+    #[Get(uri: '/register', name: 'register', middleware: 'guest')]
     public function create()
     {
         return Inertia::render('Auth/Register');
@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    #[Post(uri: '/register', name: 'register', middleware: 'auth')]
+    #[Post(uri: '/register', middleware: 'guest')]
     public function store(Request $request)
     {
         $request->validate([
