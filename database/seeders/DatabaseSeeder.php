@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\City;
+use App\Models\Hotel;
+use App\Models\Market;
+use App\Models\University;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,5 +25,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        City::factory(10)->has(Market::factory())
+            ->has(Hotel::factory())
+            ->has(University::factory()->hasFaculties(3))
+            ->create();
     }
 }

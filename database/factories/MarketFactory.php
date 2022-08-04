@@ -18,7 +18,6 @@ class MarketFactory extends Factory
     public function definition()
     {
         return [
-            'city_id' => City::factory(),
             'name' => $this->faker->word(),
             'type' => $this->faker->word()
         ];

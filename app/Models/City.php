@@ -23,6 +23,11 @@ class City extends Model
     public function markets(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Market::class);
+    }  
+    
+    public function hotels(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Hotel::class);
     }
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne

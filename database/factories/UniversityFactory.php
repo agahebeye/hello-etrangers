@@ -23,9 +23,6 @@ class UniversityFactory extends Factory
             'website_url' => $this->faker->url(),
             'motto' => $this->faker->sentence(),
             'founded_at' => $this->faker->date(),
-
-            'user_id' => User::factory(),
-            'city_id' => City::factory()
         ];
     }
 }

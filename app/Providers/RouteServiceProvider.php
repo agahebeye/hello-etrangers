@@ -49,11 +49,6 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path("routes/{$file}.php"));
         }
-
-        Route::middleware('web')->group(function () {
-            Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
-            Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
-        });
     }
 
     /**

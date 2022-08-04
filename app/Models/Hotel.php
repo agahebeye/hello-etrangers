@@ -10,7 +10,7 @@ class Hotel extends Model
     use HasFactory;
 
     public $timestamps = false;
-    
+
     protected $fillabe = ['name', 'room_count'];
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
@@ -26,5 +26,10 @@ class Hotel extends Model
     public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Adress::class);
+    }
+    
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }
