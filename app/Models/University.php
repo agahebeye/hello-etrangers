@@ -40,6 +40,11 @@ class University extends Model
         return $this->belongsTo(Adress::class);
     }
 
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function faculties(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Faculty::class, table: 'universities_faculties');

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class UniversityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'website_url' => $this->faker->url(),
+            'motto' => $this->faker->sentence(),
+            'founded_at' => $this->faker->date(),
+            'user' => User::factory()
         ];
     }
 }
