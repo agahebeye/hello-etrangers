@@ -18,4 +18,9 @@ class Market extends Model
     public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
         return $this->belongsTo(City::class);
     }
+
+    public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
+    {
+        return $this->morphOne(Localisation::class, 'localisable');
+    }
 }

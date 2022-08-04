@@ -24,4 +24,9 @@ class City extends Model
     {
         return $this->hasMany(Market::class);
     }
+
+    public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
+    {
+        return $this->morphOne(Localisation::class, 'localisable');
+    }
 }
