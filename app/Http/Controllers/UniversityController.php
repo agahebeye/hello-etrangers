@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\University;
+use Spatie\RouteAttributes\Attributes\Get;
 
-class UniversityController extends Controller
+class UniversityController
 {
-    //
+    #[Get('universities/{university}')]
+    public function show(University $university): \Inertia\Response
+    {
+        return inertia()->render('Universities/Show', ['university' => $university]);
+    }
 }
