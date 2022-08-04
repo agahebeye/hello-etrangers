@@ -29,11 +29,11 @@ return new class extends Migration
             $table->timestamp('passport_validity');
             $table->string('stay_purpose');
             $table->string('person_reference');
-            $table->timestamp('arrival_date');
+            $table->timestamp('arrival_date')->nullable();
             $table->string('current_occupation');
             $table->string('stay_duration');
             $table->tinyInteger('has_been');
-            $table->timestamp('has_been_period');
+            $table->timestamp('has_been_period')->nullable();
             $table->string('visa_kind');
             $table->timestamp('validated_at')->nullable();
 

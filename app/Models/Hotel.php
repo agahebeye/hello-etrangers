@@ -10,6 +10,8 @@ class Hotel extends Model
     use HasFactory;
 
     public $timestamps = false;
+    
+    protected $fillabe = ['name', 'room_count'];
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
