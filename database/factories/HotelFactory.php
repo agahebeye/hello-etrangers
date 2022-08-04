@@ -17,7 +17,8 @@ class HotelFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word() . ' hotel',
+            'room_count' => random_int(5, 10)
         ];
     }
 }
