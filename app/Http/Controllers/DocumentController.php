@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Actions\StoreDocumentAction;
 use App\Http\Requests\StoreDocumentRequest;
-use App\Models\Adress;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
 
 class DocumentController extends Controller
 {
@@ -41,7 +40,7 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    #[Get(uri:'/documents/store', name:'documents.store', middleware:['auth'])]
+    #[Post(uri:'/documents/store', name:'documents.store', middleware:['auth'])]
     public function store(StoreDocumentRequest $storeDocumentRequest, StoreDocumentAction $storeDocumentAction)
     {
         $storeDocumentAction->handle($storeDocumentRequest);

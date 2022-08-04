@@ -20,7 +20,6 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
 
     protected array $files = [
-        'Auth',
         'User',
     ];
 

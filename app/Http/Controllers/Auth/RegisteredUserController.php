@@ -13,6 +13,8 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
 
 class RegisteredUserController extends Controller
 {
@@ -21,6 +23,7 @@ class RegisteredUserController extends Controller
      *
      * @return \Inertia\Response
      */
+    #[Get(uri: '/register', name: 'register', middleware: 'auth')]
     public function create()
     {
         return Inertia::render('Auth/Register');
@@ -34,6 +37,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    #[Post(uri: '/register', name: 'register', middleware: 'auth')]
     public function store(Request $request)
     {
         $request->validate([
