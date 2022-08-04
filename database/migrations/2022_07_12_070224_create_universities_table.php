@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('website_url');
             $table->string('motto')->nullable();
             $table->timestamp('founded_at')->nullable();
+
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('city_id')->constrained();
         });
     }
 
