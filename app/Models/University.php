@@ -11,7 +11,19 @@ class University extends Model
 
     public $timestamps = false;
 
-    public $dates = ['founded_at'];
+    /**
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name', 'website_url', 'motto', 'founded_at', 'user_id'
+    ];
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'founded' => 'datetime'
+    ];
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
