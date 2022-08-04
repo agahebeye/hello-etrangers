@@ -20,7 +20,7 @@ defineProps({
         </template>
 
 
-        <div class="prose">
+        <div class="prose max-w-none">
             <!--hotels-->
             <div>
                 <h2>Hotels</h2>

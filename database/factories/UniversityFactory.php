@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,9 @@ class UniversityFactory extends Factory
             'website_url' => $this->faker->url(),
             'motto' => $this->faker->sentence(),
             'founded_at' => $this->faker->date(),
-            'user_id' => User::factory()
+
+            'user_id' => User::factory(),
+            'city_id' => City::factory()
         ];
     }
 }
