@@ -9,7 +9,6 @@ defineProps({
     cities: Array,
 })
 </script>
-grey
 <template>
 
     <Head title="Accueil" />

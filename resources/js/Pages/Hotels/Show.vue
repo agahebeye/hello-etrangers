@@ -1,11 +1,30 @@
 <script setup>
-defineProps({
-    hotel: Object
-});
-</script>
+import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 
+defineProps({
+    hotel: Array,
+})
+</script>
 <template>
-<div>
-    {{ hotel }}
-</div>
+
+    <Head :title="`Hotels/${hotel.name}`" />
+
+    <BreezeAuthenticatedLayout>
+        <template #header>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                Hotels / <span class="text-gray-500">{{ hotel.name }}</span>
+            </h2>
+        </template>
+
+
+        <div class="prose max-w-none">
+            <div class="mb-6 featured_image">
+                <div class="w-full leading-[18rem] text-center bg-white h-72">Photo ici...</div>
+            </div>
+
+            <h1> {{ hotel.name }}</h1>
+        </div>
+        
+    </BreezeAuthenticatedLayout>
 </template>
