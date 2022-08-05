@@ -9,7 +9,7 @@ defineProps({
     cities: Array,
 })
 </script>
-
+grey
 <template>
 
     <Head title="Accueil" />
@@ -63,5 +63,6 @@ defineProps({
                 </div>
             </div>
         </div>
+        
     </BreezeAuthenticatedLayout>
 </template>
