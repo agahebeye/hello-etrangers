@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\City;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
-class CityController extends Controller
+#[Middleware('web')]
+class CityController
 {
-    //
+    #[Get(uri: '/cities/{city}', name: 'cities.show')]
+    public function show(City $city)
+    {
+        return inertia()->render('Cities/Show', ['city' => fn () => $city]);
+    }
 }
