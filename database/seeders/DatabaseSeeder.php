@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\City;
+use App\Models\Role;
 use App\Models\Hotel;
 use App\Models\Market;
 use App\Models\University;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,12 +25,16 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Role::create([
-            ['name' => 'SuperAdmin'],
-            ['name' => 'Admin'],
-            ['name' => 'Commercant'],
-            ['name' => 'Etudiant']
+        $role = Role::create([
+            'name' => 'SuperAdmin',
         ]);
+
+        $superAdmin = \App\Models\User::factory()->create([
+             'first_name' => 'Jehdai',
+             'last_name' => 'Bugale',
+             'email' => 'test@example.com',
+             'role_id' => $role->id
+         ]);
 
         City::factory(10)->has(Market::factory())
             ->has(Hotel::factory())

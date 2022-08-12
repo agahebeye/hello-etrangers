@@ -10,7 +10,7 @@ class Role extends Model
     use HasFactory;
     
     /** @var bool */
-    public $timestaps = false;
+    public $timestamps = false;
     
     /** @var array */
     protected $fillable = ['name'];
