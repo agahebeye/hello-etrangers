@@ -8,8 +8,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 
+#[Middleware('web')]
 class DocumentController extends Controller
 {
     /**

@@ -12,8 +12,10 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 
+#[Middleware('web')]
 class RegisteredUserController extends Controller
 {
     /**
@@ -46,6 +48,7 @@ class RegisteredUserController extends Controller
             'role' => ['string', 'required', Rule::in(['Commercant', 'Etudiant'])]
         ]);
 
+
         $user = User::create($request->except(['role', 'terms', 'password_confirmation']));
 
         $role = Role::query()->firstOrCreate(['name' => $request->role]);
@@ -55,6 +58,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return to_route('users.photos.create', $user->id);
+        return to_route('home');
     }
 }

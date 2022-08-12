@@ -3,7 +3,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 defineProps({
-    city: Array,
+    city: Object,
 })
 </script>
 <template>

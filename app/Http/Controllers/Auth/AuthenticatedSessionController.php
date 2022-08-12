@@ -45,6 +45,7 @@ class AuthenticatedSessionController
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
+    #[Post('/logout', name: 'logout', middleware: 'auth')]
     /**
      * Destroy an authenticated session.
      *

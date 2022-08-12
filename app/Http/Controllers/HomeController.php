@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use Inertia\Inertia;
 use App\Models\Hotel;
 use App\Models\Market;
 use App\Models\University;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
+#[Middleware('web')]
 class HomeController extends Controller
 {
     /**
@@ -19,10 +20,9 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    #[Get(uri: '/', name: 'home', middleware: ['guest'])]
+    #[Get(uri: '/', name: 'home')]
     public function __invoke(Request $request): \Inertia\Response
     {
-        
         $universities = University::query()->get(['id', 'name']);
         $hotels = Hotel::query()->get(['id', 'name']);
         $markets = Market::query()->get(['id', 'name']);
