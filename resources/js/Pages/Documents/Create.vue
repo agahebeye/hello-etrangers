@@ -6,8 +6,10 @@ import BreezeCheckbox from '@/Components/Checkbox.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
 
 const user = usePage().props.value.auth.user;
+const isAdmin = computed( () => user?.role.name === 'Administrateur');
 
 defineProps({
     hasCommanded: Boolean
@@ -21,9 +23,9 @@ const maritalStatuses = {
 };
 
 const form = useForm({
-    firstname: user.firstName,
-    lastname: user.lastName,
-    mother_firstname: '',
+    firstname: isAdmin.value ? '' : user.firstName,
+    lastname: isAdmin.value ? '' : user.lastName,
+    mother_firstname: '', 
     mother_lastname: '',
     father_firstname: '',
     father_lastname: '',
@@ -31,7 +33,7 @@ const form = useForm({
     gender: '',
     marital_status: '',
     citizenship: '',
-    profession: user.role.name,
+    profession: isAdmin.value ? '' : user.role.name,
     passport_number: '',
     passport_issue: '',
     passport_validity: '',
@@ -69,7 +71,7 @@ const submit = () => {
 
         <div class="py-12">
             <div class="p-5 bg-white shadow-sm sm:rounded-lg" v-if="hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
-            <template  v-else>
+            <template v-else>
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <BreezeValidationErrors class="mb-4" />
@@ -77,12 +79,12 @@ const submit = () => {
                         <form @submit.prevent="submit" class="grid grid-cols-2 gap-6">
                             <div>
                                 <BreezeLabel for="lastname" value="Nom" />
-                                <BreezeInput id="lastname" type="text" class="block w-full mt-1" v-model="form.lastname" required disabled autofocus autocomplete="name" />
+                                <BreezeInput id="lastname" type="text" class="block w-full mt-1" v-model="form.lastname" required :disabled="!isAdmin" autofocus autocomplete="name" />
                             </div>
 
                             <div class="">
                                 <BreezeLabel for="firstname" value="Prénom" />
-                                <BreezeInput id="firstname" type="text" class="block w-full mt-1" v-model="form.firstname" required disabled autocomplete="name" />
+                                <BreezeInput id="firstname" type="text" class="block w-full mt-1" v-model="form.firstname" required :disabled="!isAdmin" autocomplete="name" />
                             </div>
 
                             <div class="">
@@ -138,7 +140,7 @@ const submit = () => {
 
                             <div class="">
                                 <BreezeLabel for="profession" value="Profession" />
-                                <BreezeInput id="profession" type="text" class="block w-full mt-1" v-model="form.profession" required disabled autocomplete="off" />
+                                <BreezeInput id="profession" type="text" class="block w-full mt-1" v-model="form.profession" required :disabled="!isAdmin" autocomplete="off" />
                             </div>
 
                             <div class="col-span-full">

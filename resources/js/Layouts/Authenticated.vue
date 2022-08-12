@@ -8,7 +8,7 @@ import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth['user'];
-const isAdmin = user?.role.name === 'Admin';
+const isAdmin = user?.role.name === 'Administrateur';
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -31,10 +31,6 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <template v-if="user">
-                                    <BreezeNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
-                                        Dashboard
-                                    </BreezeNavLink>
-
                                     <BreezeNavLink v-if="isAdmin" :href="route('documents.index')">
                                         Documents
                                     </BreezeNavLink>

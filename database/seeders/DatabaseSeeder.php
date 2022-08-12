@@ -25,16 +25,17 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        // $role = Role::create([
-        //     'name' => 'SuperAdmin',
-        // ]);
+        $role = Role::create([
+            'name' => 'Administrateur',
+        ]);
 
-        // $superAdmin = \App\Models\User::factory()->create([
-        //      'first_name' => 'Jehdai',
-        //      'last_name' => 'Bugale',
-        //      'email' => 'test@example.com',
-        //      'role_id' => $role->id
-        //  ]);
+        $admin = \App\Models\User::factory()->create([
+             'first_name' => 'Jehdai',
+             'last_name' => 'Bugale',
+             'email' => 'test@example.com',
+             'password' => 'introuvable',
+             'role_id' => $role->id
+         ]);
 
         City::factory(10)->has(Market::factory())
             ->has(Hotel::factory())

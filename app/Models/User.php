@@ -55,9 +55,9 @@ class User extends Authenticatable
         );
     }  
     
-    public function isSuperAdmin()
+    public function isAdministrator()
     {
-        return $this->role->name == 'SuperAdmin';
+        return $this->role->name == 'Admininstrateur';
     }
 
     public function password(): Attribute
