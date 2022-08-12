@@ -10,9 +10,8 @@ class StoreDocumentAction
     public function handle(Request $request): void
     {
         $adress = Adress::query()->firstOrCreate(['location' => $request->adress]);
-        $role =  request()->user()->roles()->first();
 
-        $user = $role->value('name') == 'Admin'
+        $user = $request->user()->hasRole('Admin')
             ? User::query()->create($request->safe()->only(['firstname', 'lastname']))
             : request()->user();
 
