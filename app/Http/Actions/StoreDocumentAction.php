@@ -11,7 +11,7 @@ class StoreDocumentAction
     {
         $adress = Adress::query()->firstOrCreate(['location' => $request->adress]);
 
-        $user = $request->user()->hasRole('Admin')
+        $user = $request->user()->role->name == 'Admin'
             ? User::query()->create($request->safe()->only(['firstname', 'lastname']))
             : request()->user();
 

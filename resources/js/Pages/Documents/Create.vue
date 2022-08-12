@@ -68,8 +68,8 @@ const submit = () => {
         </template>
 
         <div class="py-12">
-            <div v-if="hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8" v-else>
+            <div class="p-5 bg-white shadow-sm sm:rounded-lg" v-if="hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
+            <template  v-else>
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <BreezeValidationErrors class="mb-4" />
@@ -209,7 +209,7 @@ const submit = () => {
                         </form>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
 
     </BreezeAuthenticatedLayout>
