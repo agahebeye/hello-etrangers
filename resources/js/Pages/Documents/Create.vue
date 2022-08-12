@@ -9,6 +9,10 @@ import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth.user;
 
+defineProps({
+    hasCommanded: Boolean
+});
+
 const maritalStatuses = {
     'bachelor': 'Célibataire',
     'married': 'Marié(e)',
@@ -17,8 +21,8 @@ const maritalStatuses = {
 };
 
 const form = useForm({
-    firstname: user.firstname,
-    lastname: user.lastname,
+    firstname: user.firstName,
+    lastname: user.lastName,
     mother_firstname: '',
     mother_lastname: '',
     father_firstname: '',
@@ -27,7 +31,7 @@ const form = useForm({
     gender: '',
     marital_status: '',
     citizenship: '',
-    profession: user.roles[0].name,
+    profession: user.role.name,
     passport_number: '',
     passport_issue: '',
     passport_validity: '',
@@ -62,8 +66,10 @@ const submit = () => {
                 Commander un document
             </h2>
         </template>
+
         <div class="py-12">
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <div v-if="hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
+            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8" v-else>
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <BreezeValidationErrors class="mb-4" />
@@ -108,7 +114,7 @@ const submit = () => {
                                 <BreezeLabel for="gender" value="Sexe" />
                                 <div class="flex my-3 space-x-3">
                                     <div class="flex space-x-2">
-                                        <input type="radio" id="masculin" value="male" v-model="form.gender"  />
+                                        <input type="radio" id="masculin" value="male" v-model="form.gender" />
                                         <BreezeLabel for="masculin" value="Masculin" />
                                     </div>
                                     <div class="flex space-x-2">

@@ -17,8 +17,11 @@ class UserResource extends JsonResource
     {
         return [
             'fullname' => $this->fullname,
+            'firstName' => $this->first_name,
+            'lastName' => $this->last_name,
             'photo' => $this->photo,
-            'roles' => $this->roles,
+            'role' => $this->role,
+
             $this->merge(Arr::except(parent::toArray($request), ['created_at', 'email_verified_at', 'updated_at']))
         ];
     }
