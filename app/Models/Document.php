@@ -9,8 +9,6 @@ class Document extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $casts = [
         'passport_validity' => 'datetime',
         'arrival_date' => 'datetime',

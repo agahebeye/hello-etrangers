@@ -31,8 +31,9 @@ class DocumentController extends Controller
      * @return \Inertia\Response
      */
     #[Get(uri:'/documents/create', name:'documents.create', middleware:['auth'])]
-    public function create(): \Inertia\Response
+    public function create(Request $request): \Inertia\Response
     {
+       dd($request->user()->document()->whereYear('created_at', date('Y'))->first()); 
         return Inertia::render('Documents/Create');
     }
 

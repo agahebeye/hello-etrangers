@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
+#[Middleware('web')]
 class HotelController
 {
     #[Get('/hotels/{hotel}')]

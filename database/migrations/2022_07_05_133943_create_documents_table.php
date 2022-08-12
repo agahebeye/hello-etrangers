@@ -38,6 +38,7 @@ return new class extends Migration
             $table->timestamp('validated_at')->nullable();
 
             $table->foreignId('user_id')->constrained();
+            $table->timestamps();
         });
     }
 
