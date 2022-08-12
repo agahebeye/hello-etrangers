@@ -8,7 +8,9 @@ import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth?.user;
-const isAdmin = user?.roles.some((role) => role.name === 'Admin');
+console.log(user);
+exit;
+const isAdmin = user?.role.name === 'Admin';
 
 const showingNavigationDropdown = ref(false);
 </script>

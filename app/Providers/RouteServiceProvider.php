@@ -43,10 +43,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes(): void
     {
-        foreach ($this->files as $file) {
-            Route::middleware('web')
-                ->group(base_path("routes/{$file}.php"));
-        }
+    
     }
 
     /**

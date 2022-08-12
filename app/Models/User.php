@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Role;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_tname',
+        'first_name',
         'last_name',
         'email',
         'password',
@@ -51,6 +52,11 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn ($value, $attributes)  => ucfirst($attributes['lastname'] . ' '  . $attributes['firstname'])
         );
+    }  
+    
+    public function isSuperAdmin()
+    {
+        return $this->role->name == 'SuperAdmin';
     }
 
     public function password(): Attribute
