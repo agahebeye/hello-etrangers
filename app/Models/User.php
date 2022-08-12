@@ -60,6 +60,12 @@ class User extends Authenticatable
             set: fn (string $value) => Hash::make($value)
         );
     }
+    
+    public function role(): \Illuminate\Database\Eloquent\Relations\HasOne {
+        return $this->hasOne(Role::class);
+    }
+
+    
 
     public function photo()
     {
