@@ -32,7 +32,7 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <template v-if="user">
                                     <BreezeNavLink v-if="isAdmin" :href="route('users.index')">
-                                       Users 
+                                       Utilisateurs 
                                     </BreezeNavLink> 
                                     
                                     <BreezeNavLink v-if="isAdmin" :href="route('documents.index')">
@@ -40,7 +40,7 @@ const showingNavigationDropdown = ref(false);
                                     </BreezeNavLink>
 
                                     <BreezeNavLink :href="route('documents.create')">
-                                        Commander un document
+                                        Commander
                                     </BreezeNavLink>
                                 </template>
                                 <template v-else>
@@ -101,10 +101,12 @@ const showingNavigationDropdown = ref(false);
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('users.index')" :active="route().current('dashboard')">
                                Users 
                             </BreezeResponsiveNavLink>
+
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
                                 Documents
                             </BreezeResponsiveNavLink>
-                            <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('documents.create')">
+
+                            <BreezeResponsiveNavLink :href="route('documents.create')" :active="route().current('documents.create')">
                                 Commander un document
                             </BreezeResponsiveNavLink>
                         </template>

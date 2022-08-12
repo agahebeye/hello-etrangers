@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     #[Get('/users', name:'users.index', middleware:['auth'])]
     public function index() {
-        return inertia()->render('/Users/Index', [
+        return inertia()->render('Users/Index', [
             'users' => User::get(),
         ]);
     }
