@@ -17,6 +17,7 @@ class StoreDocumentAction
             : request()->user();
 
         $adress->users()->save($user);
-        $user->document()->create($request->safe()->except(['firstname', 'lastname', 'adress']));
+        
+        $user->document()->create($request->safe()->except(['first_name', 'last_name', 'adress']));
     }
 }

@@ -12,8 +12,13 @@ class UserController extends Controller
     #[Get('/users', name: 'users.index', middleware: ['auth'])]
     public function index()
     {
+        $users = User::query()
+            ->with('role')
+            ->get()
+            ->filter(fn (User $user) => $user->role?->name != 'Administrateur');
+
         return inertia()->render('Users/Index', [
-            'users' => User::with(['role' => fn($q) => $q->where('name', '<>', 'Administrateur')])->get(),
+            'users' => $users
         ]);
     }
 }
