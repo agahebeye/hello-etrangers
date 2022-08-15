@@ -12,7 +12,7 @@ class StoreDocumentAction
         $adress = Adress::query()->firstOrCreate(['location' => $request->adress]);
 
         $user = $request->user()->role->name == 'Admin'
-            ? User::query()->create($request->safe()->only(['firstname', 'lastname']))
+            ? User::query()->create($request->safe()->only(['first_name', 'last_name']))
             : request()->user();
 
         $adress->users()->save($user);
