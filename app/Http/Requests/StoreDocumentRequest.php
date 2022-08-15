@@ -25,8 +25,8 @@ class StoreDocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'mother_firstname' => 'required|string|max:255',
             'mother_lastname' => 'required|string|max:255',
             'father_firstname' => 'required|string|max:255',
