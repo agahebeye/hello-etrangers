@@ -47,6 +47,7 @@ class DocumentController extends Controller
     #[Post(uri:'/documents/store', name:'documents.store', middleware:['auth'])]
     public function store(StoreDocumentRequest $storeDocumentRequest, StoreDocumentAction $storeDocumentAction)
     {
+        return $storeDocumentRequest->all();
         $storeDocumentAction->handle($storeDocumentRequest);
         return redirect(RouteServiceProvider::HOME);
     }

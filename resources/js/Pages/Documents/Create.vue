@@ -23,8 +23,8 @@ const maritalStatuses = {
 };
 
 const form = useForm({
-    firstname: isAdmin.value ? '' : user.firstName,
-    lastname: isAdmin.value ? '' : user.lastName,
+    first_name: isAdmin.value ? '' : user.firstName,
+    last_name: isAdmin.value ? '' : user.lastName,
     mother_firstname: '', 
     mother_lastname: '',
     father_firstname: '',
@@ -70,7 +70,7 @@ const submit = () => {
         </template>
 
         <div class="py-12">
-            <div class="p-5 bg-white shadow-sm sm:rounded-lg" v-if="hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
+            <div class="p-5 bg-white shadow-sm sm:rounded-lg" v-if="!isAdmin && hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
             <template v-else>
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
@@ -79,12 +79,12 @@ const submit = () => {
                         <form @submit.prevent="submit" class="grid grid-cols-2 gap-6">
                             <div>
                                 <BreezeLabel for="lastname" value="Nom" />
-                                <BreezeInput id="lastname" type="text" class="block w-full mt-1" v-model="form.lastname" required :disabled="!isAdmin" autofocus autocomplete="name" />
+                                <BreezeInput id="lastname" type="text" class="block w-full mt-1" v-model="form.last_name" required :disabled="!isAdmin" autofocus autocomplete="name" />
                             </div>
 
                             <div class="">
                                 <BreezeLabel for="firstname" value="Prénom" />
-                                <BreezeInput id="firstname" type="text" class="block w-full mt-1" v-model="form.firstname" required :disabled="!isAdmin" autocomplete="name" />
+                                <BreezeInput id="firstname" type="text" class="block w-full mt-1" v-model="form.first_name" required :disabled="!isAdmin" autocomplete="name" />
                             </div>
 
                             <div class="">
@@ -116,12 +116,12 @@ const submit = () => {
                                 <BreezeLabel for="gender" value="Sexe" />
                                 <div class="flex my-3 space-x-3">
                                     <div class="flex space-x-2">
-                                        <input type="radio" id="masculin" value="male" v-model="form.gender" />
-                                        <BreezeLabel for="masculin" value="Masculin" />
+                                        <input type="radio" id="sexe" value="male" v-model="form.gender" />
+                                        <BreezeLabel for="sexe" value="Masculin" />
                                     </div>
                                     <div class="flex space-x-2">
-                                        <input type="radio" id="feminin" value="female" v-model="form.gender" />
-                                        <BreezeLabel for="feminin" value="Féminin" />
+                                        <input type="radio" id="sexe" value="female" v-model="form.gender" />
+                                        <BreezeLabel for="sexe" value="Féminin" />
                                     </div>
                                 </div>
                             </div>

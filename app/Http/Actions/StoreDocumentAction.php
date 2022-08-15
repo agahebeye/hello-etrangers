@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class StoreDocumentAction
 {
-    public function handle(Request $request): void
+    public function handle(Request $request)//: void
     {
         $adress = Adress::query()->firstOrCreate(['location' => $request->adress]);
+
+        return $request->all();
 
         $user = $request->user()->role->name == 'Admin'
             ? User::query()->create($request->safe()->only(['first_name', 'last_name']))
