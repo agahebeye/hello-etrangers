@@ -13,7 +13,7 @@ defineProps({
 
 <template>
 
-    <Head title="Documents/Commander" />
+    <Head title="Utisateurs" />
 
     <BreezeAuthenticatedLayout>
         <template #header>

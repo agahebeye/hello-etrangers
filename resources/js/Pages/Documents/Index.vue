@@ -1,6 +1,14 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
+
+const user = usePage().props.value.auth.user;
+const isAdmin = computed( () => user?.role.name === 'Administrateur');
+
+defineProps({
+    documents: Array
+});
 </script>
 
 <template>
@@ -9,20 +17,24 @@ import { Head } from '@inertiajs/inertia-vue3';
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Documents
             </h2>
         </template>
 
-
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex py-12">
-            <div class="hidden sm:flex flex-col">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in!
-                    </div>
-                </div>
-            </div>
+        <div class="py-12">
+            {{ documents }}
         </div>
+
     </BreezeAuthenticatedLayout>
 </template>
+
+<style scoped>
+input:disabled {
+    @apply bg-gray-100;
+}
+
+.input {
+    @apply border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;
+}
+</style>

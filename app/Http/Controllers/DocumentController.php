@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Actions\StoreDocumentAction;
 use App\Http\Requests\StoreDocumentRequest;
+use App\Models\Document;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -22,7 +23,9 @@ class DocumentController extends Controller
     #[Get(uri:'/documents', name: 'documents.index', middleware:['auth'])]
     public function index()
     {
-        return Inertia::render('Documents/Index');
+        return Inertia::render('Documents/Index', [
+            'documents' => Document::with('user')->get()
+        ]);
     }
 
     /**
