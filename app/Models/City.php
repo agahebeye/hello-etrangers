@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class City extends Model
 {
@@ -30,7 +31,7 @@ class City extends Model
         return $this->hasMany(Hotel::class);
     }
 
-    public function photos() {
+    public function photos(): MorphMany {
         return $this->morphMany(Photo::class, 'photoable');
     }
 }
