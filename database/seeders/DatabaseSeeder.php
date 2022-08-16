@@ -19,12 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $role = Role::create([
             'name' => 'Administrateur',
         ]);
@@ -37,9 +31,6 @@ class DatabaseSeeder extends Seeder
              'role_id' => $role->id
          ]);
 
-        City::factory(10)->has(Market::factory())
-            ->has(Hotel::factory())
-            ->has(University::factory()->hasFaculties(3))
-            ->create();
+         $this->call(CitySeeder::class);
     }
 }

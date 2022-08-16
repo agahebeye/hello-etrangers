@@ -15,8 +15,7 @@ class MarketSeeder extends Seeder
      */
     public function run()
     {
-        $markerts = ['bujumbura', 'gitega', 'ngozi', 
-        'muyinga', 'ruyigi', 'rutana', 'cankuzo', 'karuzi',];
+        $markerts = [];
 
         Market::factory()
             ->count(10)
