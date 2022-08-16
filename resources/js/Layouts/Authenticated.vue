@@ -32,9 +32,9 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <template v-if="user">
                                     <BreezeNavLink v-if="isAdmin" :href="route('users.index')">
-                                       Utilisateurs 
-                                    </BreezeNavLink> 
-                                    
+                                        Utilisateurs
+                                    </BreezeNavLink>
+
                                     <BreezeNavLink v-if="isAdmin" :href="route('documents.index')">
                                         Documents
                                     </BreezeNavLink>
@@ -45,11 +45,11 @@ const showingNavigationDropdown = ref(false);
                                 </template>
                                 <template v-else>
                                     <BreezeNavLink :href="route('login')">
-                                        Login
+                                        Connexion
                                     </BreezeNavLink>
 
                                     <BreezeNavLink :href="route('register')">
-                                        Register
+                                        S'enregistrer
                                     </BreezeNavLink>
 
                                 </template>
@@ -99,7 +99,7 @@ const showingNavigationDropdown = ref(false);
                     <div class="pt-2 pb-3 space-y-1">
                         <template v-if="user">
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('users.index')" :active="route().current('dashboard')">
-                               Users 
+                                Users
                             </BreezeResponsiveNavLink>
 
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
@@ -113,10 +113,10 @@ const showingNavigationDropdown = ref(false);
 
                         <template v-else>
                             <BreezeResponsiveNavLink :href="route('login')">
-                                Login
+                                Connexion
                             </BreezeResponsiveNavLink>
                             <BreezeResponsiveNavLink :href="route('register')">
-                                Register
+                                S'enregistrer
                             </BreezeResponsiveNavLink>
 
                         </template>

@@ -18,9 +18,9 @@ class Hotel extends Model
         return $this->morphOne(Localisation::class, 'localisable');
     }
 
-    public function photo(): \Illuminate\Database\Eloquent\Relations\MorphOne
+    public function photos(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->morphOne(Photo::class, 'photoable');
+        return $this->morphMany(Photo::class, 'photoable');
     }
 
     public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
