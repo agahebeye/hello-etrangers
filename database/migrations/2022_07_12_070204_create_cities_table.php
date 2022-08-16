@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('superficies');
-            $table->decimal('population');
+            $table->decimal('superficies', 10);
+            $table->decimal('population', 10);
         });
     }
 
