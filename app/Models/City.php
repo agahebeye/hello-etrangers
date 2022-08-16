@@ -29,9 +29,4 @@ class City extends Model
     {
         return $this->hasMany(Hotel::class);
     }
-
-    public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
-    {
-        return $this->morphOne(Localisation::class, 'localisable');
-    }
 }

@@ -23,7 +23,8 @@ defineProps({
                 <div class="w-full leading-[18rem] text-center bg-white h-72">Photo ici...</div>
             </div>
 
-            <h1> {{ hotel.name }}</h1>
+            <h1>{{ hotel }}</h1>
+             
         </div>
         
     </BreezeAuthenticatedLayout>

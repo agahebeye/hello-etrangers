@@ -15,7 +15,7 @@ class University extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'website_url', 'motto', 'founded_at', 'user_id'
+        'name', 'website_url', 'motto', 'founded_at'
     ];
 
     /**
@@ -30,17 +30,19 @@ class University extends Model
         return $this->morphOne(Localisation::class, 'localisable');
     }
 
-    public function photo(): \Illuminate\Database\Eloquent\Relations\MorphOne
+    public function photos()
     {
-        return $this->morphOne(Photo::class, 'photoable');
+        return $this->morphMany(Photo::class, 'photoable');
     }
 
-    public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function adress()
     {
-        return $this->belongsTo(Adress::class);
+        return $this->morphOne(Adress::class, 'adressable');
     }
 
-    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(City::class);
     }
 

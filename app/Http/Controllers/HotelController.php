@@ -10,7 +10,15 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 class HotelController
 {
     #[Get('/hotels/{hotel}')]
-    public function show(Hotel $hotel) {
-        return inertia()->render('Hotels/Show', ['hotel' => $hotel]);
+    public function show(Hotel $hotel)
+    {
+        return inertia()->render('Hotels/Show', [
+            'hotel' => fn () => $hotel->load([
+                'location',
+                'photos',
+                'adress',
+                'city'
+            ])
+        ]);
     }
 }

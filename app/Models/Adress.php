@@ -11,9 +11,12 @@ class Adress extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['location'];
+    protected $fillable = [
+        'quarter',
+        'avenue',
+    ];
 
-    public function users(): \Illuminate\Database\Eloquent\Relations\HasMany {
-        return $this->hasMany(User::class);
-    }
+    public function adressable() {
+        return $this->morphTo();
+    } 
 }

@@ -23,9 +23,9 @@ class Hotel extends Model
         return $this->morphMany(Photo::class, 'photoable');
     }
 
-    public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function adress()
     {
-        return $this->belongsTo(Adress::class);
+        return $this->morphOne(Adress::class, 'adressable');
     }
     
     public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
