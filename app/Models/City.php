@@ -29,4 +29,8 @@ class City extends Model
     {
         return $this->hasMany(Hotel::class);
     }
+
+    public function photos() {
+        return $this->morphMany(Photo::class, 'photoable');
+    }
 }

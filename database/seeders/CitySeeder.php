@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\City;
+use App\Models\Hotel;
 use App\Models\Photo;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Eloquent\Factories\Sequence;
+use App\Models\University;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 
 class CitySeeder extends Seeder
@@ -20,8 +21,8 @@ class CitySeeder extends Seeder
         $cities = [
             [
                 'name' => 'Bujumbura',
-                'supercifies' => '127',
-                'population' => 374, 809,
+                'superficies' => '127',
+                'population' => 374809,
                 'photos' => [
                     'https://cdn.britannica.com/63/125063-050-332A70CC/Bujumbura-Burundi.jpg',
                     'https://upload.wikimedia.org/wikipedia/commons/2/28/Bujumbura_-_Flickr_-_Dave_Proffer_%285%29.jpg',
@@ -139,8 +140,7 @@ class CitySeeder extends Seeder
             $city = City::factory()
                 ->has(Hotel::factory())
                 ->has(University::factory()->hasFaculties(3))
-                ->state($city)
-                ->create();
+                ->create(Arr::except($city, 'photos'));
 
             $city->photos()->create(collect($city['photos'])->map(fn ($photo) => ['src' => $photo]));
         });
