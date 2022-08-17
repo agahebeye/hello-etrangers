@@ -138,14 +138,14 @@ class CitySeeder extends Seeder
         ];
 
         collect($cities)->each(function ($city) {
-            $city = City::factory()
+            $cityModel = City::factory()
                 ->has(Hotel::factory())
                 ->has(University::factory()->hasFaculties(3))
                 ->create(Arr::except($city, 'photos'));
 
-            foreach ($city['photos'] as $photo) {
-                $city->photos()->create($photo);
-            }
+             foreach ($city['photos'] as $photo) {
+                 $cityModel->photos()->create(['src' => $photo]);
+             }
         });
     }
 }

@@ -12,6 +12,8 @@ class CityController
     #[Get(uri: '/cities/{city}', name: 'cities.show')]
     public function show(City $city)
     {
-        return inertia()->render('Cities/Show', ['city' => fn () => $city]);
+        return inertia()->render('Cities/Show', [
+            'city' => fn () => $city->load(['photos', 'location',])
+        ]);
     }
 }

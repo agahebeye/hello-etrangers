@@ -34,4 +34,8 @@ class City extends Model
     public function photos(): MorphMany {
         return $this->morphMany(Photo::class, 'photoable');
     }
+
+    public function location() {
+        return $this->morphOne(Localisation::class, 'localisable');
+    }
 }
