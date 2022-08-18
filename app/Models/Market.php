@@ -15,12 +15,23 @@ class Market extends Model
     /** @var array<int, string> */
     protected $fillabe = ['name', 'type', 'city_id'];
 
-    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(City::class);
     }
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
         return $this->morphOne(Localisation::class, 'localisable');
+    }
+
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'photoable');
+    }
+    
+    public function featuredPhoto()
+    {
+        return $this->morphOne(Photo::class, 'photoable')->latestOfMany();
     }
 }

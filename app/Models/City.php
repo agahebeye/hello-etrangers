@@ -35,6 +35,10 @@ class City extends Model
         return $this->morphMany(Photo::class, 'photoable');
     }
 
+    public function featuredPhoto() {
+        return $this->morphOne(Photo::class, 'photoable')->latestOfMany();
+    }
+
     public function location() {
         return $this->morphOne(Localisation::class, 'localisable');
     }

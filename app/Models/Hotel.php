@@ -23,11 +23,16 @@ class Hotel extends Model
         return $this->morphMany(Photo::class, 'photoable');
     }
 
+    public function featuredPhoto()
+    {
+        return $this->morphOne(Photo::class, 'photoable')->latestOfMany();
+    }
+
     public function adress()
     {
         return $this->morphOne(Adress::class, 'adressable');
     }
-    
+
     public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(City::class);
