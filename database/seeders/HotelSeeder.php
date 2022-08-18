@@ -5,10 +5,9 @@ namespace Database\Seeders;
 use App\Models\Adress;
 use App\Models\City;
 use App\Models\Hotel;
-use App\Models\Localisation;
 use App\Models\Photo;
-use Database\Factories\AdressFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
@@ -35,22 +34,25 @@ class HotelSeeder extends Seeder
                 'adress' => [
                     'avenue' => 'Avenue Muyinga',
                     'tel' => fake()->phoneNumber(),
-                    'postal_code' => fake()->postcode() 
+                    'postal_code' => fake()->postcode()
                 ],
             ]
         ];
 
 
         foreach ($hotels as $hotel) {
-            $photos = $hotel['photos'];
-            $adress = $hotel['adress'];
-
             $hotelAttributes = Arr::except($hotel, ['photos', 'adress']);
+            $adressAttributes = $hotel['adress'];
+            $photos = $hotel['photos'];
 
-            dump($adress);
             $newHotel = Hotel::factory()
-                ->make($hotelAttributes);
+                ->for(City::query()->firstWhere('name', 'Bujumbura'))
+                ->has(Adress::factory()->state($adressAttributes))
+                ->create($hotelAttributes);
 
+            Photo::factory()->for($newHotel, 'photoable')->state(
+                new Sequence(fn ($sequence) => ['src' => $photos[$sequence->index]])
+            )->create();
         }
     }
 }

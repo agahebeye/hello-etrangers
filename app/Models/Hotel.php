@@ -27,6 +27,7 @@ class Hotel extends Model
     {
         return $this->morphOne(Photo::class, 'photoable')->latestOfMany();
     }
+    
 
     public function adress()
     {
