@@ -28,11 +28,13 @@ class HomeController extends Controller
         $markets = Market::select(['id', 'name'])->get();
         $cities = City::select(['id', 'name'])->with(['featuredPhoto'])->get();
 
-        return Inertia::render('Home', [
+        $data = [
             'universities' => $universities,
             'hotels' =>  $hotels,
             'markets' => $markets,
             'cities' => $cities,
-        ]);
+        ];
+
+        return inertia()->render('Home', $data);
     }
 }

@@ -1,5 +1,6 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import {Inertia} from '@inertiajs/inertia';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -9,6 +10,7 @@ defineProps({
     cities: Array,
 })
 </script>
+
 <template>
 
     <Head title="Accueil" />
@@ -54,14 +56,16 @@ defineProps({
 
             <!--cities-->
             <div>
-                <h2>Cities</h2>
-                <div class="flex flex-wrap gap-2 overflow-x-auto">
-                    <div v-for="city in cities">
-                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/cities/${city.id}`">{{ city.name }}</Link>
+                <h2>Villes</h2>
+
+                <div class="flex flex-wrap">
+                    <div v-for="city in cities" class="relative cursor-pointer w-60" @click="Inertia.get(`/cities/${city.id}`)">
+                        <img :data-src="city.featured_photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
+                        <h3 class="absolute p-2 text-sm bg-white top-6">{{ city.name }}</h3>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </BreezeAuthenticatedLayout>
 </template>

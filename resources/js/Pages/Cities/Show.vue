@@ -23,8 +23,10 @@ defineProps({
             <div>Population: {{ city.population }}</div>
             <div>superficies: {{ city.superficies }} km<sup>2</sup></div>
 
-            <div class="mt-16 columns-2 md:columns-3 lg:columns-4">
-                <img loading="lazy" class="lazyload w-full max-w-[400px] max-h-[250px]" v-for="photo in city.photos" :data-src="photo.src" />
+            <div class="grid grid-cols-3">
+                <div v-for="photo in city.photos" class="max-w-[16rem]">
+                    <img :data-src="photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
+                </div>
             </div>
         </div>
 
