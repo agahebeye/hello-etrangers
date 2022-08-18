@@ -17,13 +17,16 @@ defineProps({
             </h2>
         </template>
 
-        <div class="prose max-w-none">
-            <div class="mb-6 featured_image">
-                <div class="w-full leading-[18rem] text-center bg-white h-72">Photo ici...</div>
-            </div>
+        <div class="pt-8 prose max-w-none">
+            <h1>{{ city.name }}</h1>
 
-            <h1> {{ city }}</h1>
+            <div>Population: {{ city.population }}</div>
+            <div>superficies: {{ city.superficies }} km<sup>2</sup></div>
+
+            <div class="mt-16 columns-2 md:columns-3 lg:columns-4">
+                <img loading="lazy" class="lazyload w-full max-w-[400px] max-h-[250px]" v-for="photo in city.photos" :data-src="photo.src" />
+            </div>
         </div>
-        
+
     </BreezeAuthenticatedLayout>
 </template>
