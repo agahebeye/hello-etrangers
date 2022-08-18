@@ -24,22 +24,25 @@ class City extends Model
     public function markets(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Market::class);
-    }  
-    
+    }
+
     public function hotels(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Hotel::class);
     }
 
-    public function photos(): MorphMany {
+    public function photos(): MorphMany
+    {
         return $this->morphMany(Photo::class, 'photoable');
     }
 
-    public function featuredPhoto() {
+    public function featuredPhoto()
+    {
         return $this->morphOne(Photo::class, 'photoable')->latestOfMany();
     }
 
-    public function location() {
+    public function location()
+    {
         return $this->morphOne(Localisation::class, 'localisable');
     }
 }
