@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\City;
 use App\Models\Hotel;
+use App\Models\Market;
 use App\Models\Photo;
 use App\Models\University;
 use App\Models\User;
@@ -141,11 +142,13 @@ class CitySeeder extends Seeder
             $cityModel = City::factory()
                 ->has(Hotel::factory())
                 ->has(University::factory()->hasFaculties(3))
+                ->has(Market::factory())
                 ->create(Arr::except($city, 'photos'));
 
-             foreach ($city['photos'] as $photo) {
-                 $cityModel->photos()->create(['src' => $photo]);
-             }
+
+            Photo::factory()->for($cityModel, 'photoable')->state(
+                new Sequence(fn ($sequence) => ['src' => $city['photos'][$sequence->index]])
+            )->create();
         });
     }
 }
