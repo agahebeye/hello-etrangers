@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Market extends Model
 {
@@ -15,9 +16,10 @@ class Market extends Model
     /** @var array<int, string> */
     protected $fillabe = ['name', 'type', 'city_id'];
 
-    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(City::class);
+    protected $appends = ['model_link'];
+
+    protected function modelLink(): Attribute {
+        return Attribute::get(fn() => $this->getTable());
     }
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne

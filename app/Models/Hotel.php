@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hotel extends Model
 {
@@ -12,6 +13,12 @@ class Hotel extends Model
     public $timestamps = false;
 
     protected $fillabe = ['name', 'room_count'];
+
+    protected $appends = ['model_link'];
+
+    protected function modelLink(): Attribute {
+        return Attribute::get(fn() => $this->getTable());
+    }
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {

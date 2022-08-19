@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +25,12 @@ class University extends Model
     protected $casts = [
         'founded' => 'datetime'
     ];
+
+    protected $appends = ['model_link'];
+
+    protected function modelLink(): Attribute {
+        return Attribute::get(fn() => $this->getTable());
+    }
 
     public function location(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
