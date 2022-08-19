@@ -55,8 +55,9 @@ class MarketSeeder extends Seeder
             [
                 'name' => 'Musaga',
                 'photos' => [
-                    ['src' => 'https://burundi-eco.com/wp-content/uploads/2020/06/musaga.jpg,  https://i.ytimg.com/vi/yR5OLGRZRdI/hqdefault.jpg'],
-                    ['src' => 'http://lerenouveau.digital/wp-content/uploads/2022/07/IMG_3450.jpg'],
+                    ['src' => 'https://burundi-eco.com/wp-content/uploads/2020/06/musaga.jpg'],  
+                    ['src' => 'https://i.ytimg.com/vi/yR5OLGRZRdI/hqdefault.jpg'],
+                    ['src' => 'https://www.infosgrandslacs.info/sites/default/files/userfiles/productions/photos/sssssssssss.png'],
                 ]
             ],
 

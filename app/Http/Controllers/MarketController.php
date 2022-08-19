@@ -18,7 +18,7 @@ class MarketController
     {
         return inertia()->render(
             'Markets/Show',
-            ['market' => fn () => $market->load(['photos', 'location'])]
+            ['market' => fn () => $market->load(['photos'])]
         );
     }
 }

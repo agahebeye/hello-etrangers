@@ -2,6 +2,7 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Inertia } from '@inertiajs/inertia';
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import ImageGuallery from '@/Components/Common/ImageGuallery.vue';
 
 defineProps({
     hotels: Array,
@@ -40,12 +41,7 @@ defineProps({
             <div>
                 <h2>Universities</h2>
 
-                <div class="flex flex-wrap">
-                    <div v-for="university in universities" class="relative cursor-pointer w-60 h-60" @click="Inertia.get(`/universities/${university.id}`)">
-                        <img v-if="university.photo_url" :data-src="university.photo_url" class="object-cover w-full h-full overflow-hidden lazyload" />
-                        <h3 class="absolute p-2 text-sm bg-white top-6">{{ university.name }}</h3>
-                    </div>
-                </div>
+               <ImageGuallery :data="universities" />
             </div>
 
             <!--markets-->
