@@ -92,7 +92,9 @@ class UniversitySeeder extends Seeder
         foreach ($universities as $university) {
             $newUniversity = University::factory()
                 ->has(Adress::factory()->state($university['adress']))
-                ->create(Arr::except($university, ['adress', 'faculties']));
+                ->create(Arr::except($university, ['adress', 'faculties', 'photo_url']));
+
+            $newUniversity->photo()->create(['src' => $university['photo_url']]);
 
             foreach ($university['faculties'] as $faculty) {
                 $newUniversity->faculties()->attach((Faculty::create($faculty))->id);

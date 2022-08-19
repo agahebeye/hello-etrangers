@@ -18,16 +18,16 @@ defineProps({
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            <h1 class="text-xl font-semibold leading-tight text-gray-800">
                 Accueil
-            </h2>
+            </h1>
         </template>
 
 
         <div class="prose max-w-none">
             <!--hotels-->
             <div>
-                <h2>Hotels</h2>
+                <h2 class="m-0">Hotels</h2>
 
                 <ImageGuallery :data="hotels" />
             </div>

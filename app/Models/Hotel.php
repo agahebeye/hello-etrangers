@@ -23,7 +23,7 @@ class Hotel extends Model
         return $this->morphMany(Photo::class, 'photoable');
     }
 
-    public function featuredPhoto()
+    public function photo()
     {
         return $this->morphOne(Photo::class, 'photoable')->latestOfMany();
     }

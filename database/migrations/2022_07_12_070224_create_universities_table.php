@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('website_url');
             $table->string('devise')->nullable();
-            $table->text('photo_url')->nullable();
             $table->string('email')->nullable();
         });
     }

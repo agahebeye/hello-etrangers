@@ -15,7 +15,7 @@ class University extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'website_url', 'devise', 'photo_url', 'email'
+        'name', 'website_url', 'devise', 'email'
     ];
 
     /**
@@ -43,5 +43,9 @@ class University extends Model
     public function faculties(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Faculty::class, table: 'universities_faculties');
+    }
+
+    public function photo() {
+        return $this->morphOne(Photo::class, 'photoable');
     }
 }
