@@ -24,8 +24,8 @@ defineProps({
             <div>Avenue: {{ hotel.adress.avenue }}</div>
             <div>Tel: {{ hotel.adress.tel }}</div>
 
-            <div class="grid grid-cols-3">
-                <div v-for="photo in hotel.photos" class="max-w-[16rem]">
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                <div v-for="photo in hotel.photos" class="max-w-[16rem] max-h-[16rem]">
                     <img :data-src="photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
                 </div>
             </div>

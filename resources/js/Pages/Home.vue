@@ -29,7 +29,7 @@ defineProps({
                 <h2>Hotels</h2>
 
                 <div class="flex flex-wrap">
-                    <div v-for="hotel in hotels" class="relative cursor-pointer w-60" @click="Inertia.get(`/hotels/${hotel.id}`)">
+                    <div v-for="hotel in hotels" class="relative cursor-pointer w-60 h-60" @click="Inertia.get(`/hotels/${hotel.id}`)">
                         <img v-if="hotel.featured_photo" :data-src="hotel.featured_photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
                         <h3 class="absolute p-2 text-sm bg-white top-6">{{ hotel.name }}</h3>
                     </div>
@@ -67,7 +67,7 @@ defineProps({
                 <h2>Villes</h2>
 
                 <div class="flex flex-wrap">
-                    <div v-for="city in cities" class="relative cursor-pointer w-60" @click="Inertia.get(`/cities/${city.id}`)">
+                    <div v-for="city in cities" class="relative cursor-pointer w-60 h-60" @click="Inertia.get(`/cities/${city.id}`)">
                         <img :data-src="city.featured_photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
                         <h3 class="absolute p-2 text-sm bg-white top-6">{{ city.name }}</h3>
                     </div>
