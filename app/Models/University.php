@@ -45,12 +45,6 @@ class University extends Model
         return $this->morphOne(Adress::class, 'adressable');
     }
 
-
-    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(City::class);
-    }
-
     public function faculties(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Faculty::class, table: 'universities_faculties');

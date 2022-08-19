@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Adress;
+use App\Models\Faculty;
+use App\Models\University;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 
 class UniversitySeeder extends Seeder
@@ -20,34 +23,31 @@ class UniversitySeeder extends Seeder
                 'website_url' => 'http://ulbu.bi/',
                 'email' => 'infos@ulbu.bi',
                 'devise' => 'Pepiniere des cadres reponsables et competents',
-                'photo' => 'https://pbs.twimg.com/media/FJeU8RPX0AI6FZG?format=jpg&name=4096x4096',
+                'photo_url' => 'https://pbs.twimg.com/media/FJeU8RPX0AI6FZG?format=jpg&name=4096x4096',
                 'adress' => [
                     'tel' => '(+257) 22 23 55 49',
                     'postal_code' => '1368'
                 ],
                 'faculties' => [
-                    'Faculté des Sciences de la Communication',
-                    'Faculté de Droit',
-                    'Faculté des Sciences économiques et gestions',
-                    'Faculté des Sciences et technologies',
-                    'Faculté de Théologie',
-                    'Faculté de psychologie',
-                    "Faculté d'Agronomie et de développement rural",
-                    'Faculté des Sciences de la santé',
+                    ['name' => 'Faculté des Sciences de la Communication'],
+                    ['name' => 'Faculté de Droit'],
+                    ['name' => 'Faculté des Sciences économiques et gestions'],
+                    ['name' => 'Faculté des Sciences et technologies'],
+                    ['name' => 'Faculté de Théologie'],
+                    ['name' => 'Faculté de psychologie'],
+                    ['name' => "Faculté d'Agronomie et de développement rural"],
+                    ['name' => 'Faculté des Sciences de la santé'],
                 ],
             ]
         ];
 
         foreach ($universities as $university) {
-
-
-            $newUniversity = university::factory()
+            $newUniversity = University::factory()
                 ->has(Adress::factory()->state($university['adress']))
-                ->create(['name' => $university['name'], 'website_url' => $university['website_url']]);
+                ->create(Arr::except($university, ['adress', 'faculties']));
 
-
-            foreach ($university['photos'] as $photo) {
-                $newUniversity->photos()->create(['src' => $photo]);
+            foreach ($university['faculties'] as $faculty) {
+                $newUniversity->faculties()->attach((Faculty::create($faculty))->id);
             }
         }
     }
