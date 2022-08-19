@@ -27,28 +27,28 @@ defineProps({
         <div class="prose max-w-none">
             <!--hotels-->
             <div>
-                <h2 class="m-0">Hotels</h2>
+                <h2 class="my-5 text-5xl text-gray-800">Hotels</h2>
 
                 <ImageGuallery :data="hotels" />
             </div>
 
             <!--universities-->
             <div>
-                <h2>Universities</h2>
+                <h2 class="my-5 text-5xl text-gray-800">Universities</h2>
 
                <ImageGuallery :data="universities" />
             </div>
 
             <!--markets-->
             <div>
-                <h2>Markets</h2>
+                <h2 class="my-5 text-5xl text-gray-800">Markets</h2>
 
                 <ImageGuallery :data="markets" />
             </div>
 
             <!--cities-->
             <div>
-                <h2>Villes</h2>
+                <h2 class="my-5 text-5xl text-gray-800">Villes</h2>
 
                 <ImageGuallery :data="cities" />
             </div>

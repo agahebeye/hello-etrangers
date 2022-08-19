@@ -100,7 +100,7 @@ class HotelSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'Le Panoramique Hotel by Celexon',
+                'name' => 'Le Panoramique Hotel',
                 'room_count' => fake()->numberBetween(20, 60),
                 'photos' => [
                     'https://cf.bstatic.com/xdata/images/hotel/max1024x768/313825461.jpg?k=e9708f349e8e397f3045507364296f3b41548779a90b8b6eee38d99279e98eb0&o=&hp=1',
