@@ -15,7 +15,7 @@ class University extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'website_url', 'motto', 'founded_at'
+        'name', 'website_url', 'devise', 'photo_url', 'email'
     ];
 
     /**
