@@ -22,7 +22,8 @@ defineProps({
 
             <div>Chambres: {{ hotel.room_count }}</div>
             <div>Avenue: {{ hotel.adress.avenue }}</div>
-            <div>Tel: {{ hotel.adress.tel }}</div>
+            <div>Tél: <a :href="`tel: ${hotel.adress.tel}`">{{ hotel.adress.tel }}</a></div>
+
 
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 <div v-for="photo in hotel.photos" class="max-w-[16rem] max-h-[16rem]">

@@ -38,6 +38,26 @@ class UniversitySeeder extends Seeder
                     ['name' => "Faculté d'Agronomie et de développement rural"],
                     ['name' => 'Faculté des Sciences de la santé'],
                 ],
+            ], [
+                'name' => "université espoir d'afrique",
+                'website_url' => 'http://ulbu.bi/',
+                'email' => 'infos@ulbu.bi',
+                'devise' => "All Truth is God's Truth",
+                'photo_url' => 'https://7sur7.cd/sites/default/files/styles/1024x768/public/2019-09/IMG-20190923-WA0062.jpg?itok=LiwKTFnK',
+                'adress' => [
+                    'tel' => '(+257) 22 23 55 49',
+                    'postal_code' => '1368'
+                ],
+                'faculties' => [
+                    ['name' => 'Faculté des Sciences de la Communication'],
+                    ['name' => 'Faculté de Droit'],
+                    ['name' => 'Faculté des Sciences économiques et gestions'],
+                    ['name' => 'Faculté des Sciences et technologies'],
+                    ['name' => 'Faculté de Théologie'],
+                    ['name' => 'Faculté de psychologie'],
+                    ['name' => "Faculté d'Agronomie et de développement rural"],
+                    ['name' => 'Faculté des Sciences de la santé'],
+                ],
             ]
         ];
 

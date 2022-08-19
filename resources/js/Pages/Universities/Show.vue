@@ -24,7 +24,9 @@ const props = defineProps({
                 <img class="w-full lazyload h-96 md:h-[30rem]" :data-src="university.photo_url" />
             </div>
 
-            <h1> {{ university.name }}</h1>
+            <h1 class="m-0 mb-4"> {{ university.name }}</h1>
+
+            <h2 class="mt-0">"{{ university.devise }}"</h2>
 
             <div>Siteweb: <a :href="university.website_url">{{ university.website_url }}</a></div>
             <div>Email: <a :href="`mailto: ${university.email}`">{{ university.email }}</a></div>
