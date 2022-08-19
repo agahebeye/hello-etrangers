@@ -120,18 +120,17 @@ class HotelSeeder extends Seeder
         $bujumburaCity = City::query()->firstWhere('name', 'Bujumbura');
 
         foreach ($hotels as $hotel) {
-            $hotelAttributes = Arr::except($hotel, ['photos', 'adress']);
-            $adressAttributes = $hotel['adress'];
-            $photos = $hotel['photos'];
+             
 
             $newHotel = Hotel::factory()
                 ->for($bujumburaCity)
-                ->has(Adress::factory()->state($adressAttributes))
-                ->create($hotelAttributes);
+                ->has(Adress::factory()->state($hotel['adress']))
+                ->create(['name' => $hotel['name'], 'room_count' => $hotel['room_count']]);
 
-            Photo::factory()->for($newHotel, 'photoable')->state(
-                new Sequence(fn ($sequence) => ['src' => $photos[$sequence->index]])
-            )->create();
+
+            foreach ($hotel['photos'] as $photo) {
+                $newHotel->photos()->create(['src' => $photo]);
+            }
         }
     }
 }
