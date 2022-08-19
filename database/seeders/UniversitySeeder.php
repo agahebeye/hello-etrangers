@@ -14,7 +14,7 @@ class UniversitySeeder extends Seeder
      */
     public function run()
     {
-        $hotels = [
+        $universities = [
             [
                 'name' => 'Université Lumière de Bujumbura',
                 'website_url' => 'http://ulbu.bi/',
@@ -22,7 +22,6 @@ class UniversitySeeder extends Seeder
                 'devise' => 'Pepiniere des cadres reponsables et competents',
                 'photo' => 'https://pbs.twimg.com/media/FJeU8RPX0AI6FZG?format=jpg&name=4096x4096',
                 'adress' => [
-                    'avenue' => 'Avenue Muyinga',
                     'tel' => '(+257) 22 23 55 49',
                     'postal_code' => '1368'
                 ],
@@ -39,19 +38,16 @@ class UniversitySeeder extends Seeder
             ]
         ];
 
-        $bujumburaCity = City::query()->firstWhere('name', 'Bujumbura');
-
-        foreach ($hotels as $hotel) {
+        foreach ($universities as $university) {
 
 
-            $newHotel = Hotel::factory()
-                ->for($bujumburaCity)
-                ->has(Adress::factory()->state($hotel['adress']))
-                ->create(['name' => $hotel['name'], 'website_url' => $hotel['website_url']]);
+            $newUniversity = university::factory()
+                ->has(Adress::factory()->state($university['adress']))
+                ->create(['name' => $university['name'], 'website_url' => $university['website_url']]);
 
 
-            foreach ($hotel['photos'] as $photo) {
-                $newHotel->photos()->create(['src' => $photo]);
+            foreach ($university['photos'] as $photo) {
+                $newUniversity->photos()->create(['src' => $photo]);
             }
         }
     }
