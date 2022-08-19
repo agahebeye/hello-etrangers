@@ -3,13 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\City;
-use App\Models\Hotel;
-use App\Models\Market;
-use App\Models\Photo;
-use App\Models\University;
 use App\Models\User;
+use App\Models\Hotel;
+use App\Models\Photo;
+use App\Models\Market;
+use App\Models\University;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class CitySeeder extends Seeder
 {
