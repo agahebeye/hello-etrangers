@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         $universities = University::select(['id', 'name', 'photo_url'])->get();
         $hotels = Hotel::select(['id', 'name'])->with(['featuredPhoto'])->get();
-        $markets = Market::select(['id', 'name'])->get();
+        $markets = Market::select(['id', 'name'])->with(['featuredPhoto'])->get();
         $cities = City::select(['id', 'name'])->with(['featuredPhoto'])->get();
 
         $data = [

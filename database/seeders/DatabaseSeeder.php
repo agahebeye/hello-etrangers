@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             HotelSeeder::class,
             UniversitySeeder::class,
+            MarketSeeder::class,
         ]);
     }
 }

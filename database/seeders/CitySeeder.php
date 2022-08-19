@@ -141,7 +141,6 @@ class CitySeeder extends Seeder
 
         collect($cities)->each(function ($city) {
             $cityModel = City::factory()
-                ->has(Market::factory())
                 ->create(Arr::except($city, 'photos'));
 
             foreach ($city['photos'] as $photo) {

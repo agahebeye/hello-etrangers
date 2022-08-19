@@ -13,9 +13,12 @@ class MarketController
      * show single market
      */
 
-     #[Get(uri: '/markets/{market}', name: 'markets.show')]
+    #[Get(uri: '/markets/{market}', name: 'markets.show')]
     public function show(Market $market): \Inertia\Response
     {
-        return inertia()->render('Markets/Show', ['market' => $market]);
+        return inertia()->render(
+            'Markets/Show',
+            ['market' => fn () => $market->load(['photos', 'location'])]
+        );
     }
 }

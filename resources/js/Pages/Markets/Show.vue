@@ -17,14 +17,15 @@ defineProps({
             </h2>
         </template>
 
+        <div class="pt-8 prose max-w-none">
+            <h1>{{ market.name }}</h1>
 
-        <div class="prose max-w-none">
-            <div class="mb-6 featured_image">
-                <div class="w-full leading-[18rem] text-center bg-white h-72">Photo ici...</div>
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                <div v-for="photo in market.photos" class="max-w-[16rem] max-h-[16rem]">
+                    <img :data-src="photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
+                </div>
             </div>
-
-            <h1> {{ market.name }}</h1>
         </div>
-        
+
     </BreezeAuthenticatedLayout>
 </template>
