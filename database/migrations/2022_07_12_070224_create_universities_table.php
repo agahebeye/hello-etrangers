@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('website_url');
-            $table->string('motto')->nullable();
-            $table->timestamp('founded_at')->nullable();
+            $table->string('devise')->nullable();
+            $table->text('photo_url')->nullable();
+            $table->timestamp('email')->nullable();
 
             $table->foreignId('city_id')->constrained()->cascadeOnDelete();
         });
