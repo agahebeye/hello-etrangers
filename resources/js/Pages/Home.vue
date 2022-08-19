@@ -27,11 +27,19 @@ defineProps({
             <!--hotels-->
             <div>
                 <h2>Hotels</h2>
-                <div class="flex flex-wrap gap-2 overflow-x-auto">
-                    <div v-for="hotel in hotels">
-                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/hotels/${hotel.id}`">{{ hotel.name }}</Link>
+
+                <div class="flex flex-wrap">
+                    <div v-for="hotel in hotels" class="relative cursor-pointer w-60" @click="Inertia.get(`/hotels/${hotel.id}`)">
+                        <img v-if="hotel.featured_photo" :data-src="hotel.featured_photo.src" class="object-cover w-full h-full overflow-hidden lazyload" />
+                        <h3 class="absolute p-2 text-sm bg-white top-6">{{ hotel.name }}</h3>
                     </div>
                 </div>
+                <!-- <div class="flex flex-wrap gap-2 overflow-x-auto">
+                    <div v-for="hotel in hotels">
+                    {{ hotel }}
+                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/hotels/${hotel.id}`">{{ hotel.name }}</Link>
+                    </div>
+                </div> -->
             </div>
 
             <!--universities-->
