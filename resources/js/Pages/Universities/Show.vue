@@ -32,6 +32,15 @@ const props = defineProps({
             <div>Email: <a :href="`mailto: ${university.email}`">{{ university.email }}</a></div>
             <div>Tél: <a :href="`tel: ${university.adress.tel}`">{{ university.adress.tel }}</a></div>
             <div>Boîte postale: {{ university.adress.postal_code }}</div>
+
+            <div>
+                <h3>Facultés disponibles:</h3>
+                <ul>
+                    <li class="list-disc" v-for="faculty in university.faculties">
+                        {{ faculty.name }}
+                    </li>
+                </ul>
+            </div>
         </div>
 
     </BreezeAuthenticatedLayout>

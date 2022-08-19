@@ -18,8 +18,6 @@ class MarketFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word(),
-            'type' => $this->faker->word()
         ];
     }
 }

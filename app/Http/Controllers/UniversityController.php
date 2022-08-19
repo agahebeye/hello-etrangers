@@ -14,7 +14,7 @@ class UniversityController
     {
         return inertia()->render(
             'Universities/Show', 
-            ['university' => fn() => $university->load('adress')]
+            ['university' => fn() => $university->load('adress', 'faculties')]
         );
     }
 }

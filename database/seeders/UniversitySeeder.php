@@ -46,7 +46,7 @@ class UniversitySeeder extends Seeder
                 'photo_url' => 'https://ult.bi/sites/default/files/gallery/DSC05488_0.JPG',
                 'adress' => [
                     'tel' => '+257 22 24 36 45',
-                    'postal_code' => '+257 22 24 36 45'
+                    'postal_code' => fake()->postcode(),
                 ],
                 'faculties' => [
                     ['name' => "Faculté des Sciences de Gestion et d'Économie Appliquée"],
@@ -55,13 +55,14 @@ class UniversitySeeder extends Seeder
                     ['name' => 'Faculté d’Informatique'],
                 ],
             ],[
-                'name' => 'Université Sagesse d’Afrique « USA »',
+                'name' => 'Université Sagesse d’Afrique',
                 'website_url' => 'https://www.usa.edu.bi/',
                 'email' => 'usagesse@gmail.com',
                 'devise' => "La Sagesse et l'Intelligence pour la Promotion de l'Excellence",
                 'photo_url' => 'http://www.usa.edu.bi/wp-content/uploads/2021/08/vie4-slider.jpg',
                 'adress' => [
                     'tel' => '0025722258899',
+                    'postal_code' => fake()->postcode(),
                 ],
                 'faculties' => [
                     ['name' => "Faculté d’Economie, de Gestion et d’Administration des Affaires"],
