@@ -34,20 +34,16 @@ defineProps({
                         <h3 class="absolute p-2 text-sm bg-white top-6">{{ hotel.name }}</h3>
                     </div>
                 </div>
-                <!-- <div class="flex flex-wrap gap-2 overflow-x-auto">
-                    <div v-for="hotel in hotels">
-                    {{ hotel }}
-                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/hotels/${hotel.id}`">{{ hotel.name }}</Link>
-                    </div>
-                </div> -->
             </div>
 
             <!--universities-->
             <div>
                 <h2>Universities</h2>
-                <div class="flex flex-wrap gap-2 overflow-x-auto">
-                    <div v-for="university in universities">
-                        <Link class="block h-40 text-center no-underline bg-white shadow-lg w-36" :href="`/universities/${university.id}`">{{ university.name }}</Link>
+                
+                <div class="flex flex-wrap">
+                    <div v-for="university in universities" class="relative cursor-pointer w-60 h-60" @click="Inertia.get(`/universities/${university.id}`)">
+                        <img v-if="university.photo_url" :data-src="university.photo_url" class="object-cover w-full h-full overflow-hidden lazyload" />
+                        <h3 class="absolute p-2 text-sm bg-white top-6">{{ university.name }}</h3>
                     </div>
                 </div>
             </div>

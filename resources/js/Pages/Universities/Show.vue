@@ -2,9 +2,10 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
-defineProps({
+const props = defineProps({
     university: Object,
 })
+
 </script>
 <template>
 
@@ -20,11 +21,16 @@ defineProps({
 
         <div class="prose max-w-none">
             <div class="mb-6 featured_image">
-                <div class="w-full leading-[18rem] text-center bg-white h-72">Photo ici...</div>
+                <img class="w-full lazyload h-96 md:h-[30rem]" :data-src="university.photo_url" />
             </div>
 
             <h1> {{ university.name }}</h1>
+
+            <div>Siteweb: <a :href="university.website_url">{{ university.website_url }}</a></div>
+            <div>Email: <a :href="`mailto: ${university.email}`">{{ university.email }}</a></div>
+            <div>Tél: <a :href="`tel: ${university.adress.tel}`">{{ university.adress.tel }}</a></div>
+            <div>Boîte postale: {{ university.adress.postal_code }}</div>
         </div>
-        
+
     </BreezeAuthenticatedLayout>
 </template>

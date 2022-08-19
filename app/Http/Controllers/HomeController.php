@@ -23,7 +23,7 @@ class HomeController extends Controller
     #[Get(uri: '/', name: 'home')]
     public function __invoke(Request $request): \Inertia\Response
     {
-        $universities = University::select(['id', 'name'])->get();
+        $universities = University::select(['id', 'name', 'photo_url'])->get();
         $hotels = Hotel::select(['id', 'name'])->with(['featuredPhoto'])->get();
         $markets = Market::select(['id', 'name'])->get();
         $cities = City::select(['id', 'name'])->with(['featuredPhoto'])->get();
