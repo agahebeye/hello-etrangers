@@ -1,6 +1,10 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+
+import { ref } from 'vue';
+
+const isShown = ref(false);
 </script>
 
 <template>
@@ -17,10 +21,27 @@ import { Head } from '@inertiajs/inertia-vue3';
         <div class="pt-2">
             <!--sidebar-->
             <div
-                class="flex flex-row w-screen h-full">
+                id="view"
+                class="relative flex flex-row h-full"
+                x-data="{ sidenav: true }">
+                <button
+                    @click="isShown = !isShown"
+                    class="absolute top-0 left-0 p-2 text-gray-500 bg-white border-2 border-gray-200 rounded-md shadow-lg focus:bg-teal-500 focus:outline-none focus:text-white lg:hidden">
+                    <svg
+                        class="w-5 h-5 fill-current"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
                 <div
                     id="sidebar"
-                    class="h-screen px-3 overflow-x-hidden transition-transform duration-300 ease-in-out bg-white shadow-xl md:block w-30 md:w-60 lg:w-60">
+                    class="h-screen px-3 overflow-x-hidden transition-transform duration-300 ease-in-out bg-white shadow-xl lg:block w-30 md:w-60 lg:w-60"
+                    :class="`${isShown ? 'visible': 'hidden'}`">
                     <div class="mt-10 space-y-6 md:space-y-10">
                         <div id="menu" class="flex flex-col space-y-2">
                             <a
