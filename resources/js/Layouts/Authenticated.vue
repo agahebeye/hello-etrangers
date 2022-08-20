@@ -31,7 +31,7 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <template v-if="user">
-                                    <BreezeNavLink v-if="isAdmin" :href="route('users.index')">
+                                    <BreezeNavLink v-if="isAdmin" :href="route('dashboard')">
                                         Dashboard
                                     </BreezeNavLink>
                                 </template>
@@ -90,7 +90,7 @@ const showingNavigationDropdown = ref(false);
                 <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <template v-if="user">
-                            <BreezeResponsiveNavLink v-if="isAdmin" :href="route('users.index')" :active="route().current('dashboard')">
+                            <BreezeResponsiveNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </BreezeResponsiveNavLink>
                         </template>
