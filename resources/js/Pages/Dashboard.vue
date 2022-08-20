@@ -1,12 +1,10 @@
 <script setup>
 import AdminLayout from '@/Layouts/Admin.vue';
+import { Head } from '@inertiajs/inertia-vue3';
 
-import { ref } from 'vue';
 import BarChar from '@/Components/Charts/BarChar.vue';
 import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
 import LineChart from '@/Components/Charts/LineChart.vue';
-
-const isShown = ref(false);
 </script>
 
 <template>
