@@ -1,10 +1,6 @@
 <script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import AdminLayout from '@/Layouts/Admin.vue';
 import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
-import { computed } from '@vue/reactivity';
-
-const user = usePage().props.value.auth.user;
-const isAdmin = computed( () => user?.role.name === 'Administrateur');
 
 defineProps({
     documents: Array
@@ -15,7 +11,7 @@ defineProps({
 
     <Head title="Documents" />
 
-    <BreezeAuthenticatedLayout>
+    <AdminLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Documents
@@ -26,7 +22,7 @@ defineProps({
             {{ documents }}
         </div>
 
-    </BreezeAuthenticatedLayout>
+    </AdminLayout>
 </template>
 
 <style scoped>

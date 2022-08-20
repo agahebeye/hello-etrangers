@@ -35,10 +35,27 @@ const showingNavigationDropdown = ref(false);
                                         Dashboard
                                     </NavLink>
 
+                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                        Documents
+                                    </NavLink>
+
+                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                        Etudiants
+                                    </NavLink>
+
+                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                        Commerçants
+                                    </NavLink>
+
+                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                        Tous les étrangers
+                                    </NavLink>
+
                                     <NavLink v-if="!isAdmin" :href="route('documents.create')">
                                         Commander un document
                                     </NavLink>
                                 </template>
+
                                 <template v-else>
                                     <NavLink :href="route('login')">
                                         Connexion
@@ -97,8 +114,8 @@ const showingNavigationDropdown = ref(false);
                         <template v-if="user">
                             <ResponsiveNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
-                            </ResponsiveNavLink>   
-                            
+                            </ResponsiveNavLink>
+
                             <ResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('dashboard')">
                                 Commander un document
                             </ResponsiveNavLink>

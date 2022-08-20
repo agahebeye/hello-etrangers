@@ -1,6 +1,5 @@
 <script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Inertia } from '@inertiajs/inertia';
+import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import ImageGuallery from '@/Components/Common/ImageGuallery.vue';
 
@@ -16,7 +15,7 @@ defineProps({
 
     <Head title="Accueil" />
 
-    <BreezeAuthenticatedLayout>
+    <AuthenticatedLayout>
         <template #header>
             <h1 class="text-xl font-semibold leading-tight text-gray-800">
                 Accueil
@@ -54,5 +53,5 @@ defineProps({
             </div>
         </div>
 
-    </BreezeAuthenticatedLayout>
+    </AuthenticatedLayout>
 </template>
