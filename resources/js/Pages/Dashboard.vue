@@ -5,6 +5,12 @@ import { Head } from '@inertiajs/inertia-vue3';
 import BarChar from '@/Components/Charts/BarChar.vue';
 import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
 import LineChart from '@/Components/Charts/LineChart.vue';
+
+defineProps({
+    latestDocuments: Array,
+    latestStudents: Array,
+    latestTraders: Array,
+})
 </script>
 
 <template>
@@ -77,7 +83,7 @@ import LineChart from '@/Components/Charts/LineChart.vue';
                 </div>
             </div>
 
-            <div id="charts" class="relative z-10 flex flex-wrap gap-10">
+            <div id="charts" class="relative z-10 flex flex-wrap justify-between gap-10">
                 <BarChar />
                 <ChartDoughnut />
                 <LineChart />
@@ -85,14 +91,17 @@ import LineChart from '@/Components/Charts/LineChart.vue';
 
             <div>
                 <h2>latest documents</h2>
+                {{ latestDocuments }}
             </div>
 
             <div>
                 <h2>latest students</h2>
+                <div>{{ latestStudents }}</div>
             </div>
 
             <div>
                 <h2>latest business persons</h2>
+                {{ latestTraders }}
             </div>
         </div>
 

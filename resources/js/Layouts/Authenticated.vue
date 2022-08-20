@@ -35,7 +35,7 @@ const showingNavigationDropdown = ref(false);
                                         Dashboard
                                     </NavLink>
 
-                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                    <NavLink v-if="isAdmin" :href="route('documents.index')">
                                         Documents
                                     </NavLink>
 
