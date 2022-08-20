@@ -22,7 +22,7 @@ class ForeignerController
     {
 
         $foreigners = User::query()
-            ->when($request->get('role'), fn (Builder $query) => $query->whereRelation('role', 'name', $request->get('role')))
+            ->when($request->get('role'), fn (Builder $query, $role) => $query->ofRole($role))
             ->whereRelation('role', 'name', '<>', 'Administrateur')
             ->get();
 

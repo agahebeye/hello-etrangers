@@ -6,6 +6,7 @@ use App\Models\Role;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -69,6 +70,10 @@ class User extends Authenticatable
     
     public function role() {
         return $this->belongsTo(Role::class);
+    }
+
+    public function scopeOfRole(Builder $query, $role) {
+        return $query->whereRelation('role', 'name', $role);
     }
 
     public function photo()
