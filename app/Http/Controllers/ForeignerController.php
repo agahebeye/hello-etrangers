@@ -19,10 +19,12 @@ class ForeignerController
     #[Get('/foreigners', name: 'foreigners.index', middleware:'auth')]
     public function __invoke(Request $request)
     {
+
         $foreigners = User::get();
 
         return inertia()->render('Foreigners/Index', [
-            'foreigners' => $foreigners
+            'foreigners' => $foreigners,
+            'role' => $request->get('role'),
         ]);
     }
 }
