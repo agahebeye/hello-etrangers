@@ -13,7 +13,7 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 
 #[Middleware('web')]
-class DocumentController extends Controller
+class DocumentController
 {
     /**
      * Display a listing of the documents.

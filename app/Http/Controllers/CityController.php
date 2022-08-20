@@ -10,7 +10,7 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 class CityController
 {
     #[Get(uri: '/cities/{city}', name: 'cities.show')]
-    public function show(City $city)
+    public function __invoke(City $city)
     {
         return inertia()->render('Cities/Show', [
             'city' => fn () => $city->load(['photos', 'location',])

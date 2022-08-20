@@ -10,7 +10,7 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 class UniversityController
 {
     #[Get('universities/{university}')]
-    public function show(University $university): \Inertia\Response
+    public function __invoke(University $university): \Inertia\Response
     {
         return inertia()->render(
             'Universities/Show', 

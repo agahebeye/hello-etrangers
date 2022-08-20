@@ -14,7 +14,7 @@ class MarketController
      */
 
     #[Get(uri: '/markets/{market}', name: 'markets.show')]
-    public function show(Market $market): \Inertia\Response
+    public function __invoke(Market $market): \Inertia\Response
     {
         return inertia()->render(
             'Markets/Show',

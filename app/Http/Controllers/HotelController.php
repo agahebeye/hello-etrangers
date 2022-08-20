@@ -10,7 +10,7 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 class HotelController
 {
     #[Get('/hotels/{hotel}')]
-    public function show(Hotel $hotel)
+    public function __invoke(Hotel $hotel)
     {
         return inertia()->render('Hotels/Show', [
             'hotel' => fn () => $hotel->load([

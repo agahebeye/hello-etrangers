@@ -7,10 +7,10 @@ use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware('web')]
-class UserController extends Controller
+class UserController
 {
     #[Get('/users', name: 'users.index', middleware: ['auth'])]
-    public function index()
+    public function __invoke()
     {
         $users = User::query()
             ->with('role')

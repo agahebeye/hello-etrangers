@@ -8,7 +8,6 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -16,7 +15,7 @@ use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware('web')]
-class RegisteredUserController extends Controller
+class RegisteredUserController
 {
     /**
      * Display the registration view.

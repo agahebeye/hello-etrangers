@@ -1,5 +1,5 @@
 <script setup>
-import AdminLayout from '@/Layouts/Admin.vue';
+import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -11,7 +11,7 @@ defineProps({
 
     <Head title="Documents" />
 
-    <AdminLayout>
+    <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Documents
@@ -22,7 +22,7 @@ defineProps({
             {{ documents }}
         </div>
 
-    </AdminLayout>
+    </AuthenticatedLayout>
 </template>
 
 <style scoped>

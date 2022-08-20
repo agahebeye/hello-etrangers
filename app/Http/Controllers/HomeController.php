@@ -12,7 +12,7 @@ use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware('web')]
-class HomeController extends Controller
+class HomeController
 {
     /**
      * Handle the incoming request.

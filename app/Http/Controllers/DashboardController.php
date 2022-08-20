@@ -8,7 +8,7 @@ use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware(['web'])]
-class DashboardController extends Controller
+class DashboardController
 {
     /**
      * Handle the incoming request.
