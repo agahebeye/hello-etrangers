@@ -8,6 +8,8 @@ import {
   BarElement
 } from "chart.js"
 
+import pattern from 'patternomaly';
+
 import { BarChart } from "vue-chart-3"
 
 const dataValues = ref([
@@ -22,12 +24,12 @@ const data = computed(() => ({
     {
       label: "Foo",
       data: dataValues.value[0],
-      backgroundColor: "#268bd2"
+      backgroundColor: pattern.draw('dash', '#268bd2'),
     },
     {
       label: "Bar",
       data: dataValues.value[1],
-      backgroundColor: "#2aa198"
+      backgroundColor: pattern.draw('dot', '#2aa198')
     }
   ]
 }))

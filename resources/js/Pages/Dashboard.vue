@@ -5,6 +5,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 
 import { ref } from 'vue';
 import BarChar from '@/Components/Charts/BarChar.vue';
+import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
 
 const isShown = ref(false);
 </script>
@@ -224,9 +225,11 @@ const isShown = ref(false);
                         </div>
                     </div>
 
-                    <div id="charts">
+                    <div id="charts" class="flex flex-wrap justify-between">
 
                         <BarChar />
+                        <ChartDoughnut />
+                        
                     </div>
                 </div>
             </div>
