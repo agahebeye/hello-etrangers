@@ -39,15 +39,15 @@ const showingNavigationDropdown = ref(false);
                                         Documents
                                     </NavLink>
 
-                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                    <NavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Etudiant'})">
                                         Etudiants
                                     </NavLink>
 
-                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                    <NavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Commerçant'})">
                                         Commerçants
                                     </NavLink>
 
-                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
+                                    <NavLink v-if="isAdmin" :href="route('foreigners.index')">
                                         Tous les étrangers
                                     </NavLink>
 
@@ -118,6 +118,18 @@ const showingNavigationDropdown = ref(false);
 
                             <ResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
                                 Documents
+                            </ResponsiveNavLink>
+
+                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Etudiant'})">
+                               Etudiants 
+                            </ResponsiveNavLink>
+
+                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Commerçant'})">
+                               Commerçants 
+                            </ResponsiveNavLink>
+
+                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index')">
+                               Tous les étrangers 
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('dashboard')">
