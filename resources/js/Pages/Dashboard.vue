@@ -8,77 +8,20 @@ import { Head } from '@inertiajs/inertia-vue3';
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-        <template #header>
+        <!-- <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Dashboard
             </h2>
-        </template>
+        </template> -->
 
         <div class="pt-2">
             <!--sidebar-->
             <div
-                id="view"
-                class="flex flex-row w-screen h-full"
-                x-data="{ sidenav: true }">
-                <button
-                    @click="sidenav = true"
-                    class="absolute top-0 left-0 p-2 text-gray-500 bg-white border-2 border-gray-200 rounded-md shadow-lg focus:bg-teal-500 focus:outline-none focus:text-white sm:hidden">
-                    <svg
-                        class="w-5 h-5 fill-current"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            fill-rule="evenodd"
-                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
+                class="flex flex-row w-screen h-full">
                 <div
                     id="sidebar"
-                    class="h-screen px-3 overflow-x-hidden transition-transform duration-300 ease-in-out bg-white shadow-xl md:block w-30 md:w-60 lg:w-60"
-                    x-show="sidenav"
-                    @click.away="sidenav = false">
+                    class="h-screen px-3 overflow-x-hidden transition-transform duration-300 ease-in-out bg-white shadow-xl md:block w-30 md:w-60 lg:w-60">
                     <div class="mt-10 space-y-6 md:space-y-10">
-                        <h1 class="text-4xl font-bold text-center md:hidden">
-                            D<span class="text-teal-600">.</span>
-                        </h1>
-                        <h1 class="hidden text-sm font-bold text-center md:block md:text-xl">
-                            Dashwind<span class="text-teal-600">.</span>
-                        </h1>
-                        <div id="profile" class="space-y-3">
-                            <img
-                                src="https://pbs.twimg.com/profile_images/1467997254929854470/mDYbXoVl_400x400.jpg"
-                                alt="Avatar user"
-                                class="w-10 mx-auto rounded-full md:w-16" />
-                            <div>
-                                <h2
-                                    class="text-xs font-medium text-center text-teal-500 md:text-sm">
-                                    Eduard Pantazi
-                                </h2>
-                                <p class="text-xs text-center text-gray-500">Administrator</p>
-                            </div>
-                        </div>
-                        <div
-                            class="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500">
-                            <input
-                                type="text"
-                                class="w-full px-2 py-3 text-sm text-gray-600 rounded-tl-md rounded-bl-md focus:outline-none"
-                                placeholder="Search" />
-                            <button
-                                class="hidden px-2 py-3 rounded-tr-md rounded-br-md md:block">
-                                <svg
-                                    class="w-4 h-4 fill-current"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                        </div>
                         <div id="menu" class="flex flex-col space-y-2">
                             <a
                                 href=""
@@ -198,7 +141,7 @@ import { Head } from '@inertiajs/inertia-vue3';
                 </div>
 
             </div>
-            
+
             <div>
                 <div class="flex bg-gray-50 dark:bg-gray-900">
                     <div class="container max-w-6xl px-5 mx-auto my-28">
