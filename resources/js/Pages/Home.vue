@@ -24,31 +24,31 @@ defineProps({
         </template>
 
 
-        <div class="prose max-w-none">
+        <div class="pt-8 prose max-w-none">
             <!--hotels-->
             <div>
-                <h2 class="my-5 text-5xl text-gray-800">Hotels</h2>
+                <h2 class="my-5 text-4xl text-gray-800">Hotels</h2>
 
                 <ImageGuallery :data="hotels" />
             </div>
 
             <!--universities-->
             <div>
-                <h2 class="my-5 text-5xl text-gray-800">Universities</h2>
+                <h2 class="my-5 text-4xl text-gray-800">Universities</h2>
 
                <ImageGuallery :data="universities" />
             </div>
 
             <!--markets-->
             <div>
-                <h2 class="my-5 text-5xl text-gray-800">Markets</h2>
+                <h2 class="my-5 text-4xl text-gray-800">Markets</h2>
 
                 <ImageGuallery :data="markets" />
             </div>
 
             <!--cities-->
             <div>
-                <h2 class="my-5 text-5xl text-gray-800">Villes</h2>
+                <h2 class="my-5 text-4xl text-gray-800">Villes</h2>
 
                 <ImageGuallery :data="cities" />
             </div>
