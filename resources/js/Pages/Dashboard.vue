@@ -1,5 +1,6 @@
 <script setup>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 
 import { ref } from 'vue';
@@ -11,14 +12,14 @@ const isShown = ref(false);
 
     <Head title="Dashboard" />
 
-    <BreezeAuthenticatedLayout>
+    <AuthenticatedLayout>
         <!-- <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Dashboard
             </h2>
         </template> -->
 
-        <div class="pt-2">
+        <div class="flex pt-2 space-x-10 lg:space-x-3">
             <!--sidebar-->
             <div
                 id="view"
@@ -26,7 +27,7 @@ const isShown = ref(false);
                 x-data="{ sidenav: true }">
                 <button
                     @click="isShown = !isShown"
-                    class="absolute top-0 left-0 p-2 text-gray-500 bg-white border-2 border-gray-200 rounded-md shadow-lg focus:bg-teal-500 focus:outline-none focus:text-white lg:hidden">
+                    class="absolute top-0 z-10 p-2 text-gray-600 bg-white border-2 border-gray-300 rounded hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 lg:hidden">
                     <svg
                         class="w-5 h-5 fill-current"
                         fill="currentColor"
@@ -40,13 +41,12 @@ const isShown = ref(false);
                 </button>
                 <div
                     id="sidebar"
-                    class="h-screen px-3 overflow-x-hidden transition-transform duration-300 ease-in-out bg-white shadow-xl lg:block w-30 md:w-60 lg:w-60"
+                    class="absolute h-screen px-3 overflow-x-hidden bg-white shadow-xl lg:relative lg:block w-30 md:w-60 lg:w-60"
                     :class="`${isShown ? 'visible': 'hidden'}`">
                     <div class="mt-10 space-y-6 md:space-y-10">
                         <div id="menu" class="flex flex-col space-y-2">
-                            <a
-                                href=""
-                                class="px-2 py-2 text-sm font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:bg-teal-500 hover:text-white hover:text-base">
+                            <ResponsiveNavLink
+                                href="#">
                                 <svg
                                     class="inline-block w-6 h-6 fill-current"
                                     fill="currentColor"
@@ -55,8 +55,8 @@ const isShown = ref(false);
                                     <path
                                         d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                                 </svg>
-                                <span class="">Dashboard</span>
-                            </a>
+                                <span class="">Documents</span>
+                            </ResponsiveNavLink>
                             <a
                                 href=""
                                 class="px-2 py-2 text-sm font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:bg-teal-500 hover:text-white hover:scale-105">
@@ -163,9 +163,9 @@ const isShown = ref(false);
 
             </div>
 
-            <div>
-                <div class="flex bg-gray-50 dark:bg-gray-900">
-                    <div class="container max-w-6xl px-5 mx-auto my-28">
+            <div class="w-full">
+                <div class="flex dark:bg-gray-900">
+                    <div class="container max-w-6xl px-5 mx-auto my-0">
                         <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
                             <div class="p-5 bg-white rounded shadow-sm">
                                 <div class="text-base text-gray-400 ">Total Sales</div>
@@ -220,5 +220,5 @@ const isShown = ref(false);
                 </div>
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+    </AuthenticatedLayout>
 </template>
