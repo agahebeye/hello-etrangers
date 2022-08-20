@@ -20,7 +20,7 @@ class DocumentController
      *
      * @return \Inertia\Response
      */
-    #[Get(uri:'/documents', name: 'documents.index', middleware:['auth'])]
+    #[Get(uri: '/documents', name: 'documents.index', middleware: ['auth'])]
     public function index()
     {
         return Inertia::render('Documents/Index', [
@@ -33,11 +33,12 @@ class DocumentController
      *
      * @return \Inertia\Response
      */
-    #[Get(uri:'/documents/create', name:'documents.create', middleware:['auth'])]
+    #[Get(uri: '/documents/create', name: 'documents.create', middleware: ['auth'])]
     public function create(Request $request): \Inertia\Response
     {
         return Inertia::render('Documents/Create', [
             'hasCommanded' => $request->user()->document()->whereYear('created_at', date('Y'))->exists(),
+            'role' => $request->get('role'),
         ]);
     }
 
@@ -47,7 +48,7 @@ class DocumentController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    #[Post(uri:'/documents/store', name:'documents.store', middleware:['auth'])]
+    #[Post(uri: '/documents/store', name: 'documents.store', middleware: ['auth'])]
     public function store(StoreDocumentRequest $storeDocumentRequest, StoreDocumentAction $storeDocumentAction)
     {
         $storeDocumentAction->handle($storeDocumentRequest);

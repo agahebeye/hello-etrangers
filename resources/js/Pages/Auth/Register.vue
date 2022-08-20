@@ -1,9 +1,9 @@
 <script setup>
-import BreezeButton from '@/Components/Button.vue';
-import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/Components/Input.vue';
-import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
+import Button from '@/Components/Button.vue';
+import GuestLayout from '@/Layouts/Guest.vue';
+import Input from '@/Components/Input.vue';
+import Label from '@/Components/Label.vue';
+import ValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
@@ -24,48 +24,48 @@ const submit = () => {
 </script>
 
 <template>
-    <BreezeGuestLayout>
+    <GuestLayout>
 
         <Head title="Register" />
 
-        <BreezeValidationErrors class="mb-4" />
+        <ValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
             <div>
-                <BreezeLabel for="lastname" value="Nom" />
-                <BreezeInput id="lastname" type="text" class="block w-full mt-1" v-model="form.last_name" required autofocus autocomplete="name" />
+                <Label for="lastname" value="Nom" />
+                <Input id="lastname" type="text" class="block w-full mt-1" v-model="form.last_name" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="firstname" value="Prénom" />
-                <BreezeInput id="firstname" type="text" class="block w-full mt-1" v-model="form.first_name" required autofocus autocomplete="name" />
+                <Label for="firstname" value="Prénom" />
+                <Input id="firstname" type="text" class="block w-full mt-1" v-model="form.first_name" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="block w-full mt-1" v-model="form.email" required autocomplete="username" />
+                <Label for="email" value="Email" />
+                <Input id="email" type="email" class="block w-full mt-1" v-model="form.email" required autocomplete="username" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password" value="Mot de passe" />
-                <BreezeInput id="password" type="password" class="block w-full mt-1" v-model="form.password" required autocomplete="new-password" />
+                <Label for="password" value="Mot de passe" />
+                <Input id="password" type="password" class="block w-full mt-1" v-model="form.password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="password_confirmation" value="Confirmer mot de passe" />
-                <BreezeInput id="password_confirmation" type="password" class="block w-full mt-1" v-model="form.password_confirmation" required autocomplete="new-password" />
+                <Label for="password_confirmation" value="Confirmer mot de passe" />
+                <Input id="password_confirmation" type="password" class="block w-full mt-1" v-model="form.password_confirmation" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <BreezeLabel for="role" value="Role" />
+                <Label for="role" value="Role" />
                 <div class="flex my-3 space-x-3">
                     <div class="flex space-x-2">
                         <input type="radio" for="role" id="commercant" value="Commercant" v-model="form.role" />
-                        <BreezeLabel value="Commerçant" id="role" />
+                        <Label value="Commerçant" id="role" />
                     </div>
                     <div class="flex space-x-2">
                         <input type="radio" for="role" id="etudiant" value="Etudiant" v-model="form.role" />
-                        <BreezeLabel id="role" value="Etudiant"></BreezeLabel>
+                        <Label id="role" value="Etudiant"></Label>
                     </div>
                 </div>
             </div>
@@ -75,10 +75,10 @@ const submit = () => {
                 Déjà enregistré(e)?
                 </Link>
 
-                <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <Button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     S'enregistrer
-                </BreezeButton>
+                </Button>
             </div>
         </form>
-    </BreezeGuestLayout>
+    </GuestLayout>
 </template>
