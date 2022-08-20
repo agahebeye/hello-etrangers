@@ -32,15 +32,7 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <template v-if="user">
                                     <BreezeNavLink v-if="isAdmin" :href="route('users.index')">
-                                        Utilisateurs
-                                    </BreezeNavLink>
-
-                                    <BreezeNavLink v-if="isAdmin" :href="route('documents.index')">
-                                        Documents
-                                    </BreezeNavLink>
-
-                                    <BreezeNavLink :href="route('documents.create')">
-                                        Commander
+                                        Dashboard
                                     </BreezeNavLink>
                                 </template>
                                 <template v-else>
@@ -99,15 +91,7 @@ const showingNavigationDropdown = ref(false);
                     <div class="pt-2 pb-3 space-y-1">
                         <template v-if="user">
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('users.index')" :active="route().current('dashboard')">
-                                Users
-                            </BreezeResponsiveNavLink>
-
-                            <BreezeResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
-                                Documents
-                            </BreezeResponsiveNavLink>
-
-                            <BreezeResponsiveNavLink :href="route('documents.create')" :active="route().current('documents.create')">
-                                Commander un document
+                                Dashboard
                             </BreezeResponsiveNavLink>
                         </template>
 
