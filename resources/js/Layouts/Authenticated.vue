@@ -34,6 +34,10 @@ const showingNavigationDropdown = ref(false);
                                     <BreezeNavLink v-if="isAdmin" :href="route('dashboard')">
                                         Dashboard
                                     </BreezeNavLink>
+
+                                    <BreezeNavLink v-if="!isAdmin" :href="route('documents.create')">
+                                        Commander un document
+                                    </BreezeNavLink>
                                 </template>
                                 <template v-else>
                                     <BreezeNavLink :href="route('login')">
@@ -56,6 +60,7 @@ const showingNavigationDropdown = ref(false);
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
                                                 <img v-if="user.photo" :src="`/storage/${user.photo.src}`" class="w-10 h-10 max-w-full mr-2 rounded-full" />
+                                                <img v-else src="/avatars/man_placeholder.png" class="w-10 h-10 max-w-full mr-2 rounded-full" />
                                                 <span>{{ user.fullname }}</span>
 
                                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -92,6 +97,10 @@ const showingNavigationDropdown = ref(false);
                         <template v-if="user">
                             <BreezeResponsiveNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
+                            </BreezeResponsiveNavLink>   
+                            
+                            <BreezeResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('dashboard')">
+                                Commander un document
                             </BreezeResponsiveNavLink>
                         </template>
 
@@ -99,6 +108,7 @@ const showingNavigationDropdown = ref(false);
                             <BreezeResponsiveNavLink :href="route('login')">
                                 Connexion
                             </BreezeResponsiveNavLink>
+
                             <BreezeResponsiveNavLink :href="route('register')">
                                 S'enregistrer
                             </BreezeResponsiveNavLink>
