@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Put;
 
 #[Middleware('web')]
 class DocumentController
@@ -63,7 +64,21 @@ class DocumentController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    #[Get('/documents/{document}', name:'documents.show', middleware:['auth'])]
+    public function show(Document $document)
+    {
+        return inertia()->render('Documents/Show', ['document' => $document]);
+    }
+
+    #[Get('/document/{document}', name:'documents.edit', middleware:['auth'])]
+    public function edit(Document $document)
+    {
+        // dd($document->load(['user' => ['role', 'adress']])->toArray());
+        return inertia()->render('Documents/Edit', ['document' => fn() => $document->load(['user' => ['adress', 'role']])]);
+    }
+
+    #[Put('/documents/{document}', name:'documents.update', middleware:['auth'])]
+    public function update(Request $request, Document $document)
     {
         //
     }
