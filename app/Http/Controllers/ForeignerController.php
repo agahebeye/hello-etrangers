@@ -24,10 +24,9 @@ class ForeignerController
         $foreigners = User::query()
             ->when($request->get('role'), fn (Builder $query, $role) => $query->ofRole($role))
             ->whereRelation('role', 'name', '<>', 'Administrateur')
-            ->with(['document' => fn($builder) => $builder->select(['gender', 'citizenship'])])
-            ->get();
-
-        dd($foreigners->toArray());
+            ->with(['document:id,gender,citizenship,user_id'])
+            ->paginate(10)
+            ->withQueryString();
 
         return inertia()->render('Foreigners/Index', [
             'foreigners' => $foreigners,
