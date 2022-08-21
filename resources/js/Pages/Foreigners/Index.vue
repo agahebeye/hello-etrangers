@@ -15,15 +15,15 @@ const datatables = reactive({
     headings: [
         {
             'key': 'userId',
-            'value': 'User ID'
+            'value': 'ID'
         },
         {
             'key': 'firstName',
-            'value': 'Firstname'
+            'value': 'Nom'
         },
         {
             'key': 'lastName',
-            'value': 'Lastname'
+            'value': 'Prénom'
         },
         {
             'key': 'emailAddress',
@@ -31,11 +31,11 @@ const datatables = reactive({
         },
         {
             'key': 'gender',
-            'value': 'Gender'
+            'value': 'Sexe'
         },
         {
-            'key': 'phoneNumber',
-            'value': 'Phone'
+            'key': 'citizenship',
+            'value': 'Nationalité'
         }
     ],
     users: [{
@@ -250,24 +250,24 @@ const datatables = reactive({
                             <template v-for="user in datatables.users" :key="user.userId">
                                 <tr>
                                     <td class="border-t border-gray-200 border-dashed userId">
-                                        <span class="flex items-center px-6 py-3 text-gray-700" v-text="user.userId"></span>
+                                        <span class="px-4 text-gray-700 " v-text="user.userId"></span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed firstName">
-                                        <span class="flex items-center px-6 py-3 text-gray-700" v-text="user.firstName"></span>
+                                        <span class="px-4 text-gray-700 " v-text="user.firstName + 'xxx'"></span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed lastName">
-                                        <span class="flex items-center px-6 py-3 text-gray-700" v-text="user.lastName"></span>
+                                        <span class="px-4 text-gray-700 " v-text="user.lastName"></span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed emailAddress">
-                                        <span class="flex items-center px-6 py-3 text-gray-700"
+                                        <span class="px-4 text-gray-700 "
                                             v-text="user.emailAddress"></span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed gender">
-                                        <span class="flex items-center px-6 py-3 text-gray-700"
+                                        <span class="px-4 text-gray-700 "
                                             v-text="user.gender"></span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed phoneNumber">
-                                        <span class="flex items-center px-6 py-3 text-gray-700"
+                                        <span class="px-4 text-gray-700 "
                                             v-text="user.phoneNumber"></span>
                                     </td>
                                 </tr>
