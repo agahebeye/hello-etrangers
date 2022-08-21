@@ -23,8 +23,10 @@ class DocumentController
     #[Get(uri: '/documents', name: 'documents.index', middleware: ['auth'])]
     public function index()
     {
+        $documents = Document::query()->with('user.adress')->paginate(10)->withQueryString();
+
         return Inertia::render('Documents/Index', [
-            'documents' => Document::with('user')->get()
+            'documents' => $documents
         ]);
     }
 
