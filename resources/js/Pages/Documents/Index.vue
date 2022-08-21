@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
+import { Head } from '@inertiajs/inertia-vue3';
 
 defineProps({
     documents: Array
@@ -18,7 +18,7 @@ defineProps({
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="py-8">
             {{ documents }}
         </div>
 

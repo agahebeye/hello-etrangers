@@ -90,17 +90,17 @@ defineProps({
             </div>
 
             <div>
-                <h2>latest documents</h2>
+                <h2>Documents récents</h2>
                 {{ latestDocuments }}
             </div>
 
             <div>
-                <h2>latest students</h2>
+                <h2>Etudiants récents</h2>
                 <div>{{ latestStudents }}</div>
             </div>
 
             <div>
-                <h2>latest business persons</h2>
+                <h2>Commerçants récents</h2>
                 {{ latestTraders }}
             </div>
         </div>

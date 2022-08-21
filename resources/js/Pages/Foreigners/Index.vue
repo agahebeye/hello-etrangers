@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head } from '@inertiajs/inertia-vue3';
+import NavLink from '@/Components/NavLink.vue';
 
 defineProps({
     foreigners: Array,
@@ -24,7 +25,7 @@ defineProps({
         </template>
 
         <div class="py-8 prose max-w-none">
-            <Link :href="route('documents.create', {role})" v-if="role">Ajouter un {{ role }}</Link>
+            <NavLink class="text-lg no-underline" :href="route('documents.create', {role})" v-if="role">Commander un document pour un {{ role }}</NavLink>
 
             <div class="mt-4">
                 {{ foreigners }}
