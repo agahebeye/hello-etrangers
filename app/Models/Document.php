@@ -12,7 +12,6 @@ class Document extends Model
     protected $casts = [
         'passport_validity' => 'datetime',
         'arrival_date' => 'datetime',
-        'has_been_period' => 'datetime',
         'has_been' => 'boolean',
         'validated_at' => 'datetime',
         'rejected_at' => 'datetime',

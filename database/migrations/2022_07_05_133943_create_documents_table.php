@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('current_occupation');
             $table->string('stay_duration');
             $table->tinyInteger('has_been');
-            $table->timestamp('has_been_period')->nullable();
+            $table->string('has_been_period')->nullable();
             $table->string('visa_kind');
 
             $table->timestamp('validated_at')->nullable();

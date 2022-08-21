@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Document;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -29,9 +30,9 @@ class UserSeeder extends Seeder
 
 
         // etudiants
-        User::factory(20)->create(['role_id' =>2]);
+        User::factory(20)->has(Document::factory())->create(['role_id' =>2]);
 
         // traders
-        User::factory(20)->create(['role_id' => 3]);
+        User::factory(20)->has(Document::factory())->create(['role_id' => 3]);
     }
 }
