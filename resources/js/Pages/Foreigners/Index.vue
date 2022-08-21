@@ -239,7 +239,6 @@ const datatables = reactive({
                     <table class="relative w-full m-0 whitespace-no-wrap bg-white border-collapse table-auto table-striped">
                         <thead>
                             <tr class="text-left">
-                               
                                 <template v-for="heading in datatables.headings">
                                     <th class="sticky top-0 px-6 py-2 text-xs font-bold tracking-wider text-gray-600 uppercase bg-gray-100 border-b border-gray-200"
                                         v-text="heading.value" x-ref="heading.key" :class="{ [heading.key]: true }"></th>
