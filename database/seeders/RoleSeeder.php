@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
+    use WithoutModelEvents;
     /**
      * Run the database seeds.
      *
@@ -14,6 +16,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Role::query()->insertMany(
+            ['name' => 'Administrateur'],
+            ['name' => 'Etudiant'],
+            ['name' => 'Commerçant'],
+        );
     }
 }

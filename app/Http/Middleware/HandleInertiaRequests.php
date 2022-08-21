@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -38,7 +37,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user()
-                    ? UserResource::make($request->user())->toArray($request)
+                    ? fn() => $request->user()->load(['photo', 'role'])->toArray()
                     : null,
             ],
             'ziggy' => function () use ($request) {
