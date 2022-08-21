@@ -16,7 +16,7 @@ class DocumentFactory extends Factory
      */
     public function definition()
     {
-        $maritalStatuses = ['Célibataire', 'Marié', 'Divorcé', 'Veuf(ve)'];
+        $maritalStatuses = ['bachelor', 'married', 'divorced', 'widowed'];
         $genders = ['Masculin', 'Féminin'];
         $professions = ['Etudiant', 'Commerçant'];
         $citizenships = ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise'];

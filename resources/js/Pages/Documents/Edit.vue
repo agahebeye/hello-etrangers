@@ -6,17 +6,19 @@ import Checkbox from '@/Components/Checkbox.vue';
 import Label from '@/Components/Label.vue';
 import ValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
 
 const props = defineProps({
     document: Object,
 });
 
-const maritalStatuses = {
+const maritalStatuses = computed(() => ({
     'bachelor': 'Célibataire',
     'married': 'Marié(e)',
     'divorced': 'Divorcé(e)',
     'widowed': 'Veuf(ve)'
-};
+}));
+
 
 const form = useForm({
     first_name: props.document.user.first_name,
@@ -56,12 +58,12 @@ const submit = () => {
 
 <template>
 
-    <Head title="Documents/Commander" />
+    <Head title="Documents/Modifier" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Modifier le document de {{ document.user.fullname }}
+                Modifier le document de <strong>&laquo;{{ document.user.fullname }}&raquo;</strong>
             </h2>
         </template>
 
@@ -110,11 +112,11 @@ const submit = () => {
                             <Label for="gender" value="Sexe" />
                             <div class="flex my-3 space-x-3">
                                 <div class="flex space-x-2">
-                                    <input type="radio" id="sexe" value="male" v-model="form.gender" />
+                                    <input type="radio" id="sexe" value="Masculin" v-model="form.gender" :checked="form.gender === 'Masculin' ? true : null" />
                                     <Label for="sexe" value="Masculin" />
                                 </div>
                                 <div class="flex space-x-2">
-                                    <input type="radio" id="sexe" value="female" v-model="form.gender" />
+                                    <input type="radio" id="sexe" value="Féminin" v-model="form.gender" :checked="form.gender === 'Féminin' ? true : null" />
                                     <Label for="sexe" value="Féminin" />
                                 </div>
                             </div>
@@ -199,7 +201,7 @@ const submit = () => {
 
                         <div class="flex justify-center mt-4 col-span-full">
                             <Button class="px-10 py-4 ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                commander
+                                modifier
                             </Button>
                         </div>
                     </form>
