@@ -35,7 +35,9 @@ return new class extends Migration
             $table->tinyInteger('has_been');
             $table->timestamp('has_been_period')->nullable();
             $table->string('visa_kind');
+
             $table->timestamp('validated_at')->nullable();
+            $table->timestamp('rejected_at')->nullable();
 
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

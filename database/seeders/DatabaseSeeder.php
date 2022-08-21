@@ -17,16 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create([
-            'name' => 'Administrateur',
-        ]);
+        Role::query()->insertMany(
+            ['name' => 'Administrateur'],
+            ['name' => 'Etudiant'],
+            ['name' => 'Commerçant'],
+        );
 
         \App\Models\User::factory()->create([
             'first_name' => 'Jehdai',
             'last_name' => 'Bugale',
             'email' => 'test@example.com',
             'password' => 'introuvable',
-            'role_id' => $role->id
+            'role_id' => 1,
         ]);
 
         $this->call([
