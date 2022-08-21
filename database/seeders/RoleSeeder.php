@@ -16,10 +16,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::query()->insertMany(
+        Role::query()->insert([
             ['name' => 'Administrateur'],
             ['name' => 'Etudiant'],
             ['name' => 'Commerçant'],
-        );
+        ]);
     }
 }

@@ -18,10 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            RoleSeeder::class,
             CitySeeder::class,
             HotelSeeder::class,
             UniversitySeeder::class,
             MarketSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
