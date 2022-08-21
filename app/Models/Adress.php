@@ -12,7 +12,6 @@ class Adress extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'quarter',
         'avenue',
     ];
 

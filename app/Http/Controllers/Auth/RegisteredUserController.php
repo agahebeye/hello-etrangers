@@ -44,10 +44,10 @@ class RegisteredUserController
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['string', 'required', Rule::in(['Commercant', 'Etudiant'])]
+            'role' => ['string', 'required', Rule::in(['Commerçant', 'Etudiant'])]
         ]);
 
-        $role = Role::query()->firstOrCreate(['name' => $request->role]);
+        $role = Role::query()->firstWhere('name', $request->role);
 
         $user = User::create([
             'first_name' => $request->first_name,
