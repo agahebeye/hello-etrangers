@@ -68,7 +68,7 @@ const submit = () => {
         </template>
 
         <div class="py-12">
-            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+            <div class="max-w-5xl overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ValidationErrors class="mb-4" />
 

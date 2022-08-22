@@ -40,7 +40,7 @@ class DocumentController
     public function create(Request $request): \Inertia\Response
     {
         return Inertia::render('Documents/Create', [
-            'hasCommanded' => $request->user()->document->whereYear('created_at', date('Y'))->exists(),
+            'hasCommanded' => $request->user()->document?->whereYear('created_at', date('Y'))->exists(),
             'role' => $request->get('role'),
         ]);
     }

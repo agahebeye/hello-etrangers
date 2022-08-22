@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 import { ref } from 'vue';
 
 defineProps({
@@ -37,9 +39,37 @@ const headings = ref([{
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Documents
-            </h2>
+            <div class="flex justify-between">
+                <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                    Documents
+                </h2>
+
+                <Dropdown align="right" width="48">
+                    <template #trigger>
+                        <span class="inline-flex rounded-md">
+                            <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+                                Commander un document pour
+                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </span>
+                    </template>
+
+                    <template #content>
+                        <div class="flex flex-col">
+                            <DropdownLink :href="route('documents.create', { role: 'Etudiant' })">
+                                un étudiant
+                            </DropdownLink>
+
+                            <DropdownLink :href="route('documents.create', { role: 'Commerçant' })">
+                                un Commerçant
+                            </DropdownLink>
+                        </div>
+                    </template>
+                </Dropdown>
+
+            </div>
         </template>
 
         <div class="py-8 prose max-w-none">
@@ -96,17 +126,17 @@ const headings = ref([{
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed actions">
                                         <div class="flex px-4 space-x-2 item-center">
-                                            <Link :href="route('documents.show', {document: document.id})" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
+                                            <Link :href="route('documents.show', { document: document.id })" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
                                             </Link>
 
-                                            <Link :href="route('documents.edit', {document: document.id})" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                </svg>
+                                            <Link :href="route('documents.edit', { document: document.id })" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
                                             </Link>
                                         </div>
                                     </td>

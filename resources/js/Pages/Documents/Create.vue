@@ -70,7 +70,7 @@ const submit = () => {
             </h2>
         </template>
 
-        <div class="py-12">
+        <div class="max-w-5xl py-12">
             <div class="p-5 bg-white shadow-sm sm:rounded-lg" v-if="!isAdmin && hasCommanded">Votre document n'a pas encore expiré. Vous ne pouvez pas en commander un autre.</div>
             <template v-else>
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
