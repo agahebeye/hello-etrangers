@@ -217,7 +217,7 @@ const foreignerHeadings = ref([{
 
                <div>
                 <h2>Commerçants récement ajoutés</h2>
-                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', {role: 'Commerçant'})">Voir plus d'Etudiants</NavLink>
+                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', {role: 'Commerçant'})">Voir plus de Commerçants</NavLink>
                 <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
                     <table class="relative w-full m-0 whitespace-no-wrap bg-white border-collapse table-auto table-striped">
                         <thead>

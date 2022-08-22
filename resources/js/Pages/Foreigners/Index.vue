@@ -10,6 +10,10 @@ const props = defineProps({
     role: String,
 });
 
+function printDocument() {
+    window.print();
+}
+
 const countries = computed(() => props.foreigners.data.map(foreign => foreign.document.citizenship));
 
 function setCitizenshipQuery(country, params) {
@@ -56,8 +60,18 @@ const headings = ref([{
 
         <div class="py-8 prose max-w-none">
 
-            <div class="container px-4 py-6 mx-auto">
-                <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between pt-2 print:hidden">
+                <!-- <Link :href="`/documents/${document.id}/edit`" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray">Modifier ce document</Link> -->
+                <button class="flex space-x-2 text-sm font-semibold" @click="printDocument">
+                    <span>Imprimer ce tableau</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="container py-6 mx-auto">
+                <div class="flex items-center justify-between mb-4 print:hidden">
                     <div class="flex-1 pr-4">
                         <div class="relative md:w-1/3">
                             <input type="search"

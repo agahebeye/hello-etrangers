@@ -159,7 +159,7 @@ const headings = ref([{
                                         <span class="px-4 text-gray-700 ">{{ document.user.adress?.avenue ?? 'somewhere in Burundi' }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed visa_status">
-                                        <span v-if="!document.validated_at && !document.rejected_at" class="px-4 py-1 ml-4 text-xs text-yellow-600 bg-yellow-200 rounded-full">Programmé</span>
+                                        <span v-if="!document.validated_at && !document.rejected_at" class="px-4 py-1 ml-4 text-xs text-yellow-600 bg-yellow-200 rounded-full">Non Validé</span>
                                         <span v-if="document.rejected_at" class="px-4 py-1 ml-4 text-xs text-red-600 bg-red-200 rounded-full">Annulé</span>
                                         <span v-if="document.validated_at" class="px-4 py-1 ml-4 text-xs text-green-600 bg-green-200 rounded-full">Validé</span>
                                     </td>
