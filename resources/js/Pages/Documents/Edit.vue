@@ -39,7 +39,7 @@ const form = useForm({
     person_reference: props.document.person_reference,
     arrival_date: props.document.arrival_date,
     current_occupation: props.document.current_occupation,
-    adress: props.document.user.adress?.avenue,
+    adress: props.document.user.adress?.avenue ?? 'somewhere in town',
     stay_duration: props.document.stay_duration,
     has_been: props.document.has_been,
     has_been_period: props.document.has_been_period,
@@ -151,7 +151,7 @@ const submit = () => {
 
                         <div class="">
                             <Label for="passport_validity" value="Valable jusqu'à" />
-                            <Input id="passport_validity" type="date" class="block w-full mt-1" v-model="form.passport_validity" required autocomplete="off" />
+                            <Input id="passport_validity" :value="form.passport_validity" type="date" class="block w-full mt-1" v-model="form.passport_validity" required autocomplete="off" />
                         </div>
 
                         <div class="">
@@ -171,7 +171,7 @@ const submit = () => {
 
                         <div class="">
                             <Label for="arrival_date" value="Date d'arrivée au Burundi" />
-                            <Input id="arrival_date" type="date" class="block w-full mt-1" v-model="form.arrival_date" required autocomplete="off" />
+                            <Input id="arrival_date" :value="form.arrival_date" type="date" class="block w-full mt-1" v-model="form.arrival_date" required autocomplete="off" />
                         </div>
 
                         <div class="">
@@ -191,7 +191,7 @@ const submit = () => {
 
                         <div class="" v-if="form.has_been">
                             <Label for="has_been_period" value="Si oui, à quelle époque?" />
-                            <Input id="has_been_period" type="date" class="block w-full mt-1" v-model="form.has_been_period" autocomplete="off" />
+                            <Input id="has_been_period" :value="form.has_been_period" type="date" class="block w-full mt-1" v-model="form.has_been_period" autocomplete="off" />
                         </div>
 
                         <div class="">

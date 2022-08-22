@@ -40,7 +40,7 @@ class DocumentController
     public function create(Request $request): \Inertia\Response
     {
         return Inertia::render('Documents/Create', [
-            'hasCommanded' => $request->user()->document()->whereYear('created_at', date('Y'))->exists(),
+            'hasCommanded' => $request->user()->document->whereYear('created_at', date('Y'))->exists(),
             'role' => $request->get('role'),
         ]);
     }
@@ -64,20 +64,19 @@ class DocumentController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    #[Get('/documents/{document}', name:'documents.show', middleware:['auth'])]
+    #[Get('/documents/{document}', name: 'documents.show', middleware: ['auth'])]
     public function show(Document $document)
     {
-        return inertia()->render('Documents/Show', ['document' => $document]);
+        return inertia()->render('Documents/Show', ['document' => fn () => $document->load(['user' => ['adress', 'role', 'photo']])]);
     }
 
-    #[Get('/document/{document}', name:'documents.edit', middleware:['auth'])]
+    #[Get('/document/{document}', name: 'documents.edit', middleware: ['auth'])]
     public function edit(Document $document)
     {
-        // dd($document->load(['user' => ['role', 'adress']])->toArray());
-        return inertia()->render('Documents/Edit', ['document' => fn() => $document->load(['user' => ['adress', 'role']])]);
+        return inertia()->render('Documents/Edit', ['document' => fn () => $document->load(['user' => ['adress', 'role']])]);
     }
 
-    #[Put('/documents/{document}', name:'documents.update', middleware:['auth'])]
+    #[Put('/documents/{document}', name: 'documents.update', middleware: ['auth'])]
     public function update(Request $request, Document $document)
     {
         //
