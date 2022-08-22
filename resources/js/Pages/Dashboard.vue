@@ -1,16 +1,39 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import NavLink from '@/Components/NavLink.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+
+import {ref} from 'vue'
 
 import BarChar from '@/Components/Charts/BarChar.vue';
 import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
 import LineChart from '@/Components/Charts/LineChart.vue';
+
 
 defineProps({
     latestDocuments: Array,
     latestStudents: Array,
     latestTraders: Array,
 })
+
+const documentHeadings = ref([{
+    'key': 'userId',
+    'value': 'ID'
+}, {
+    'key': 'owner',
+    'value': 'Propietaire'
+}, {
+    'key': 'adress',
+    'value': 'Adresse'
+},
+{
+    'key': 'visaStatus',
+    'value': 'Status de visa'
+}, {
+    'key': 'visa_kind',
+    'value': 'Nature de visa'
+}
+])
 </script>
 
 <template>
@@ -90,8 +113,43 @@ defineProps({
             </div>
 
             <div>
-                <h2>Documents récents</h2>
-                {{ latestDocuments }}
+                <h2>Documents récement commandés</h2>
+                <NavLink class="block mb-4 no-underline" :href="route('documents.index')">Voir plus de documents</NavLink>
+                <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
+                    <table class="relative w-full m-0 whitespace-no-wrap bg-white border-collapse table-auto table-striped">
+                        <thead>
+                            <tr class="text-left">
+                                <template v-for="heading in documentHeadings">
+                                    <th class="sticky top-0 px-6 py-2 text-xs font-bold tracking-wider text-gray-600 uppercase bg-gray-100 border-b border-gray-200"
+                                        v-text="heading.value" x-ref="heading.key" :class="{ [heading.key]: true }"></th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="document in latestDocuments">
+                                <tr>
+                                    <td class="border-t border-gray-200 border-dashed userId">
+                                        <span class="px-4 text-gray-700 ">{{ document.id }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed owner">
+                                        <span class="px-4 text-gray-700 ">{{ document.user.fullname }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed adress">
+                                        <span class="px-4 text-gray-700 ">{{ document.user.adress?.avenue ?? 'somewhere in Burundi' }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed visa_status">
+                                        <span v-if="!document.validated_at && !document.rejected_at" class="px-4 py-1 ml-4 text-xs text-yellow-600 bg-yellow-200 rounded-full">Programmé</span>
+                                        <span v-if="document.rejected_at" class="px-4 py-1 ml-4 text-xs text-red-600 bg-red-200 rounded-full">Annulé</span>
+                                        <span v-if="document.validated_at" class="px-4 py-1 ml-4 text-xs text-green-600 bg-green-200 rounded-full">Validé</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed visa_kind">
+                                        <span class="px-4 text-gray-700">{{ document.visa_kind }}</span>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div>
