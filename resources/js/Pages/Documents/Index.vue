@@ -4,7 +4,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import { ref } from 'vue';
 
 defineProps({
-    documents: Array,
+    documents: Object,
 });
 
 

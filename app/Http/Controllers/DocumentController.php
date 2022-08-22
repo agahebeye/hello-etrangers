@@ -70,13 +70,13 @@ class DocumentController
         return inertia()->render('Documents/Show', ['document' => fn () => $document->load(['user' => ['adress', 'role', 'photo']])]);
     }
 
-    #[Get('/document/{document}', name: 'documents.edit', middleware: ['auth'])]
+    #[Get('/documents/{document}/edit', name: 'documents.edit', middleware: ['auth'])]
     public function edit(Document $document)
     {
         return inertia()->render('Documents/Edit', ['document' => fn () => $document->load(['user' => ['adress', 'role']])]);
     }
 
-    #[Put('/documents/{document}', name: 'documents.update', middleware: ['auth'])]
+    #[Put('/documents/{document}/update', name: 'documents.update', middleware: ['auth'])]
     public function update(Request $request, Document $document)
     {
         //
