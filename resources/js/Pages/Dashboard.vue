@@ -3,71 +3,12 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 
-import { DoughnutChart, LineChart } from 'vue-chart-3';
+import DoughnutChart from '@/Components/Charts/DoughnutChart.vue';
+import StackedBarChart from '@/Components/Charts/StackedBarChart.vue';
+
 import { Chart, registerables } from 'chart.js';
-import { ref, computed } from 'vue'
-
-import * as Utils from '@/utils/ChartUtils';
-
-const doughnutData = computed(() => ({
-    labels: ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise'],
-    datasets: [
-        {
-            data: [30, 40, 60, 70, 5],
-            backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
-        },
-    ],
-}));
-
-const stackedBarOptions = {
-    plugins: {
-                title: {
-                    display: true,
-                    text: 'Chart.js Stacked Line/Bar Chart'
-                }
-            },
-            scales: {
-                y: {
-                    stacked: true
-                }
-            }}
-
-const stackedBarData = computed(() => (
-    {
-        
-            labels: Utils.months({ count: 7 }),
-            datasets: [
-                {
-                    label: 'Etudiants',
-                    data: Utils.numbers({ count: 7, min: 0, max: 100 }),
-                    borderColor: Utils.CHART_COLORS.red,
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-                    stack: 'combined',
-                    type: 'bar'
-                },
-                {
-                    label: 'Commerçants',
-                    data: Utils.numbers({ count: 7, min: 0, max: 100 }),
-                    borderColor: Utils.CHART_COLORS.blue,
-                    backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-                    stack: 'combined'
-                }
-            ]
-        
-        // options: {
-        //     plugins: {
-        //         title: {
-        //             display: true,
-        //             text: 'Chart.js Stacked Line/Bar Chart'
-        //         }
-        //     },
-        //     scales: {
-        //         y: {
-        //             stacked: true
-        //         }
-        //     }
-        // },
-    }))
+import { ref } from 'vue'
+import PointStyleChart from '@/Components/Charts/PointStyleChart.vue';
 
 Chart.register(...registerables);
 
@@ -205,14 +146,9 @@ const foreignerHeadings = ref([{
             </div>
 
             <div id="charts" class="relative z-10 flex flex-wrap justify-between gap-10">
-                <div>
-                    <h2>Nationalités</h2>
-                    <DoughnutChart :chartData="doughnutData" css-classes="chart-container" />
-                </div>
-                <div>
-                    <h2>Nationalités</h2>
-                    <LineChart :chart-data="stackedBarData" :options="stackedBarOptions"/>
-                </div>
+                    <DoughnutChart  />
+                    <StackedBarChart />
+                    <PointStyleChart />
             </div>
 
             <div>
