@@ -24,7 +24,7 @@ class ForeignerController
         $foreigners = User::query()
             ->when($request->get('role'), fn (Builder $query, $role) => $query->ofRole($role))
             ->whereRelation('role', 'name', '<>', 'Administrateur')
-            ->with(['document:id,gender,citizenship,user_id'])
+            ->with(['document:id,gender,citizenship,user_id', 'role'])
             ->paginate(10)
             ->withQueryString();
 

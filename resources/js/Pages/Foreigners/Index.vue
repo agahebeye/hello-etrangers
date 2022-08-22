@@ -76,6 +76,7 @@ const headings = ref([{
                                     <th class="sticky top-0 px-6 py-2 text-xs font-bold tracking-wider text-gray-600 uppercase bg-gray-100 border-b border-gray-200"
                                         v-text="heading.value" x-ref="heading.key" :class="{ [heading.key]: true }"></th>
                                 </template>
+                                <th class="sticky top-0 px-6 py-2 text-xs font-bold tracking-wider text-gray-600 uppercase bg-gray-100 border-b border-gray-200" v-if="!role">Role</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,6 +100,9 @@ const headings = ref([{
                                     <td class="border-t border-gray-200 border-dashed phoneNumber">
                                         <span class="px-4 text-gray-700">{{ foreigner.document.citizenship }}</span>
                                     </td>
+                                    <td v-if="!role" class="border-t border-gray-200 border-dashed phoneNumber">
+                                        <span class="px-4 text-gray-700">{{ foreigner.role.name }}</span>
+                                    </td>
                                 </tr>
                             </template>
                         </tbody>
@@ -107,9 +111,9 @@ const headings = ref([{
 
                 <div class="flex items-center justify-center mt-8 space-x-4 text-sm font-medium">
                     <div>
-                        <span>De {{ foreigners.from}} </span>
-                        <span> à {{ foreigners.to}} </span>
-                        <span> sur {{ foreigners.total}}, </span>
+                        <span>De {{ foreigners.from }} </span>
+                        <span> à {{ foreigners.to }} </span>
+                        <span> sur {{ foreigners.total }}, </span>
                     </div>
                     <Link class="no-underline" :href="foreigners.prev_page_url" v-if="foreigners.prev_page_url">&laquo; Précédent </Link>
                     <Link class="no-underline" :href="foreigners.next_page_url" v-if="foreigners.next_page_url">Suivant &raquo; </Link>
