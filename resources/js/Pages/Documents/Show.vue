@@ -22,7 +22,7 @@ const maritalStatuses = computed(() => ({
 
 <template>
 
-    <Head title="Documents/Modifier" />
+    <Head :title="`Documents - Document de ${document.user.fullname}`" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -34,32 +34,53 @@ const maritalStatuses = computed(() => ({
         <div class="py-12">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <ValidationErrors class="mb-4" />
-
                     <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <div>Nom</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Nom</span>
+                                <span class="text-xs">Surname</span>
+                            </div>
                             <div>{{ document.user.last_name }}</div>
                         </div>
 
-                        <div class="">
-                            <div>Prénom</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Prénom</span>
+                                <span class="text-xs">Given names</span>
+                            </div>
                             <div>{{ document.user.first_name }}</div>
                         </div>
 
-                        <div>
-                            <div>Nom de la mère</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Nom de la mère</span>
+                                <span class="text-xs">Mother's surname</span>
+                            </div>
                             <div>{{ document.mother_lastname }}</div>
                         </div>
 
-                        <div>
-                            <div>Prénom de la mère</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Prénom de la mère</span>
+                                <span class="text-xs">Mother's given names</span>
+                            </div>
                             <div>{{ document.mother_firstname }}</div>
                         </div>
 
-                        <div>
-                            <div>Nom de la père</div>
-                            <div>{{ document.father_lastname }}</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Nom de la père</span>
+                                <span class="text-xs">Father's surname</span>
+                            </div>
+                            <div>{{ document.father_firstname }}</div>
+                        </div>
+
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Prénom de la père</span>
+                                <span class="text-xs">Father's given names</span>
+                            </div>
+                            <div>{{ document.father_firstname }}</div>
                         </div>
 
                         <div>
