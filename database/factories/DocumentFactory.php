@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class DocumentFactory extends Factory
         $maritalStatuses = ['bachelor', 'married', 'divorced', 'widowed'];
         $genders = ['Masculin', 'Féminin'];
         $professions = ['Etudiant', 'Commerçant'];
+        $visaKinds = ["d'Etude", 'de Commerçant'];
         $citizenships = ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise'];
 
 
@@ -33,16 +35,16 @@ class DocumentFactory extends Factory
             'citizenship' => $citizenships[array_rand($citizenships)] ,
             'profession' => $professions[array_rand($professions)],
             'passport_number' => fake()->uuid(),
-            'passport_issue' => fake()->sentence(),
+            'passport_issue' => Carbon::parse(fake()->dateTimeBetween('-5years'))->format('Y-m-d') . ', ' . fake()->word(),
             'passport_validity' => fake()->dateTimeBetween('-5years'),
             'stay_purpose' => fake()->sentence(),
-            'person_reference' => fake()->word(),
+            'person_reference' => fake()->name(),
             'arrival_date' => fake()->dateTimeBetween('-5years'),
             'current_occupation' => fake()->word(),
             'stay_duration' =>  random_int(1, 7),
             'has_been' => $has_been = fake()->boolean(),
             'has_been_period' => $has_been ? random_int(1, 5) : null,
-            'visa_kind' => $professions[array_rand($professions)]
+            'visa_kind' => 'visa ' . $visaKinds[array_rand($visaKinds)]
         ];
     }
 }

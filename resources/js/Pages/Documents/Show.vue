@@ -31,7 +31,7 @@ function printDocument() {
         </template>
 
         <div class="py-8">
-            <div class="max-w-4xl space-y-8 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="max-w-4xl space-y-8 overflow-hidden">
                 <div class="flex items-center justify-between pt-2 print:hidden">
                     <Link :href="`/documents/${document.id}/edit`" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray">Modifier ce document</Link>
                     <button class="flex space-x-2 text-sm font-semibold" @click="printDocument">
@@ -42,7 +42,7 @@ function printDocument() {
                     </button>
                 </div>
 
-                <div id="document" class="grid justify-between gap-12 p-6 bg-white border-b border-gray-200">
+                <div id="document" class="grid justify-between gap-12 p-6 bg-white border-b border-gray-200 shadow-sm  sm:rounded-lg">
 
                     <div id="signature" class="space-y-3">
                         <div class="flex flex-col">

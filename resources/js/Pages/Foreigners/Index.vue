@@ -1,12 +1,20 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
-defineProps({
-    foreigners: Array,
+const props = defineProps({
+    foreigners: Object,
     role: String,
 });
+
+const countries = computed(() => props.foreigners.data.map(foreign => foreign.document.citizenship));
+
+function setCitizenshipQuery(country, params) {
+    return `${route('foreigners.index', route().params)}${Object.keys(params).length ? '&' : '?'}citizenship=${country}`
+}
 
 
 const headings = ref([{
@@ -66,6 +74,27 @@ const headings = ref([{
                             </div>
                         </div>
                     </div>
+
+                    <Dropdown align="right" width="48">
+                        <template #trigger>
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+                                    Classer par nationalité:
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </template>
+
+                        <template #content>
+                            <div class="flex flex-col">
+                                <DropdownLink v-for="country in [...new Set(countries)]" class="no-underline" :href="setCitizenshipQuery(country, route().params)">
+                                    {{ country }}
+                                </DropdownLink>
+                            </div>
+                        </template>
+                    </Dropdown>
                 </div>
 
                 <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">

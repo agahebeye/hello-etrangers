@@ -5,6 +5,10 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import { ref } from 'vue';
 
+function printDocument() {
+    window.print();
+}
+
 defineProps({
     documents: Object,
 });
@@ -39,7 +43,7 @@ const headings = ref([{
 
     <AuthenticatedLayout>
         <template #header>
-            <div class="flex justify-between">
+            <div class="flex justify-between print:hidden">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
                     Documents
                 </h2>
@@ -73,9 +77,18 @@ const headings = ref([{
         </template>
 
         <div class="py-8 prose max-w-none">
+            <div class="flex items-center justify-between pt-2 print:hidden">
+                <!-- <Link :href="`/documents/${document.id}/edit`" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray">Modifier ce document</Link> -->
+                <button class="flex space-x-2 text-sm font-semibold" @click="printDocument">
+                    <span>Imprimer ce tableau</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                </button>
+            </div>
 
             <div class="container py-6 mx-auto">
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center justify-between mb-4 print:hidden">
                     <div class="flex-1 pr-4">
                         <div class="relative md:w-1/3">
                             <input type="search"
@@ -92,6 +105,35 @@ const headings = ref([{
                             </div>
                         </div>
                     </div>
+                    
+                    <Dropdown align="right" width="48">
+                        <template #trigger>
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+                                    Classer par:
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </template>
+
+                        <template #content>
+                            <div class="flex flex-col">
+                                <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=pending`">
+                                    Programmé
+                                </DropdownLink>
+
+                                <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=validated`">
+                                    Validé
+                                </DropdownLink>
+
+                                <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=rejected`">
+                                    Annulé
+                                </DropdownLink>
+                            </div>
+                        </template>
+                    </Dropdown>
                 </div>
 
                 <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
