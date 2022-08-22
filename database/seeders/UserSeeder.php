@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-       
+
 
         \App\Models\User::factory()->create([
             'first_name' => 'Jehdai',
@@ -30,7 +31,14 @@ class UserSeeder extends Seeder
 
 
         // etudiants
-        User::factory(20)->has(Document::factory())->create(['role_id' =>2]);
+        User::factory(5)->has(Document::factory()->validated())->create(['role_id' => 2]);
+        User::factory(3)->has(Document::factory())->create(['role_id' => 2]);
+        User::factory(2)->has(Document::factory()->rejected())->create(['role_id' => 2]);
+
+        User::factory(40)->has(Document::factory()->state(
+            new Sequence(['validated_at' => now()], ['rejected_at' => now()])
+        ))->state(new Sequence(['role_id' => 2], ['role_id' => 3]))
+            ->create();
 
         // traders
         User::factory(20)->has(Document::factory())->create(['role_id' => 3]);

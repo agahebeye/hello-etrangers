@@ -47,4 +47,12 @@ class DocumentFactory extends Factory
             'visa_kind' => 'visa ' . $visaKinds[array_rand($visaKinds)]
         ];
     }
+
+    public function validated() {
+        return $this->state(fn(array $attributes) => ['validated_at' => now()]);
+    }
+
+    public function rejected() {
+        return $this->state(fn(array $attributes) => ['rejected_at' => now()]);
+    }
 }
