@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 import BarChar from '@/Components/Charts/BarChar.vue';
 import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
@@ -69,60 +69,76 @@ const foreignerHeadings = ref([{
         </template>
 
         <div class="space-y-16 prose max-w-none">
-            <div class="grid pt-8 gap-7 sm:grid-cols-2 lg:grid-cols-4">
-                <!--metrics card-->
-                <div class="p-5 bg-white rounded shadow-sm">
-                    <div class="text-base text-gray-400 ">Total Sales</div>
-                    <div class="flex items-center pt-1">
-                        <div class="text-2xl font-bold text-gray-900 ">$9850.90</div>
-                        <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>1.8%</span>
-                        </span>
+            <div>
+                <h2>Tous les documents</h2>
+                <div class="flex-wrap justify-between gap-4 sm:flex">
+                    <!--metrics card-->
+                    <div class="p-5 bg-white rounded shadow-sm">
+                        <div class="text-base text-gray-400 ">Commandés <span class="font-semibold text-gray-600">&laquo; Aujourd'hui &raquo;</span></div>
+                        <div class="flex items-center pt-1">
+                            <div class="text-xl font-bold text-gray-900 ">100</div>
+                            <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <span>1.8%</span>
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <!--metrics card-->
-                <div class="p-5 bg-white rounded shadow-sm">
-                    <div class="text-base text-gray-400 ">Net Revenue</div>
-                    <div class="flex items-center pt-1">
-                        <div class="text-2xl font-bold text-gray-900 ">$7520.50</div>
-                        <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-red-600 bg-red-100 rounded-full">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>2.5%</span>
-                        </span>
+                    <!--metrics card-->
+                    <div class="p-5 bg-white rounded shadow-sm">
+                        <div class="text-base text-gray-400 ">Commandés <span class="font-semibold text-gray-600">&laquo; cette semaine&raquo;</span></div>
+
+                        <div class="flex items-center pt-1">
+                            <div class="text-xl font-bold text-gray-900 ">852</div>
+                            <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-red-600 bg-red-100 rounded-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <span>2.5%</span>
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <!--metrics card-->
-                <div class="p-5 bg-white rounded shadow-sm">
-                    <div class="text-base text-gray-400 ">Customers</div>
-                    <div class="flex items-center pt-1">
-                        <div class="text-2xl font-bold text-gray-900 ">1375</div>
-                        <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>5.2%</span>
-                        </span>
+                    <!--metrics card-->
+                    <div class="p-5 bg-white rounded shadow-sm">
+                        <div class="text-base text-gray-400 ">Commandés <span class="font-semibold text-gray-600">&laquo; cette année &raquo;</span></div>
+                        <div class="flex items-center pt-1">
+                            <div class="text-xl font-bold text-gray-900 ">33175</div>
+                            <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <span>5.2%</span>
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <!--metrics card-->
-                <div class="p-5 bg-white rounded shadow-sm">
-                    <div class="text-base text-gray-400 ">MRR</div>
-                    <div class="flex items-center pt-1">
-                        <div class="text-2xl font-bold text-gray-900 ">$250.00</div>
-                        <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span>2.2%</span>
-                        </span>
+                    <div class="p-5 bg-white rounded shadow-sm">
+                        <div class="text-base text-gray-400 ">Validé <span class="font-semibold text-gray-600">&laquo; cette année &raquo;</span></div>
+                        <div class="flex items-center pt-1">
+                            <div class="text-xl font-bold text-gray-900 ">29403</div>
+                            <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-green-600 bg-green-100 rounded-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <span>5.2%</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-white rounded shadow-sm">
+                        <div class="text-base text-gray-400 ">Annulé <span class="font-semibold text-gray-600">&laquo; cette année &raquo;</span></div>
+                        <div class="flex items-center pt-1">
+                            <div class="text-xl font-bold text-gray-900 ">3772</div>
+                            <span class="flex items-center px-2 py-0.5 mx-2 text-sm text-red-600 bg-red-100 rounded-full">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                                <span>2.5%</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -176,7 +192,7 @@ const foreignerHeadings = ref([{
 
             <div>
                 <h2>Etudiants récents</h2>
-                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', {role: 'Etudiant'})">Voir plus d'Etudiants</NavLink>
+                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', { role: 'Etudiant' })">Voir plus d'Etudiants</NavLink>
                 <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
                     <table class="relative w-full m-0 whitespace-no-wrap bg-white border-collapse table-auto table-striped">
                         <thead>
@@ -215,9 +231,9 @@ const foreignerHeadings = ref([{
                 </div>
             </div>
 
-               <div>
+            <div>
                 <h2>Commerçants récement ajoutés</h2>
-                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', {role: 'Commerçant'})">Voir plus de Commerçants</NavLink>
+                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', { role: 'Commerçant' })">Voir plus de Commerçants</NavLink>
                 <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
                     <table class="relative w-full m-0 whitespace-no-wrap bg-white border-collapse table-auto table-striped">
                         <thead>
@@ -256,7 +272,7 @@ const foreignerHeadings = ref([{
                 </div>
             </div>
 
-            
+
         </div>
 
     </AuthenticatedLayout>
