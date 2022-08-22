@@ -215,10 +215,48 @@ const foreignerHeadings = ref([{
                 </div>
             </div>
 
-            <div>
-                <h2>Commerçants récents</h2>
-                {{ latestTraders }}
+               <div>
+                <h2>Commerçants récement ajoutés</h2>
+                <NavLink class="block mb-4 no-underline" :href="route('foreigners.index', {role: 'Commerçant'})">Voir plus d'Etudiants</NavLink>
+                <div class="relative overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
+                    <table class="relative w-full m-0 whitespace-no-wrap bg-white border-collapse table-auto table-striped">
+                        <thead>
+                            <tr class="text-left">
+                                <template v-for="heading in foreignerHeadings">
+                                    <th class="sticky top-0 px-6 py-2 text-xs font-bold tracking-wider text-gray-600 uppercase bg-gray-100 border-b border-gray-200"
+                                        v-text="heading.value" x-ref="heading.key" :class="{ [heading.key]: true }"></th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="foreigner in latestTraders">
+                                <tr>
+                                    <td class="border-t border-gray-200 border-dashed userId">
+                                        <span class="px-4 text-gray-700 ">{{ foreigner.id }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed first_name">
+                                        <span class="px-4 text-gray-700 ">{{ foreigner.first_name }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed lastName">
+                                        <span class="px-4 text-gray-700 ">{{ foreigner.last_name }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed emailAddress">
+                                        <span class="px-4 text-gray-700">{{ foreigner.email }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed gender">
+                                        <span class="px-4 text-gray-700">{{ foreigner.document.gender }}</span>
+                                    </td>
+                                    <td class="border-t border-gray-200 border-dashed phoneNumber">
+                                        <span class="px-4 text-gray-700">{{ foreigner.document.citizenship }}</span>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
+            
         </div>
 
     </AuthenticatedLayout>
