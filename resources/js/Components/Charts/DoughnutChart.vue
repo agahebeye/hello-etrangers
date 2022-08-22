@@ -16,7 +16,7 @@ const data = computed(() => ({
     labels: ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise'],
     datasets: [
         {
-            data: [30, 40, 60, 70, 5],
+            data: [301, 400, 160, 700, 512],
             backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
         },
     ],

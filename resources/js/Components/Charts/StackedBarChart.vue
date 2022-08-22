@@ -24,7 +24,7 @@ const data = computed(() => (
         datasets: [
             {
                 label: 'Commandes',
-                data: Utils.numbers({ count: 7, min: 0, max: 100 }),
+                data: ['100', '700', '1000', '3000', '6010', '7320', '10000'],
                 borderColor: Utils.CHART_COLORS.red,
                 backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
                 stack: 'combined',

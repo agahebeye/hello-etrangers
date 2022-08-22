@@ -13,6 +13,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                logo: ['Zilla Slab Highlight', 'cursive'],
             },
         },
     },

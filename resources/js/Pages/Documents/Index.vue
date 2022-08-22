@@ -121,7 +121,7 @@ const headings = ref([{
                         <template #content>
                             <div class="flex flex-col">
                                 <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=pending`">
-                                    Programmé
+                                    Non validé
                                 </DropdownLink>
 
                                 <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=validated`">
