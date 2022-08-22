@@ -3,13 +3,12 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import NavLink from '@/Components/NavLink.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 
-import { DoughnutChart,  } from 'vue-chart-3';
+import { DoughnutChart, } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';
 import { ref } from 'vue'
-import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
 
 const doughnutData = ref({
-    labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
+    labels: ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise'],
     datasets: [
         {
             data: [30, 40, 60, 70, 5],
@@ -17,9 +16,7 @@ const doughnutData = ref({
         },
     ],
 });
-// import BarChar from '@/Components/Charts/BarChar.vue';
-// import ChartDoughnut from '@/Components/Charts/ChartDoughnut.vue';
-// import LineChart from '@/Components/Charts/LineChart.vue';
+
 Chart.register(...registerables);
 
 defineProps({
@@ -156,7 +153,10 @@ const foreignerHeadings = ref([{
             </div>
 
             <div id="charts" class="relative z-10 flex flex-wrap justify-between gap-10">
-                <ChartDoughnut :chartData="doughnutData" />
+                <div>
+                    <h2>Nationalités</h2>
+                    <DoughnutChart :chartData="doughnutData" css-classes="chart-container" />
+                </div>
             </div>
 
             <div>
