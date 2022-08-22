@@ -1,11 +1,6 @@
 <script setup>
-import Button from '@/Components/Button.vue';
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import Input from '@/Components/Input.vue';
-import Checkbox from '@/Components/Checkbox.vue';
-import Label from '@/Components/Label.vue';
-import ValidationErrors from '@/Components/ValidationErrors.vue';
-import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
+import { Head } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 
 const props = defineProps({
@@ -80,41 +75,59 @@ const maritalStatuses = computed(() => ({
                                 <span class="font-bold">Prénom de la père</span>
                                 <span class="text-xs">Father's given names</span>
                             </div>
-                            <div>{{ document.father_firstname }}</div>
+                            <div>{{ document.father_lastname }}</div>
                         </div>
 
-                        <div>
-                            <div>Prénom de la père</div>
-                            <div>{{ document.father_firstname }}</div>
-                        </div>
-
-                        <div>
-                            <div>Date et Lieu de naissance</div>
+                        <div class="flex space-x-3 col-span-full">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Date et Lieu de naissance</span>
+                                <span class="text-xs">Date et place of birth</span>
+                            </div>
                             <div>{{ document.birth }}</div>
                         </div>
 
-                        <div>
-                            <div>Sexe</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Sexe</span>
+                                <span class="text-xs">Sex</span>
+                            </div>
                             <div>{{ document.gender }}</div>
                         </div>
 
-                        <div>
-                            <div>Etat civil</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Etat civil</span>
+                                <span class="text-xs">Marital status</span>
+                            </div>
                             <div>{{ maritalStatuses[document.marital_status] }}</div>
                         </div>
 
-                        <div>
-                            <div>Nationalité</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Nationalité</span>
+                                <span class="text-xs">Nationality</span>
+                            </div>
                             <div>{{ document.citizenship }}</div>
                         </div>
 
-                        <div>
-                            <div>Profession</div>
+                        <div class="flex space-x-3">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Profession</span>
+                                <span class="text-xs">Profession</span>
+                            </div>
                             <div>{{ document.user.role.name }}</div>
                         </div>
 
+                        <div class="flex space-x-3 col-span-full">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Numéro de passport ou autre document de voyage</span>
+                                <span class="text-xs">Number of passport or other document</span>
+                            </div>
+                            <div>{{ document.passport_number }}</div>
+                        </div>
+
                         <div>
-                            <div>Numéro de passport ou autre document de voyage</div>
+                            <div></div>
                             <div>{{ document.passport_number }}</div>
                         </div>
 
