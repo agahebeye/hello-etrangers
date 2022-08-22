@@ -23,8 +23,8 @@ class DashboardController
     {
         return Inertia::render('Dashboard', [
             'latestDocuments' => Document::query()->with(['user' => ['adress', 'role']])->latest()->take(5)->get(),
-            'latestStudents' => User::query()->ofRole('Etudiant')->latest()->take(5)->get(),
-            'latestTraders' => User::query()->latest()->ofRole('Commerçant')->take(5)->get(),
+            'latestStudents' => User::query()->with(['document'])->ofRole('Etudiant')->latest()->take(5)->get(),
+            'latestTraders' => User::query()->with(['document'])->latest()->ofRole('Commerçant')->take(5)->get(),
         ]);
     }
 }
