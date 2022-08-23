@@ -20,7 +20,7 @@ class DocumentFactory extends Factory
         $maritalStatuses = ['bachelor', 'married', 'divorced', 'widowed'];
         $genders = ['Masculin', 'Féminin'];
         $professions = ['Etudiant', 'Commerçant'];
-        $visaKinds = ["d'Etude", 'de Commerçant'];
+        $visaKinds = ["d'Etude", 'de Commerce'];
         $citizenships = ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise'];
 
 

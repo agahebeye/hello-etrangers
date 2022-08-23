@@ -22,15 +22,16 @@ class ForeignerController
     {
 
         $foreigners = User::query()
-            ->when($request->get('role'), fn (Builder $query, $role) => $query->ofRole($role))
-            ->whereRelation('role', 'name', '<>', 'Administrateur')
+            ->when($request->role, fn (Builder $query, $role) => $query->ofRole($role))
+            ->when($request->citizenship, fn (Builder $query, $citizenship) => $query->whereRelation('document', 'citizenship', $citizenship))
             ->with(['document:id,gender,citizenship,user_id', 'role'])
+            ->whereRelation('role', 'name', '<>', 'Administrateur')
             ->paginate(10)
             ->withQueryString();
 
         return inertia()->render('Foreigners/Index', [
             'foreigners' => $foreigners,
-            'role' => $request->get('role'),
+            'role' => $request->role,
         ]);
     }
 }

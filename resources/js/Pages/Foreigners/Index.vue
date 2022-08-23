@@ -14,12 +14,19 @@ function printDocument() {
     window.print();
 }
 
-const countries = computed(() => props.foreigners.data.map(foreign => foreign.document.citizenship));
+const citizenships = computed(() => ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise']);
 
-function setCitizenshipQuery(country, params) {
-    return `${route('foreigners.index', route().params)}${Object.keys(params).length ? '&' : '?'}citizenship=${country}`
+function setCitizenshipQuery(citizenship) {
+    const role = props.role ?? '';
+
+    const query = {
+        role, citizenship
+    }
+
+    return `
+    ${route('foreigners.index', query)}
+    `
 }
-
 
 const headings = ref([{
     'key': 'userId',
@@ -103,8 +110,8 @@ const headings = ref([{
 
                         <template #content>
                             <div class="flex flex-col">
-                                <DropdownLink v-for="country in [...new Set(countries)]" class="no-underline" :href="setCitizenshipQuery(country, route().params)">
-                                    {{ country }}
+                                <DropdownLink v-for="citizenship in [...new Set(citizenships)]" class="no-underline" :href="setCitizenshipQuery(citizenship)">
+                                    {{ citizenship }}
                                 </DropdownLink>
                             </div>
                         </template>
