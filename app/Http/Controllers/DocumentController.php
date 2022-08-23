@@ -25,14 +25,14 @@ class DocumentController
     #[Get(uri: '/documents', name: 'documents.index', middleware: ['auth'])]
     public function index(Request $request)
     {
-        $documents = Document::query()->with('user.adress')
+        $documents = Document::query()
+            ->select(['id', 'rejected_at', 'validated_at', 'visa_kind', 'user_id'])->with('user.adress')
             ->applyFilters($request)
             ->paginate(10)->withQueryString();
 
         return Inertia::render('Documents/Index', [
             'documents' => $documents,
-            'search' => $request->search,
-            'status' => $request->status,
+            'filters' => $request->all('status', 'search',)
         ]);
     }
 

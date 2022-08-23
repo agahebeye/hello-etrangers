@@ -50,18 +50,24 @@ class Document extends Model
     public function scopeApplyFilters(Builder $query, $request)
     {
         $query->when(
-            $request?->status === 'pending',
+            $request->search,
+            fn (Builder $query, $search) => $query
+                ->whereRelation('user', 'first_name', 'LIKE', "%{$search}%")
+                ->orWhereRelation('user', 'last_name', 'LIKE', "%{$search}%")
+        );
+
+        $query->when(
+            $request->status === 'pending',
             fn (Builder $query) => $query->whereNull('validated_at')->whereNull('rejected_at')
         );
 
-
         $query->when(
-            $request?->status === 'validated',
+            $request->status === 'validated',
             fn (Builder $query) => $query->whereNotNull('validated_at')
         );
 
         $query->when(
-            $request?->status === 'rejected',
+            $request->status === 'rejected',
             fn (Builder $query) => $query->whereNotNull('rejected_at')
         );
     }

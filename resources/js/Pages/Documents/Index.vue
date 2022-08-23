@@ -6,15 +6,12 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import { ref, watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 
+import pickBy from 'lodash/pickBy';
+
 const props = defineProps({
     documents: Object,
-    search: String,
-    status: String,
+    filters: Object,
 });
-
-function printDocument() {
-    window.print();
-}
 
 const headings = ref([{
     'key': 'userId',
@@ -38,31 +35,15 @@ const headings = ref([{
 },
 ])
 
-const search = ref(props.search);
+const filters = ref(props.filters);
 
-function debounce(fn, delay) {
-    let timeout;
+watch(filters, (value) => {
+    Inertia.get(route('documents.index'), pickBy(filters.value), { preserveState: true })
+}, { deep: true })
 
-    return (...args) => {
-        if (timeout) {
-            clearTimeout(timeout);
-        }
-
-        timeout = setTimeout(() => { fn(...args) }, timeout)
-    }
+function printDocument() {
+    window.print();
 }
-
-const onSearch = debounce((searchQuery) => {
-    const search = searchQuery ?? null;
-    const status = props.status ?? null;
-
-    const query = {
-        status, search
-    };
-
-    Inertia.get(route('documents.index', query), {}, {preserveState: true});
-}, 500);
-
 </script>
 
 <template>
@@ -120,8 +101,7 @@ const onSearch = debounce((searchQuery) => {
                     <div class="flex-1 pr-4">
                         <div class="relative md:w-1/3">
                             <input type="search"
-                                v-model="search"
-                                @input="onSearch($event.target.value)"
+                                v-model="filters.search"
                                 class="w-full py-2 pl-10 pr-4 font-medium text-gray-600 rounded-lg shadow focus:outline-none focus:shadow-outline"
                                 placeholder="Search...">
                             <div class="absolute top-0 left-0 inline-flex items-center p-2">
@@ -133,6 +113,12 @@ const onSearch = debounce((searchQuery) => {
                                     <line x1="21" y1="21" x2="15" y2="15" />
                                 </svg>
                             </div>
+
+                            <button class="absolute right-0 inline-flex items-center p-2 cursor-pointer top-1" v-if="filters.search" @click="filters.search = ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
 
@@ -150,15 +136,15 @@ const onSearch = debounce((searchQuery) => {
 
                         <template #content>
                             <div class="flex flex-col">
-                                <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=pending`">
+                                <DropdownLink class="no-underline" as="button" @click.prevent="filters.status = 'pending'">
                                     Non validé
                                 </DropdownLink>
 
-                                <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=validated`">
+                                <DropdownLink class="no-underline" as="button" @click.prevent="filters.status = 'validated'">
                                     Validé
                                 </DropdownLink>
 
-                                <DropdownLink class="no-underline" :href="`${route('documents.index')}?status=rejected`">
+                                <DropdownLink class="no-underline" as="button" @click.prevent="filters.status = 'rejected'">
                                     Annulé
                                 </DropdownLink>
                             </div>
