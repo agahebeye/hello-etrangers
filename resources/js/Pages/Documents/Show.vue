@@ -48,11 +48,11 @@ function printDocument() {
 
                     <template #content>
                         <div class="flex flex-col">
-                            <DropdownLink :href="route('documents.create', { role: 'Etudiant' })">
+                            <DropdownLink v-if="!document.validated_at" :href="route('documents.create', { role: 'Etudiant' })">
                                 Valider ce document
                             </DropdownLink>
 
-                            <DropdownLink :href="route('documents.create', { role: 'Commerçant' })">
+                            <DropdownLink v-if="!document.rejected_at" :href="route('documents.create', { role: 'Commerçant' })">
                                 Annuler ce document
                             </DropdownLink>
                         </div>

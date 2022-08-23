@@ -70,7 +70,10 @@ class DocumentController
     #[Get('/documents/{document}', name: 'documents.show', middleware: ['auth'])]
     public function show(Document $document)
     {
-        return inertia()->render('Documents/Show', ['document' => fn () => $document->load(['user' => ['adress', 'role', 'photo']])]);
+
+        return inertia()->render('Documents/Show', [
+            'document' => fn () => $document->load(['user' => ['adress', 'role', 'photo']]),
+        ]);
     }
 
     #[Get('/documents/{document}/edit', name: 'documents.edit', middleware: ['auth'])]
