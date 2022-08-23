@@ -52,7 +52,7 @@ function printDocument() {
                                 Valider ce document
                             </DropdownLink>
 
-                            <DropdownLink v-if="!document.rejected_at" :href="route('documents.create', { role: 'Commerçant' })">
+                            <DropdownLink v-if="!document.rejected_at" as="button" method="put" :href="route('documents.reject', { document })">
                                 Annuler ce document
                             </DropdownLink>
                         </div>

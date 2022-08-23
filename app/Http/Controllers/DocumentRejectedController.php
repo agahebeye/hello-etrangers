@@ -7,7 +7,7 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Put;
 
 #[Middleware('web')]
-class DocumentValidatedController
+class DocumentRejectedController
 {
     /**
      * Valide a document
@@ -15,10 +15,10 @@ class DocumentValidatedController
      * @param  \Illuminate\Http\RedirectResponse $request
      * @return \Illuminate\Http\Response
      */
-    #[Put('documents/{document}/validate', name: 'documents.validate', middleware: ['auth'])]
+    #[Put('documents/{document}/reject', name: 'documents.reject', middleware: ['auth'])]
     public function __invoke(Document $document)
     {
-        $document->update(['validated_at' => now(), 'rejected_at' => null]);
+        $document->update(['rejected_at' => now(), 'validated_at' => null]);
 
         return back();
     }

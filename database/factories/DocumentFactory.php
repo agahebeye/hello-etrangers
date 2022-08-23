@@ -44,7 +44,7 @@ class DocumentFactory extends Factory
             'stay_duration' =>  random_int(1, 7),
             'has_been' => $has_been = fake()->boolean(),
             'has_been_period' => $has_been ? random_int(1, 5) : null,
-            'visa_kind' => 'visa ' . $visaKinds[array_rand($visaKinds)]
+            'visa_kind' => 'Visa ' . $visaKinds[array_rand($visaKinds)]
         ];
     }
 

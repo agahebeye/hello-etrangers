@@ -29,6 +29,22 @@ class UserSeeder extends Seeder
             'role_id' => 1,
         ]);
 
+        \App\Models\User::factory()->create([
+            'first_name' => 'Franssen',
+            'last_name' => 'Ngoie kabamba',
+            'email' => 'franseen@example.com',
+            'password' => 'introuvable',
+            'role_id' => 2,
+        ]);
+
+        \App\Models\User::factory()->create([
+            'first_name' => 'Aboubakar',
+            'last_name' => 'Gahebeye',
+            'email' => 'gahebeye@example.com',
+            'password' => 'introuvable',
+            'role_id' => 3,
+        ]);
+
 
         // etudiants
         User::factory(5)->has(Document::factory()->validated())->create(['role_id' => 2]);
