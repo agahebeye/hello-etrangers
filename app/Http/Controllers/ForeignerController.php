@@ -22,10 +22,9 @@ class ForeignerController
     {
 
         $foreigners = User::query()
-            ->when($request->role, fn (Builder $query, $role) => $query->ofRole($role))
-            ->when($request->citizenship, fn (Builder $query, $citizenship) => $query->whereRelation('document', 'citizenship', $citizenship))
             ->with(['document:id,gender,citizenship,user_id', 'role'])
-            ->whereRelation('role', 'name', '<>', 'Administrateur')
+            ->has('document')
+            ->applyFilters()
             ->paginate(10)
             ->withQueryString();
 

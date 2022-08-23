@@ -56,8 +56,8 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn ($value, $attributes)  => ucfirst($attributes['last_name'] . ' '  . $attributes['first_name'])
         );
-    }  
-    
+    }
+
     public function isAdministrator()
     {
         return $this->role->name == 'Admininstrateur';
@@ -69,12 +69,14 @@ class User extends Authenticatable
             set: fn (string $value) => Hash::make($value)
         );
     }
-    
-    public function role() {
+
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function scopeOfRole(Builder $query, $role) {
+    public function scopeOfRole(Builder $query, $role)
+    {
         return $query->whereRelation('role', 'name', $role);
     }
 
@@ -93,5 +95,12 @@ class User extends Authenticatable
     public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Adress::class);
+    }
+
+    public function scopeApplyFilters(Builder $query, $request)
+    {
+        $query->when($request->role, fn (Builder $query, $role) => $query->ofRole($role));
+        $query->when($request->citizenship, fn (Builder $query, $citizenship) => $query->whereRelation('document', 'citizenship', $citizenship));
+        $query->whereRelation('role', 'name', '<>', 'Administrateur');
     }
 }
