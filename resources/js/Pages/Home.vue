@@ -1,7 +1,15 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, usePage } from '@inertiajs/inertia-vue3';
 import ImageGuallery from '@/Components/Common/ImageGuallery.vue';
+
+import {computed} from 'vue';
+
+const userRole = usePage().props.value.auth?.user?.role;
+
+const isStudent = computed(() => typeof userRole === 'undefined' && userRole === 'Etudiant') 
+const isTrader = computed(() => typeof userRole === 'undefined' && userRole === 'Commerçant') 
+
 
 defineProps({
     hotels: Array,
@@ -25,21 +33,21 @@ defineProps({
 
         <div class="pt-8 prose max-w-none">
             <!--hotels-->
-            <div>
+            <div v-if="!isStudent" id="hotels">
                 <h2 class="my-5 text-4xl text-gray-800">Hotels</h2>
 
                 <ImageGuallery :data="hotels" />
             </div>
 
             <!--universities-->
-            <div>
+            <div v-if="!isTrader" id="universities">
                 <h2 class="my-5 text-4xl text-gray-800">Universities</h2>
 
                <ImageGuallery :data="universities" />
             </div>
 
             <!--markets-->
-            <div>
+            <div v-if="!isStudent" id="markets">
                 <h2 class="my-5 text-4xl text-gray-800">Markets</h2>
 
                 <ImageGuallery :data="markets" />
