@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
 import { computed, watch, ref } from 'vue';
 
 import pickBy from 'lodash/pickBy';

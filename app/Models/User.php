@@ -71,7 +71,6 @@ class User extends Authenticatable
         );
     }
 
-
     public function scopeByRole(Builder $query)
     {
         return $query->when(Request::input('role'), fn (Builder $query, $role) => $query->whereRelation('role', 'name', $role));
@@ -87,8 +86,8 @@ class User extends Authenticatable
         return $query->when(
             Request::input('search'),
             fn (Builder $query, $search) => $query
-                ->where('user', 'first_name', 'LIKE', "%{$search}%")
-                ->orWhere('user', 'last_name', 'LIKE', "%{$search}%")
+                ->where('first_name', 'LIKE', "%{$search}%")
+                ->orWhere('last_name', 'LIKE', "%{$search}%")
         );
     }
 
