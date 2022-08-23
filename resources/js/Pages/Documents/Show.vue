@@ -48,7 +48,7 @@ function printDocument() {
 
                     <template #content>
                         <div class="flex flex-col">
-                            <DropdownLink v-if="!document.validated_at" :href="route('documents.create', { role: 'Etudiant' })">
+                            <DropdownLink v-if="!document.validated_at" as="button" method="put" :href="route('documents.validate', { document })">
                                 Valider ce document
                             </DropdownLink>
 
@@ -66,7 +66,10 @@ function printDocument() {
             <div class="max-w-4xl space-y-8 overflow-hidden">
                 <div class="flex items-center justify-between pt-2 print:hidden">
                     <Link :href="`/documents/${document.id}/edit`" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray">Modifier ce document</Link>
-                    <button class="flex space-x-2 text-sm font-semibold" @click="printDocument">
+
+                    <div class="text-sm font-semibold text-red-400 border-b border-red-400" v-if="document.rejected_at">Vous ne pouvez pas imprimer le document annulé.</div>
+
+                    <button v-else class="flex space-x-2 text-sm font-semibold" @click="printDocument">
                         <span>imprimer ce document</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
