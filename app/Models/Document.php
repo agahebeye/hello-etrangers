@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,6 +33,26 @@ class Document extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeStatus(Builder $query)
+    {
+        return match ($status = Request::input('status')) {
+            'pending' => $query->whereNull('validated_at')->whereNull('rejected_at'),
+            'validated' => $query->whereNotNull('validated_at'),
+            'rejected' => $query->whereNotNull('rejected_at'),
+            default => $query
+        };
+    }
+
+    public function scopeSearch(Builder $query)
+    {
+        return $query->when(
+            Request::input('search'),
+            fn (Builder $query, $search) => $query
+                ->whereRelation('user', 'first_name', 'LIKE', "%{$search}%")
+                ->orWhereRelation('user', 'last_name', 'LIKE', "%{$search}%")
+        );
+    }
+
     public function getPassportValidityAttribute()
     {
         return Carbon::parse($this->attributes['passport_validity'])->format('Y-m-d');
@@ -47,28 +68,9 @@ class Document extends Model
         return Carbon::parse($this->attributes['passport_validity'])->format('Y-m-d');
     }
 
-    public function scopeApplyFilters(Builder $query, $request)
-    {
-        $query->when(
-            $request->search,
-            fn (Builder $query, $search) => $query
-                ->whereRelation('user', 'first_name', 'LIKE', "%{$search}%")
-                ->orWhereRelation('user', 'last_name', 'LIKE', "%{$search}%")
-        );
 
-        $query->when(
-            $request->status === 'pending',
-            fn (Builder $query) => $query->whereNull('validated_at')->whereNull('rejected_at')
-        );
-
-        $query->when(
-            $request->status === 'validated',
-            fn (Builder $query) => $query->whereNotNull('validated_at')
-        );
-
-        $query->when(
-            $request->status === 'rejected',
-            fn (Builder $query) => $query->whereNotNull('rejected_at')
-        );
-    }
+    // public function applyFilters(Builder $query)
+    // {
+    //     return $query->search()->status();
+    // }
 }

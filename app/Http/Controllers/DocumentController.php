@@ -27,7 +27,8 @@ class DocumentController
     {
         $documents = Document::query()
             ->select(['id', 'rejected_at', 'validated_at', 'visa_kind', 'user_id'])->with('user.adress')
-            ->applyFilters($request)
+            ->search()
+            ->status()
             ->paginate(10)->withQueryString();
 
         return Inertia::render('Documents/Index', [
