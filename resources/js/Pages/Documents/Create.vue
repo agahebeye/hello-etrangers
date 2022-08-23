@@ -24,8 +24,8 @@ const maritalStatuses = {
 };
 
 const form = useForm({
-    first_name: isAdmin.value ? '' : user.firstName,
-    last_name: isAdmin.value ? '' : user.lastName,
+    first_name: isAdmin.value ? '' : user.first_name,
+    last_name: isAdmin.value ? '' : user.last_name,
     mother_firstname: '', 
     mother_lastname: '',
     father_firstname: '',

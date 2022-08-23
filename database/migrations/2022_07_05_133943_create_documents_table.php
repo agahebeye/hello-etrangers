@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('father_firstname');
             $table->string('father_lastname');
             $table->string('birth');
-            $table->string('gender');
+            $table->string('gender')->default('Masculin');
             $table->string('marital_status');
-            $table->string('citizenship');
+            $table->string('citizenship')->default('Congolaise');
             $table->string('profession');
             $table->string('passport_number');
             $table->string('passport_issue');

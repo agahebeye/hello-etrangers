@@ -7,8 +7,8 @@ import {computed} from 'vue';
 
 const userRole = usePage().props.value.auth?.user?.role;
 
-const isStudent = computed(() => typeof userRole === 'undefined' && userRole === 'Etudiant') 
-const isTrader = computed(() => typeof userRole === 'undefined' && userRole === 'Commerçant') 
+const isStudent = computed(() => typeof userRole !== 'undefined' && userRole.name === 'Etudiant') 
+const isTrader = computed(() => typeof userRole !== 'undefined' && userRole.name === 'Commerçant') 
 
 
 defineProps({

@@ -85,7 +85,9 @@ class User extends Authenticatable
 
     public function document(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Document::class);
+        return $this->hasOne(Document::class)->withDefault([
+            'avenue' => 'localhost',
+        ]);
     }
 
     public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo

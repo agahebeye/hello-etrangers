@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         \App\Models\User::factory()->create([
             'first_name' => 'Franssen',
             'last_name' => 'Ngoie kabamba',
-            'email' => 'franseen@example.com',
+            'email' => 'franssen@example.com',
             'password' => 'introuvable',
             'role_id' => 2,
         ]);

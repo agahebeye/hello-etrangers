@@ -145,10 +145,10 @@ const headings = ref([{
                                         <span class="px-4 text-gray-700">{{ foreigner.email }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed gender">
-                                        <span class="px-4 text-gray-700">{{ foreigner.document.gender }}</span>
+                                        <span class="px-4 text-gray-700">{{ foreigner?.document?.gender }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed phoneNumber">
-                                        <span class="px-4 text-gray-700">{{ foreigner.document.citizenship }}</span>
+                                        <span class="px-4 text-gray-700">{{ foreigner?.document?.citizenship }}</span>
                                     </td>
                                     <td v-if="!role" class="border-t border-gray-200 border-dashed phoneNumber">
                                         <span class="px-4 text-gray-700">{{ foreigner.role.name }}</span>
