@@ -30,7 +30,9 @@ class DocumentController
             ->paginate(10)->withQueryString();
 
         return Inertia::render('Documents/Index', [
-            'documents' => $documents
+            'documents' => $documents,
+            'search' => $request->search,
+            'status' => $request->status,
         ]);
     }
 

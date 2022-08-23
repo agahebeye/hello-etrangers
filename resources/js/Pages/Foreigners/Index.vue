@@ -17,7 +17,8 @@ function printDocument() {
 const citizenships = computed(() => ['Congolaise', 'Tanzanienne', 'Kenyanne', 'Ugandaise', 'Rwandaise', 'Sudanaise']);
 
 function setCitizenshipQuery(citizenship) {
-    const role = props.role ?? '';
+    const role = props.role ?? null;
+    citizenship = citizenship ?? null
 
     const query = {
         role, citizenship

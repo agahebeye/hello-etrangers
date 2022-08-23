@@ -3,16 +3,18 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { Inertia } from '@inertiajs/inertia';
+
+const props = defineProps({
+    documents: Object,
+    search: String,
+    status: String,
+});
 
 function printDocument() {
     window.print();
 }
-
-defineProps({
-    documents: Object,
-});
-
 
 const headings = ref([{
     'key': 'userId',
@@ -35,6 +37,32 @@ const headings = ref([{
     'value': 'Actions'
 },
 ])
+
+const search = ref(props.search);
+
+function debounce(fn, delay) {
+    let timeout;
+
+    return (...args) => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+
+        timeout = setTimeout(() => { fn(...args) }, timeout)
+    }
+}
+
+const onSearch = debounce((searchQuery) => {
+    const search = searchQuery ?? null;
+    const status = props.status ?? null;
+
+    const query = {
+        status, search
+    };
+
+    Inertia.get(route('documents.index', query), {}, {preserveState: true});
+}, 500);
+
 </script>
 
 <template>
@@ -92,6 +120,8 @@ const headings = ref([{
                     <div class="flex-1 pr-4">
                         <div class="relative md:w-1/3">
                             <input type="search"
+                                v-model="search"
+                                @input="onSearch($event.target.value)"
                                 class="w-full py-2 pl-10 pr-4 font-medium text-gray-600 rounded-lg shadow focus:outline-none focus:shadow-outline"
                                 placeholder="Search...">
                             <div class="absolute top-0 left-0 inline-flex items-center p-2">
@@ -105,7 +135,7 @@ const headings = ref([{
                             </div>
                         </div>
                     </div>
-                    
+
                     <Dropdown align="right" width="48">
                         <template #trigger>
                             <span class="inline-flex rounded-md">

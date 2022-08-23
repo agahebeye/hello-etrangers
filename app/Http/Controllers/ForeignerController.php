@@ -24,7 +24,7 @@ class ForeignerController
         $foreigners = User::query()
             ->with(['document:id,gender,citizenship,user_id', 'role'])
             ->has('document')
-            ->applyFilters()
+            ->applyFilters($request)
             ->paginate(10)
             ->withQueryString();
 
