@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
 {
@@ -70,14 +71,30 @@ class User extends Authenticatable
         );
     }
 
+
+    public function scopeByRole(Builder $query)
+    {
+        return $query->when(Request::input('role'), fn (Builder $query, $role) => $query->whereRelation('role', 'name', $role));
+    }
+
+    public function scopeByCitizenship(Builder $query)
+    {
+        return $query->when(Request::input('citizenship'), fn (Builder $query, $citizenship) => $query->whereRelation('document', 'citizenship', $citizenship));;
+    }
+
+    public function scopeSearch(Builder $query)
+    {
+        return $query->when(
+            Request::input('search'),
+            fn (Builder $query, $search) => $query
+                ->where('user', 'first_name', 'LIKE', "%{$search}%")
+                ->orWhere('user', 'last_name', 'LIKE', "%{$search}%")
+        );
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
-    }
-
-    public function scopeOfRole(Builder $query, $role)
-    {
-        return $query->whereRelation('role', 'name', $role);
     }
 
     public function photo()
@@ -95,12 +112,5 @@ class User extends Authenticatable
     public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Adress::class);
-    }
-
-    public function scopeApplyFilters(Builder $query, $request)
-    {
-        $query->when($request->role, fn (Builder $query, $role) => $query->ofRole($role));
-        $query->when($request->citizenship, fn (Builder $query, $citizenship) => $query->whereRelation('document', 'citizenship', $citizenship));
-        $query->whereRelation('role', 'name', '<>', 'Administrateur');
     }
 }

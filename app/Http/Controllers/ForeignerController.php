@@ -24,13 +24,16 @@ class ForeignerController
         $foreigners = User::query()
             ->with(['document:id,gender,citizenship,user_id', 'role'])
             ->has('document')
-            ->applyFilters($request)
+            ->whereRelation('role', 'name', '<>', 'Administrateur')
+            ->byRole()
+            ->byCitizenship()
+            ->search()
             ->paginate(10)
             ->withQueryString();
 
         return inertia()->render('Foreigners/Index', [
             'foreigners' => $foreigners,
-            'role' => $request->role,
+            'filters' => $request->all('role', 'citizenship', 'search'),
         ]);
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Actions\StoreDocumentAction;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Document;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -25,8 +24,8 @@ class DocumentController
     #[Get(uri: '/documents', name: 'documents.index', middleware: ['auth'])]
     public function index(Request $request)
     {
-        $documents = Document::query()
-            ->select(['id', 'rejected_at', 'validated_at', 'visa_kind', 'user_id'])->with('user.adress')
+        $documents = Document::select(['id', 'rejected_at', 'validated_at', 'visa_kind', 'user_id'])
+            ->with('user.adress')
             ->search()
             ->status()
             ->paginate(10)->withQueryString();
