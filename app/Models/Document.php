@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Document extends Model
 {
@@ -44,5 +45,24 @@ class Document extends Model
     public function getArrivalDateAttribute()
     {
         return Carbon::parse($this->attributes['passport_validity'])->format('Y-m-d');
+    }
+
+    public function scopeApplyFilters(Builder $query, $request)
+    {
+        $query->when(
+            $request?->status === 'pending',
+            fn (Builder $query) => $query->whereNull('validated_at')->whereNull('rejected_at')
+        );
+
+
+        $query->when(
+            $request?->status === 'validated',
+            fn (Builder $query) => $query->whereNotNull('validated_at')
+        );
+
+        $query->when(
+            $request?->status === 'rejected',
+            fn (Builder $query) => $query->whereNotNull('rejected_at')
+        );
     }
 }

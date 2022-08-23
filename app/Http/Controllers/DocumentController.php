@@ -6,6 +6,7 @@ use App\Http\Actions\StoreDocumentAction;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Models\Document;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -22,9 +23,11 @@ class DocumentController
      * @return \Inertia\Response
      */
     #[Get(uri: '/documents', name: 'documents.index', middleware: ['auth'])]
-    public function index()
+    public function index(Request $request)
     {
-        $documents = Document::query()->with('user.adress')->paginate(10)->withQueryString();
+        $documents = Document::query()->with('user.adress')
+            ->applyFilters($request)
+            ->paginate(10)->withQueryString();
 
         return Inertia::render('Documents/Index', [
             'documents' => $documents

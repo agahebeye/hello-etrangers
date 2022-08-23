@@ -70,7 +70,7 @@ const foreignerHeadings = ref([{
             </h1>
         </template>
 
-        <div class="space-y-16 prose max-w-none">
+        <div class="pb-6 space-y-16 prose max-w-none">
             <div>
                 <h2>Tous les documents</h2>
                 <div class="flex-wrap justify-between gap-4 sm:flex">
