@@ -52,7 +52,7 @@ function modifyHasBeen() {
 }
 
 const submit = () => {
-    form.post(route('documents.store'));
+    form.put(route('documents.update', {document: props.document}));
 };
 </script>
 

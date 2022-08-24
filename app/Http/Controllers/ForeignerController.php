@@ -20,14 +20,10 @@ class ForeignerController
     #[Get('/foreigners', name: 'foreigners.index', middleware: 'auth')]
     public function __invoke(Request $request)
     {
-
         $foreigners = User::query()
             ->with(['document:id,gender,citizenship,user_id', 'role'])
-            ->has('document')
-            ->whereRelation('role', 'name', '<>', 'Administrateur')
-            ->byRole()
-            ->byCitizenship()
-            ->search()
+            ->has('document')->whereRelation('role', 'name', '<>', 'Administrateur')
+            ->byRole()->byCitizenship()->search()
             ->paginate(10)
             ->withQueryString();
 

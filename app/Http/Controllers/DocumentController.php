@@ -87,6 +87,6 @@ class DocumentController
     #[Put('/documents/{document}/update', name: 'documents.update', middleware: ['auth'])]
     public function update(Request $request, Document $document)
     {
-        //
+        dd($request->all());
     }
 }

@@ -71,6 +71,11 @@ class User extends Authenticatable
         );
     }
 
+    public function scopeOfRole(Builder $query, $role)
+    {
+        return $query->whereRelation('role', 'name', $role);
+    }
+
     public function scopeByRole(Builder $query)
     {
         return $query->when(Request::input('role'), fn (Builder $query, $role) => $query->whereRelation('role', 'name', $role));
