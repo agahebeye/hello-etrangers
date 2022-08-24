@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Spatie\RouteAttributes\Attributes\Post;
 
+#[Middleware('web')]
 class NewPasswordController
 {
     /**
@@ -12,11 +16,12 @@ class NewPasswordController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
+    #[Get('reset-password/{token}', name: '', middleware: 'guest')]
     public function create(Request $request)
     {
         return view('auth.reset-password', ['request' => $request]);
     }
-
+    
     /**
      * Handle an incoming new password request.
      *
@@ -25,6 +30,7 @@ class NewPasswordController
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    #[Post('reset-password', name:'', middleware:'guest')]
     public function store(Request $request)
     {
         $request->validate([
