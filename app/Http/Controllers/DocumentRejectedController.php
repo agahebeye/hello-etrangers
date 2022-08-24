@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DocumentRejected;
 use App\Models\Document;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Put;
 
@@ -18,7 +21,9 @@ class DocumentRejectedController
     #[Put('documents/{document}/reject', name: 'documents.reject', middleware: ['auth'])]
     public function __invoke(Document $document)
     {
-        $document->update(['rejected_at' => now(), 'validated_at' => null]);
+        DB::transaction(fn () => $document->update(['rejected_at' => now(), 'validated_at' => null]));
+
+        Mail::send(new DocumentRejected);
 
         return back();
     }
