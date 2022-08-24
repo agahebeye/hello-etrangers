@@ -113,8 +113,8 @@ class User extends Authenticatable
         ]);
     }
 
-    public function adress(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function adress(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
-        return $this->belongsTo(Adress::class);
+        return $this->morphOne(Adress::class, 'adressable');
     }
 }

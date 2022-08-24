@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Actions\StoreDocumentAction;
 use App\Http\Requests\StoreDocumentRequest;
+use App\Http\Requests\UpdateDocumentRequest;
 use App\Models\Document;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Middleware;
@@ -85,8 +88,15 @@ class DocumentController
     }
 
     #[Put('/documents/{document}/update', name: 'documents.update', middleware: ['auth'])]
-    public function update(Request $request, Document $document)
+    public function update(UpdateDocumentRequest $request, Document $document)
     {
-        dd($request->all());
+
+        DB::transaction(function () use ($document, $request) {
+            $document->update($request->safe()->except(['first_name', 'last_name', 'adress']));
+            $document->user->adress()->updateOrCreate(['avenue' => $request->adress]);
+            return $document->wasChanged();
+        });
+
+        return to_route('documents.index');
     }
 }

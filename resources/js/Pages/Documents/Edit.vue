@@ -6,7 +6,7 @@ import Checkbox from '@/Components/Checkbox.vue';
 import Label from '@/Components/Label.vue';
 import ValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, useForm, usePage } from '@inertiajs/inertia-vue3';
-import { computed } from '@vue/reactivity';
+import { ref, computed } from '@vue/reactivity';
 
 const props = defineProps({
     document: Object,
@@ -19,6 +19,7 @@ const maritalStatuses = computed(() => ({
     'widowed': 'Veuf(ve)'
 }));
 
+const shoulBeChanged = ref(false);
 
 const form = useForm({
     first_name: props.document.user.first_name,
@@ -52,7 +53,12 @@ function modifyHasBeen() {
 }
 
 const submit = () => {
-    form.put(route('documents.update', {document: props.document}));
+    if (form.isDirty) {
+        form.put(route('documents.update', { document: props.document }));
+    } else {
+        shoulBeChanged.value = true;
+        window.scrollTo({behavior: 'smooth', left: 0, top: 0})
+    }
 };
 </script>
 
@@ -71,6 +77,14 @@ const submit = () => {
             <div class="max-w-5xl overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ValidationErrors class="mb-4" />
+
+                    <div class="flex items-center my-4 space-x-2 text-sm font-bold text-red-600" v-if="shoulBeChanged">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                        </svg>
+
+                        <div>Vous devez modifier au moins un champ.</div>
+                    </div>
 
                     <form @submit.prevent="submit" class="grid grid-cols-2 gap-6">
                         <div>

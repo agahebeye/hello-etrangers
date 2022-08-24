@@ -9,7 +9,7 @@ const hasErrors = computed(() => errors.value && Object.keys(errors.value).lengt
 
 <template>
     <div v-if="hasErrors">
-        <ul class="mt-3 text-sm text-red-600 list-disc list-inside">
+        <ul class="mt-3 text-sm font-bold text-red-600 list-disc list-inside">
             <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
         </ul>
     </div>
