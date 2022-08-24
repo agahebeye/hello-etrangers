@@ -23,7 +23,7 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex items-center shrink-0">
-                                <Link :href="route('home')">
+                                <Link :href="isAdmin ? route('dashboard') : route('home')">
                                 <ApplicationLogo class="block w-auto h-9" />
                                 </Link>
                             </div>
@@ -31,19 +31,15 @@ const showingNavigationDropdown = ref(false);
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex">
                                 <template v-if="user">
-                                    <NavLink v-if="isAdmin" :href="route('dashboard')">
-                                        Dashboard
-                                    </NavLink>
-
                                     <NavLink v-if="isAdmin" :href="route('documents.index')">
                                         Documents
                                     </NavLink>
 
-                                    <NavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Etudiant'})">
+                                    <NavLink v-if="isAdmin" :href="route('foreigners.index', { role: 'Etudiant' })">
                                         Etudiants
                                     </NavLink>
 
-                                    <NavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Commerçant'})">
+                                    <NavLink v-if="isAdmin" :href="route('foreigners.index', { role: 'Commerçant' })">
                                         Commerçants
                                     </NavLink>
 
@@ -120,16 +116,16 @@ const showingNavigationDropdown = ref(false);
                                 Documents
                             </ResponsiveNavLink>
 
-                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Etudiant'})">
-                               Etudiants 
+                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index', { role: 'Etudiant' })">
+                                Etudiants
                             </ResponsiveNavLink>
 
-                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index', {role: 'Commerçant'})">
-                               Commerçants 
+                            <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index', { role: 'Commerçant' })">
+                                Commerçants
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink v-if="isAdmin" :href="route('foreigners.index')">
-                               Tous les étrangers 
+                                Tous les étrangers
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink v-if="!isAdmin" :href="route('documents.create')" :active="route().current('dashboard')">

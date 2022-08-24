@@ -18,7 +18,7 @@ class DocumentValidated extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->afterCommit();
     }
 
     /**

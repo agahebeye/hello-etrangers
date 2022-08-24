@@ -1,12 +1,10 @@
 @component('mail::message')
-# Introduction
+# Validation d'un document
 
-The body of your message.
+Votre commande de document a été validée avec succès.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+Prière de passer dans 48 heures pour l'obtention de visa.
 
-Thanks,<br>
+Merci,<br>
 {{ config('app.name') }}
 @endcomponent

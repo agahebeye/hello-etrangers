@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DocumentValidated;
 use App\Models\Document;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Put;
 
@@ -18,7 +21,9 @@ class DocumentValidatedController
     #[Put('documents/{document}/validate', name: 'documents.validate', middleware: ['auth'])]
     public function __invoke(Document $document)
     {
-        $document->update(['validated_at' => now(), 'rejected_at' => null]);
+        DB::transaction(fn () => $document->update(['validated_at' => now(), 'rejected_at' => null]));
+
+        Mail::send(new DocumentValidated);
 
         return back();
     }
