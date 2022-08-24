@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Role;
+use App\Notifications\ResetPasswordNotification;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -116,5 +117,10 @@ class User extends Authenticatable
     public function adress(): \Illuminate\Database\Eloquent\Relations\MorphOne
     {
         return $this->morphOne(Adress::class, 'adressable');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification(url:url('/reset-password') . "?token={$token}"));
     }
 }
