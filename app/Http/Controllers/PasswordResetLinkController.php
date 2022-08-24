@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use Spatie\RouteAttributes\Attributes\Get;
-use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware('web')]
 class PasswordResetLinkController
@@ -15,10 +16,12 @@ class PasswordResetLinkController
      *
      * @return \Illuminate\View\View
      */
-    #[Get('forgot-password', name:'', middleware:'guest')]
+    #[Get('forgot-password', name: 'password.request', middleware: 'guest')]
     public function create()
     {
-        return view('auth.forgot-password');
+        return inertia()->render('Auth/ForgotPassword', [
+            'status' => session('status'),
+        ]);
     }
 
     /**
@@ -29,7 +32,7 @@ class PasswordResetLinkController
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    #[Post('forgot-password', name:'', middleware:'guest')]
+    #[Post('forgot-password', name: 'password.email', middleware: 'guest')]
     public function store(Request $request)
     {
         $request->validate([

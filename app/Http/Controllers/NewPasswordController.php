@@ -16,7 +16,7 @@ class NewPasswordController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    #[Get('reset-password/{token}', name: '', middleware: 'guest')]
+    #[Get('reset-password/{token}', name: 'password.reset', middleware: 'guest')]
     public function create(Request $request)
     {
         return view('auth.reset-password', ['request' => $request]);
@@ -30,7 +30,7 @@ class NewPasswordController
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    #[Post('reset-password', name:'', middleware:'guest')]
+    #[Post('reset-password', name:'password.update', middleware:'guest')]
     public function store(Request $request)
     {
         $request->validate([
