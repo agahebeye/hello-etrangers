@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Spatie\RouteAttributes\Attributes\Get;
-use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware('web')]
 class NewPasswordController
@@ -16,12 +19,15 @@ class NewPasswordController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    #[Get('reset-password/{token}', name: 'password.reset', middleware: 'guest')]
+    #[Get('/reset-password', name: 'password.reset', middleware: 'guest')]
     public function create(Request $request)
     {
-        return view('auth.reset-password', ['request' => $request]);
+        return inertia()->render('Auth/ResetPassword', [
+            'email' => $request->email,
+            'token' => $request->token,
+        ]);
     }
-    
+
     /**
      * Handle an incoming new password request.
      *
@@ -30,7 +36,7 @@ class NewPasswordController
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    #[Post('reset-password', name:'password.update', middleware:'guest')]
+    #[Post('/reset-password', name: 'password.update', middleware: 'guest')]
     public function store(Request $request)
     {
         $request->validate([
