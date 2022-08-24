@@ -19,10 +19,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
-    protected array $files = [
-        'User',
-    ];
-
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -37,13 +33,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            $this->mapWebRoutes();
         });
-    }
-
-    protected function mapWebRoutes(): void
-    {
-    
     }
 
     /**

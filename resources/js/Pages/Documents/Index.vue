@@ -172,7 +172,7 @@ function printDocument() {
                                         <span class="px-4 text-gray-700 ">{{ document.user.fullname }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed adress">
-                                        <span class="px-4 text-gray-700 ">{{ document.user.adress?.avenue ?? 'localhost' }}</span>
+                                        <span class="px-4 text-gray-700 ">{{ document.user?.adress?.avenue ?? 'somewhere' }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed visa_status">
                                         <span v-if="!document.validated_at && !document.rejected_at" class="px-4 py-1 ml-4 text-xs text-yellow-600 bg-yellow-200 rounded-full">Non Validé</span>
