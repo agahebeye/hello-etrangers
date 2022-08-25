@@ -28,7 +28,6 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'adress_id',
         'role_id',
     ];
 
@@ -109,9 +108,7 @@ class User extends Authenticatable
 
     public function document(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Document::class)->withDefault([
-            'avenue' => 'localhost',
-        ]);
+        return $this->hasOne(Document::class);
     }
 
     public function adress(): \Illuminate\Database\Eloquent\Relations\MorphOne

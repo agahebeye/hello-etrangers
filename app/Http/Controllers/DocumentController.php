@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Actions\StoreDocumentAction;
-use App\Http\Requests\StoreDocumentRequest;
-use App\Http\Requests\UpdateDocumentRequest;
+use Inertia\Inertia;
 use App\Models\Document;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
+use App\Providers\RouteServiceProvider;
+use App\Http\Actions\StoreDocumentAction;
 use Spatie\RouteAttributes\Attributes\Get;
-use Spatie\RouteAttributes\Attributes\Middleware;
-use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Put;
+use App\Http\Requests\StoreDocumentRequest;
+use Spatie\RouteAttributes\Attributes\Post;
+use App\Http\Requests\UpdateDocumentRequest;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
 #[Middleware('web')]
 class DocumentController
@@ -28,6 +27,7 @@ class DocumentController
     public function index(Request $request)
     {
         $documents = Document::select(['id', 'rejected_at', 'validated_at', 'visa_kind', 'user_id'])
+            ->latest()
             ->with('user.adress')
             ->search()
             ->status()

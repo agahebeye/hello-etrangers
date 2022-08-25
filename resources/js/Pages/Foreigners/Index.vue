@@ -140,7 +140,7 @@ const headings = ref([{
                                         <span class="px-4 text-gray-700 ">{{ foreigner.last_name }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed emailAddress">
-                                        <span class="px-4 text-gray-700">{{ foreigner.email }}</span>
+                                        <span class="px-4 text-gray-700">{{ foreigner.email ?? '-' }}</span>
                                     </td>
                                     <td class="border-t border-gray-200 border-dashed gender">
                                         <span class="px-4 text-gray-700">{{ foreigner?.document?.gender }}</span>

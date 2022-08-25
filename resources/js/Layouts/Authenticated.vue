@@ -108,10 +108,6 @@ const showingNavigationDropdown = ref(false);
                 <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="lg:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <template v-if="user">
-                            <ResponsiveNavLink v-if="isAdmin" :href="route('dashboard')" :active="route().current('dashboard')">
-                                Dashboard
-                            </ResponsiveNavLink>
-
                             <ResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
                                 Documents
                             </ResponsiveNavLink>

@@ -16,6 +16,8 @@ const props = defineProps({
     role: String,
 });
 
+console.log(props.hasCommanded);
+
 const maritalStatuses = {
     'bachelor': 'Célibataire',
     'married': 'Marié(e)',
