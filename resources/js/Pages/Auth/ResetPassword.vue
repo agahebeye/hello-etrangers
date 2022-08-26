@@ -10,7 +10,6 @@ const props = defineProps({
     email: String,
     token: String,
 });
-console.log(props);
 
 const form = useForm({
     token: props.token,
@@ -28,11 +27,14 @@ const submit = () => {
 
 <template>
     <BreezeGuestLayout>
+
         <Head title="Reset Password" />
 
         <BreezeValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
+            <h1 class="mb-10 text-3xl font-bold text-center text-gray-600">Réinialiser mot de passe</h1>
+
             <div>
                 <BreezeLabel for="email" value="Email" />
                 <BreezeInput id="email" type="email" class="block w-full mt-1" v-model="form.email" required autofocus autocomplete="username" />

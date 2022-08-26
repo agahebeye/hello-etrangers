@@ -222,10 +222,10 @@ const foreignerHeadings = ref([{
                                             <span class="px-4 text-gray-700">{{ foreigner.email }}</span>
                                         </td>
                                         <td class="border-t border-gray-200 border-dashed gender">
-                                            <span class="px-4 text-gray-700">{{ foreigner.document.gender }}</span>
+                                            <span class="px-4 text-gray-700">{{ foreigner?.document?.gender ?? 'Neutre' }}</span>
                                         </td>
                                         <td class="border-t border-gray-200 border-dashed phoneNumber">
-                                            <span class="px-4 text-gray-700">{{ foreigner.document.citizenship }}</span>
+                                            <span class="px-4 text-gray-700">{{ foreigner?.document?.citizenship ?? 'Congolaise' }}</span>
                                         </td>
                                     </tr>
                                 </template>

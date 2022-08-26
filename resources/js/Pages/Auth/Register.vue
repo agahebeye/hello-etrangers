@@ -31,6 +31,8 @@ const submit = () => {
         <ValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
+            <h1 class="mb-10 text-3xl font-bold text-center text-gray-600">Inscription</h1>
+
             <div>
                 <Label for="lastname" value="Nom" />
                 <Input id="lastname" type="text" class="block w-full mt-1" v-model="form.last_name" required autofocus autocomplete="name" />

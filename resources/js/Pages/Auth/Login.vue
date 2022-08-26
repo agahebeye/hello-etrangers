@@ -30,6 +30,7 @@ const submit = () => {
 
         <Head title="Connexion" />
 
+
         <BreezeValidationErrors class="mb-4" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
@@ -37,6 +38,8 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit">
+            <h1 class="mb-10 text-3xl font-bold text-center text-gray-600">Connexion</h1>
+
             <div>
                 <BreezeLabel for="email" value="Email" />
                 <BreezeInput id="email" type="email" class="block w-full mt-1" v-model="form.email" required autofocus autocomplete="username" />

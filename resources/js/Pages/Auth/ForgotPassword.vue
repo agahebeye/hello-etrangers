@@ -24,9 +24,6 @@ const submit = () => {
 
         <Head title="Mot de passe oublié" />
 
-        <div class="mb-4 text-sm text-gray-600">
-            Mot de passe oublié? Pas de souci. Informez-nous de votre adresse email and on va vous envoyer le lien pour la réinitialisation de votre mot de passe.
-        </div>
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
@@ -35,6 +32,12 @@ const submit = () => {
         <BreezeValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
+            <h1 class="mb-10 text-3xl font-bold text-center text-gray-600">Mot de passe oublié</h1>
+
+            <div class="mb-4 text-sm text-gray-600">
+                Mot de passe oublié? Pas de souci. Informez-nous de votre adresse email and on va vous envoyer le lien pour la réinitialisation de votre mot de passe.
+            </div>
+
             <div>
                 <BreezeLabel for="email" value="Email" />
                 <BreezeInput id="email" type="email" class="block w-full mt-1" v-model="form.email" required autofocus autocomplete="username" />

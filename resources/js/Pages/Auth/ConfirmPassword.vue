@@ -28,9 +28,10 @@ const submit = () => {
         <BreezeValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
+        <h1 class="mb-10 text-3xl font-bold text-center text-gray-600">Connexion</h1>
             <div>
                 <BreezeLabel for="password" value="Password" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
+                <BreezeInput id="password" type="password" class="block w-full mt-1" v-model="form.password" required autocomplete="current-password" autofocus />
             </div>
 
             <div class="flex justify-end mt-4">

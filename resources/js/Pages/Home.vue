@@ -3,12 +3,12 @@ import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, usePage } from '@inertiajs/inertia-vue3';
 import ImageGuallery from '@/Components/Common/ImageGuallery.vue';
 
-import {computed} from 'vue';
+import { computed } from 'vue';
 
 const userRole = usePage().props.value.auth?.user?.role;
 
-const isStudent = computed(() => typeof userRole !== 'undefined' && userRole.name === 'Etudiant') 
-const isTrader = computed(() => typeof userRole !== 'undefined' && userRole.name === 'Commerçant') 
+const isStudent = computed(() => typeof userRole !== 'undefined' && userRole.name === 'Etudiant')
+const isTrader = computed(() => typeof userRole !== 'undefined' && userRole.name === 'Commerçant')
 
 
 defineProps({
@@ -32,25 +32,26 @@ defineProps({
 
 
         <div class="pt-8 prose max-w-none">
-            <!--hotels-->
-            <div v-if="!isStudent" id="hotels">
-                <h2 class="my-5 text-4xl text-gray-800">Hotels</h2>
-
-                <ImageGuallery :data="hotels" />
-            </div>
 
             <!--universities-->
             <div v-if="!isTrader" id="universities">
                 <h2 class="my-5 text-4xl text-gray-800">Universities</h2>
 
-               <ImageGuallery :data="universities" />
+                <ImageGuallery :data="universities" />
             </div>
 
             <!--markets-->
             <div v-if="!isStudent" id="markets">
-                <h2 class="my-5 text-4xl text-gray-800">Markets</h2>
+                <h2 class="my-5 text-4xl text-gray-800">Marchés</h2>
 
                 <ImageGuallery :data="markets" />
+            </div>
+            
+            <!--hotels-->
+            <div v-if="!isStudent" id="hotels">
+                <h2 class="my-5 text-4xl text-gray-800">Hotels</h2>
+
+                <ImageGuallery :data="hotels" />
             </div>
 
             <!--cities-->
