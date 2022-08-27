@@ -20,7 +20,7 @@ class AuthenticatedSessionController
      *
      * @return \Inertia\Response
      */
-    #[Get('login', name:'login', middleware: 'guest')]
+    #[Get('login', name: 'login', middleware: 'guest')]
     public function create()
     {
         return Inertia::render('Auth/Login', [
@@ -41,6 +41,10 @@ class AuthenticatedSessionController
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if ($request->user()->role->name === 'Administrateur') {
+            return redirect('/dashboard');
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

@@ -59,9 +59,9 @@ class User extends Authenticatable
         );
     }
 
-    public function isAdministrator()
+    public function isAdministrator(): Attribute
     {
-        return $this->role->name == 'Admininstrateur';
+        return Attribute::get(fn () => $this->role->name === 'Administrateur');
     }
 
     public function password(): Attribute
