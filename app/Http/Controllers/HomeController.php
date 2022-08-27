@@ -24,7 +24,7 @@ class HomeController
     #[Get(uri: '/', name: 'home')]
     public function __invoke(Request $request): \Inertia\Response|RedirectResponse
     {
-        if ($request->user()->role->name === 'Administrateur') {
+        if ($request->user() && $request->user()->role->name === 'Administrateur') {
             return redirect('/dashboard');
         }
         

@@ -14,6 +14,7 @@ use App\Http\Requests\StoreDocumentRequest;
 use Spatie\RouteAttributes\Attributes\Post;
 use App\Http\Requests\UpdateDocumentRequest;
 use Spatie\RouteAttributes\Attributes\Middleware;
+use Illuminate\Auth\Access\AuthorizationException;
 
 #[Middleware('web')]
 class DocumentController
@@ -26,6 +27,8 @@ class DocumentController
     #[Get(uri: '/documents', name: 'documents.index', middleware: ['auth'])]
     public function index(Request $request)
     {
+        throw_unless($request->user()->isAdministrator(), AuthorizationException::class, "Vous n'êtes pas autorisé à accéder à cette page");
+
         $documents = Document::select(['id', 'rejected_at', 'validated_at', 'visa_kind', 'user_id'])
             ->latest()
             ->with('user.adress')
@@ -73,8 +76,9 @@ class DocumentController
      * @return \Illuminate\Http\Response
      */
     #[Get('/documents/{document}', name: 'documents.show', middleware: ['auth'])]
-    public function show(Document $document)
+    public function show(Document $document, Request $request)
     {
+        throw_unless($request->user()->isAdministrator(), AuthorizationException::class, "Vous n'êtes pas autorisé à accéder à cette page");
 
         return inertia()->render('Documents/Show', [
             'document' => fn () => $document->load(['user' => ['adress', 'role', 'photo']]),
@@ -82,14 +86,17 @@ class DocumentController
     }
 
     #[Get('/documents/{document}/edit', name: 'documents.edit', middleware: ['auth'])]
-    public function edit(Document $document)
+    public function edit(Document $document, Request $request)
     {
+        throw_unless($request->user()->isAdministrator(), AuthorizationException::class, "Vous n'êtes pas autorisé à accéder à cette page");
+
         return inertia()->render('Documents/Edit', ['document' => fn () => $document->load(['user' => ['adress', 'role']])]);
     }
 
     #[Put('/documents/{document}/update', name: 'documents.update', middleware: ['auth'])]
     public function update(UpdateDocumentRequest $request, Document $document)
     {
+        throw_unless($request->user()->isAdministrator(), AuthorizationException::class, "Vous n'êtes pas autorisé à accéder à cette page");
 
         DB::transaction(function () use ($document, $request) {
             $document->update($request->safe()->except(['first_name', 'last_name', 'adress']));

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -18,9 +19,11 @@ class DashboardController
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    #[Get(uri:'/dashboard', name:'dashboard', middleware:['auth'])]
+    #[Get(uri: '/dashboard', name: 'dashboard', middleware: ['auth'])]
     public function __invoke(Request $request): \Inertia\Response
     {
+        throw_unless($request->user()->isAdministrator(), AuthorizationException::class, "Vous n'êtes pas autorisé à accéder à cette page");
+
         return Inertia::render('Dashboard', [
             'latestDocuments' => Document::query()->with(['user' => ['adress', 'role']])->latest()->take(5)->get(),
             'latestStudents' => User::query()->with(['document'])->ofRole('Etudiant')->latest()->take(5)->get(),

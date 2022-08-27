@@ -30,7 +30,7 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document)
     {
-        //
+        return $user->isAdministrator();
     }
 
     /**
@@ -53,7 +53,7 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document)
     {
-        //
+
     }
 
     /**

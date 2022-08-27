@@ -64,6 +64,6 @@ class AuthenticatedSessionController
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return to_route('login');
     }
 }
