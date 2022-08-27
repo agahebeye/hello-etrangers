@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -8,7 +8,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link, usePage } from '@inertiajs/inertia-vue3';
 
 const user = usePage().props.value.auth['user'];
-const isAdmin = user?.role.name === 'Administrateur';
+const isAdmin = computed(() => user?.role.name === 'Administrateur');
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -30,7 +30,7 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex">
-                                <template v-if="user">
+                                <template v-if="$page.props.auth.user">
                                     <NavLink v-if="isAdmin" :href="route('documents.index')">
                                         Documents
                                     </NavLink>
@@ -65,7 +65,7 @@ const showingNavigationDropdown = ref(false);
                             </div>
                         </div>
 
-                        <div class="hidden lg:flex lg:items-center lg:ml-6" v-if="user">
+                        <div class="hidden lg:flex lg:items-center lg:ml-6" v-if="$page.props.auth.user">
                             <!-- Settings Dropdown -->
                             <div class="relative ml-3">
                                 <Dropdown align="right" width="48">
@@ -107,7 +107,7 @@ const showingNavigationDropdown = ref(false);
                 <!-- Responsive Navigation Menu -->
                 <div :class="{ 'block': showingNavigationDropdown, 'hidden': !showingNavigationDropdown }" class="lg:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <template v-if="user">
+                        <template v-if="$page.props.auth.user">
                             <ResponsiveNavLink v-if="isAdmin" :href="route('documents.index')" :active="route().current('documents.index')">
                                 Documents
                             </ResponsiveNavLink>
@@ -142,7 +142,7 @@ const showingNavigationDropdown = ref(false);
                     </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200" v-if="user">
+                    <div class="pt-4 pb-1 border-t border-gray-200" v-if="$page.props.auth.user">
                         <div class="px-4">
                             <div class="text-base font-medium text-gray-800">{{ $page.props.auth.user.fullname }}</div>
                             <div class="text-sm font-medium text-gray-500">{{ $page.props.auth.user.email }}</div>
