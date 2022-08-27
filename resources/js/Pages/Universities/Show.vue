@@ -21,7 +21,7 @@ const props = defineProps({
 
         <div class="prose max-w-none">
             <div class="mb-6 featured_image">
-                <img class="w-full lazyload h-96 md:h-[30rem]" :data-src="university.photo_url" />
+                <img class="w-full lazyload h-96 md:h-[30rem]" :data-src="university.photo.src" />
             </div>
 
             <h1 class="m-0 mb-4"> {{ university.name }}</h1>

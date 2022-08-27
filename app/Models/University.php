@@ -37,11 +37,6 @@ class University extends Model
         return $this->morphOne(Localisation::class, 'localisable');
     }
 
-    public function photos()
-    {
-        return $this->morphMany(Photo::class, 'photoable');
-    }
-
     public function adress()
     {
         return $this->morphOne(Adress::class, 'adressable');

@@ -70,7 +70,7 @@ class UniversitySeeder extends Seeder
                     ['name' => 'Faculté de droit'],
                 ],
             ], [
-                'name' => "université espoir d'afrique",
+                'name' => "Université espoir d'afrique",
                 'website_url' => 'https://www.hopeafricauniversity.org/',
                 'email' => 'inofO@hopeafricauniversity.org',
                 'devise' => "All Truth is God's Truth",
