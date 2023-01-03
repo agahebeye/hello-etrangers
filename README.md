@@ -18,3 +18,24 @@ Several features are offered by our application including: Registration of forei
 
 ![Screenshot from 2023-01-03 10-32-51](https://user-images.githubusercontent.com/24321974/210323070-659efd55-d7d8-45dd-8270-f1b09242adb0.png)
 *Screenshot of the dashboard page*
+
+To clone and play with this project 👇
+
+```
+git clone https://github.com/agahebeye/hello-etrangers.git
+composer install
+npm install
+cp .env.example .env
+```
+Make sure you configure the database and type 
+```
+php artisan migrate --seed
+``` 
+to seed the database
+
+Spin up the servers 
+```
+php artisan serve
+npm run dev
+```
+and you are ready to go
